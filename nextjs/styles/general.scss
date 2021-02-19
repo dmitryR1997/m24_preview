@@ -1,0 +1,156 @@
+@import '~reset-css';
+
+@import "fonts";
+@import "mixins";
+@import "variables";
+@import "animations";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: $default-bg-color;
+  font-family: $default-font;
+  font-size: $default-font-size;
+  font-weight: $default-font-weigth;
+  line-height: $default-line-height;
+  color: $default-font-color;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #14142B;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 1.35;
+  margin-bottom: 32px;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+a {
+  color: #8F688E;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+b {
+  font-weight: 700;
+}
+
+img,
+svg {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+ul, ol {
+  padding-left: 24px;
+}
+
+ul {
+  margin-bottom: 32px;
+}
+
+li {
+  margin-bottom: 16px;
+}
+
+input,
+textarea,
+select,
+button {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+// Helpers
+.mr-16 {
+  margin-right: 16px;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.alert {
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 16px;
+  border-radius: 8px;
+
+  &--warning {
+    background: #FFF5FF;
+    color: #8F688E;
+  }
+
+  &--success {
+    background: #FAFFEA;
+    color: #8DB310;
+  }
+
+  &--error {
+    background: rgba(250, 93, 67, 0.1);
+    color: #FA5D43;
+  }
+}
+
+.num-list-item {
+  margin: 0 0 24px;
+  color: #4E4B66;
+
+  &__header {
+    margin: 0 0 16px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.25px;
+    font-weight: 700;
+
+    &-num {
+      color: #14142B;
+
+      background-color: #D3E0A7;
+      border-radius: 8px;
+
+      margin-right: 16px;
+      padding: 5px 12px;
+    }
+
+    &-icon {
+      margin-right: 16px;
+    }
+  }
+
+  &__content {
+    font-weight: 500;
+  }
+}

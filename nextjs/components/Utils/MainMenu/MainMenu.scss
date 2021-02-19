@@ -1,0 +1,68 @@
+.main-menu {
+  $self: &;
+
+  background-color: #000000;
+  //display: none;
+  position: fixed;
+  z-index: 98;
+
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 0;
+  overflow: hidden;
+  transition: all ease 0.3s;
+
+  &--is-open {
+    overflow-y: scroll;
+  }
+
+  &__inner {
+    position: relative;
+    padding: 24px 0;
+  }
+
+  &__list {
+    padding-left: 16px;
+
+    &-item {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-link {
+      color: #ffffff;
+    }
+  }
+
+  &__footer {
+    margin: 86px 0 0;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+
+    line-height: 1.7;
+    letter-spacing: 0.25px;
+    color: rgba(255, 255, 255, 0.7);
+
+    a {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.33;
+      letter-spacing: 1px;
+      color: #B2D92E;
+    }
+  }
+
+  .accordion-item {
+    &__label {
+      font-size: 24px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.35;
+    }
+  }
+}

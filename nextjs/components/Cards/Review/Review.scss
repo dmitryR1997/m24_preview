@@ -1,0 +1,36 @@
+.review-card {
+  &__date {
+    margin: 0 0 8px;
+
+    font-size: 10px;
+    line-height: 1.2;
+    color: rgba(20, 20, 43, 0.6);
+  }
+
+  &__name {
+    margin: 0 0 16px;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  &__content {
+    margin: 0 0 16px;
+
+    &-title {
+      margin: 0 0 4px;
+
+      font-size: 10px;
+      line-height: 1.2;
+      color: rgba(20, 20, 43, 0.6);
+    }
+
+    &-text {
+      font-family: 'SF UI Text Regular', sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #4E4B66;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.catalog-slider {
+  &__header {
+    margin-bottom: 16px;
+  }
+
+  .swiper-container {
+    padding-bottom: 54px;
+  }
+
+  .slider-product-card {
+    &__head-title {
+      max-width: 215px;
+    }
+  }
+}

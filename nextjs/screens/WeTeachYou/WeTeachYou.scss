@@ -1,0 +1,13 @@
+.we-teach-you {
+  &__advant-list {
+    margin: 24px 0 ;
+
+    display: flex;
+    justify-content: space-between;
+
+    &-item {
+      flex: 0 0 calc(100% /3);
+      text-align: center;
+    }
+  }
+}

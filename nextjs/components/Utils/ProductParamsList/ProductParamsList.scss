@@ -1,0 +1,29 @@
+.product-params {
+  &__list {
+  }
+
+  &__item {
+    margin: 0 0 16px;
+
+    &-label {
+      margin: 0 0 7px;
+
+      font-size: 10px;
+      line-height: 1.2;
+      color: rgba(20, 20, 43, 0.6);
+    }
+
+    &-value {
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+
+  &__show-more {
+    margin: 24px 0 0;
+
+    font-weight: 600;
+    color: #B2D92E;
+    line-height: 1.75;
+  }
+}

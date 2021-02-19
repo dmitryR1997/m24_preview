@@ -1,0 +1,55 @@
+.static-page {
+  margin: 40px 0 0;
+
+  &__content {
+    margin: 0 0 40px;
+    color: #4E4B66;
+
+    li {
+      position: relative;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+
+        position: absolute;
+        top: 8px;
+        left: -24px;
+        background-color: #8F688E;
+      }
+    }
+
+    .accordion-item {
+      padding: 0;
+
+      &__label {
+        font-size: 18px;
+        font-weight: 600;
+        color: #14142B;
+      }
+    }
+  }
+
+  &__catalog {
+    margin: 0 0 48px;
+  }
+
+  &__five-reasons {
+    margin: 0 0 48px;
+  }
+
+  &__official-waranty {
+    margin: 0 0 48px;
+  }
+
+  &__realeted-products {
+    margin: 0 0 48px;
+  }
+
+  &__experts-help {
+    margin: 0 0 48px;
+  }
+}

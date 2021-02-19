@@ -1,0 +1,34 @@
+.before-header {
+  position: relative;
+  background-color: #F7F7FC;
+  z-index: 99;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px 0 13px
+  }
+
+  &__free-delivery {
+    color: #000000;
+    font-weight: 700;
+  }
+
+  &__info {
+    &-tel {
+      font-size: 16px;
+      font-weight: 600;
+      color: #9CC218;
+      line-height: 1.8;
+    }
+
+    &-time-work {
+      font-size: 10px;
+      font-weight: 500;
+      color: #6E7191;
+      line-height: 2.2;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.preview-brands {
+  &__header {
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    margin-bottom: 32px;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &-item {
+      margin-bottom: 16px;
+
+      flex: 0 0 calc(50% - 8px);
+    }
+  }
+
+  &__nav {
+    text-align: center;
+  }
+}

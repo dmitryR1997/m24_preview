@@ -1,0 +1,122 @@
+.header {
+  $self: &;
+
+  position: relative;
+
+  top: 0;
+  left: 0;
+
+  background-color: #FCFCFC;
+  box-shadow: 0 8px 16px rgba(17, 17, 17, 0.06);
+  transition: all ease 0.1s;
+
+  z-index: 99;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 0;
+    transition: all ease 0.1s;
+  }
+
+  &__arrow-back {
+    margin-right: 18px;
+  }
+
+  &__logo {
+    g {
+      transition: fill ease-in-out 0.3s;
+    }
+
+    .g-logo-text {
+      fill: #14142B;
+    }
+
+    .g-logo-sub-text {
+      fill: #4E4B66;
+    }
+
+    .g-logo-icon {
+      fill: #B2D92E
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+
+    &-item {
+      margin-left: 32px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &--sticky {
+    position: fixed;
+    width: 100%;
+  }
+
+  &--justify-start {
+    #{ $self }__wrapper {
+      justify-content: flex-start;
+      padding: 6px 0;
+    }
+
+    #{ $self }__nav {
+      margin-left: auto;
+    }
+  }
+
+  &--product-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    background-color: transparent;
+    box-shadow: none;
+
+    .g-logo-icon {
+      fill: #ffffff;
+    }
+
+    #{ $self }__wrapper {
+      padding: 6px 0;
+    }
+  }
+
+  &--open-main-menu {
+    background-color: #000000;
+
+    #{ $self }__arrow-back {
+      path,
+      line {
+        stroke: #ffffff;
+      }
+    }
+
+    #{ $self }__logo {
+      .g-logo-text {
+        fill: #ffffff;
+      }
+
+      .g-logo-sub-text {
+        fill: #ffffff;
+      }
+    }
+
+    #{ $self }__nav {
+      &-item {
+        &--hide-on-open-menu {
+          display: none;
+        }
+      }
+    }
+  }
+}

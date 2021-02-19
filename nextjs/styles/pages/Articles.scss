@@ -1,0 +1,29 @@
+.articles-page {
+  margin: 40px 0 0;
+
+  &__header {
+    margin: 0 0 34px;
+  }
+
+  &__list {
+    &-item {
+      margin: 0 0 24px;
+    }
+  }
+
+  &__five-reasons {
+    margin: 0 0 48px;
+  }
+
+  &__official-waranty {
+    margin: 0 0 48px;
+  }
+
+  &__realeted-products {
+    margin: 0 0 48px;
+  }
+
+  &__experts-help {
+    margin: 0 0 48px;
+  }
+}

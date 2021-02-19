@@ -1,0 +1,53 @@
+.article {
+  background-color: #FFFFFF;
+  box-shadow: 0 10px 20px rgba(156, 156, 156, 0.15);
+  border-radius: 8px;
+  padding: 16px 16px 24px;
+
+  cursor: pointer;
+
+  &__image {
+    overflow: hidden;
+    border-radius: 8px;
+
+    margin: 0 0 16px;
+  }
+
+  &__title {
+    margin: 0 0 16px;
+
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  &__text {
+    font-family: "Poppins", sans-serif;
+    color: #4E4B66;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: flex-end;
+    margin: 18px 0 0;
+
+    &-more {
+      margin-right: auto;
+
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.25px;
+      color: #8F688E;
+    }
+
+    &-info {
+      font-family: "Poppins", sans-serif;
+      letter-spacing: 0.25px;
+      color: #B2D92E;
+
+      svg {
+        margin-right: 8px
+      }
+    }
+  }
+}

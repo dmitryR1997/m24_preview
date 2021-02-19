@@ -1,0 +1,48 @@
+.swiper-container {
+  $self: &;
+
+  &--with-pagination {
+    padding-bottom: 32px;
+  }
+
+  &--visible-hidden-slides {
+    overflow: visible;
+
+    .swiper-slide {
+      width: 89%
+    }
+  }
+}
+
+.swiper-pagination {
+  position: absolute;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+
+  bottom: 0;
+  left: 0;
+}
+
+.swiper-pagination-bullet {
+  margin: 0 3px;
+
+  display: block;
+
+  width: 6px;
+  height: 6px;
+
+  background-color: #D3E0A7;
+  border-radius: 4px;
+  transition: width ease-in-out .3s;
+
+  cursor: pointer;
+
+  &-active {
+    width: 32px;
+  }
+}
+

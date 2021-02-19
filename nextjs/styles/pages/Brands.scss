@@ -1,0 +1,38 @@
+.brands-page {
+  margin: 40px 0 0;
+
+  &__header {
+    margin: 0 0 34px;
+  }
+
+  &__list {
+    margin-bottom: 32px;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &-item {
+      margin-bottom: 16px;
+
+      flex: 0 0 calc(50% - 8px);
+    }
+  }
+
+  &__five-reasons {
+    width: 100%;
+    margin: 48px 0;
+  }
+
+  &__official-waranty {
+    margin: 0 0 48px;
+  }
+
+  &__realeted-products {
+    margin: 0 0 48px;
+  }
+
+  &__experts-help {
+    margin: 0 0 48px;
+  }
+}

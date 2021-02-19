@@ -1,0 +1,74 @@
+.footer {
+  background: #000000;
+
+  padding: 53px 0 41px;
+
+  font-size: 13px;
+  color: #ffffff;
+
+  .g-logo-text {
+    fill: #ffffff;
+  }
+
+  .g-logo-sub-text {
+    fill: #ffffff;
+  }
+
+  .g-logo-icon {
+    fill: #B2D92E
+  }
+
+
+  &__social {
+    margin-bottom: 30px;
+
+    &-link {
+      margin-right: 32px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__info-link {
+    display: table;
+
+    margin: 0 0 10px;
+    padding: 2px 0;
+
+    font-size: 10px;
+    letter-spacing: 0.25px;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px dashed;
+  }
+
+  &__copyright {
+    margin: 40px 0;
+
+    display: flex;
+    justify-content: space-between;
+
+    &-text {
+      max-width: 205px;
+      margin-left: 8px;
+
+      font-size: 13px;
+      line-height: 1.7;
+      color: #EFF0F7;
+    }
+  }
+
+  &__warning {
+    margin-right: 3px;
+
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.4;
+
+    letter-spacing: 0.25px;
+
+    color: #EFF0F7;
+  }
+}

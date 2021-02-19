@@ -1,0 +1,55 @@
+.form-check {
+  $self: &;
+
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 32px;
+  padding-left: 32px;
+
+  &__mark,
+  &__mark-checked {
+    position: absolute;
+    z-index: 1;
+
+    top: 50%;
+    left: 0;
+    width: 32px;
+    height: 32px;
+
+    margin-top: -16px;
+
+    background-color: #D6D8E7;
+    border-radius: 50%;
+  }
+
+  &__mark-checked {
+    background-color: #8F688E;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+    svg {
+      path {
+        stroke: #ffffff;
+      }
+    }
+  }
+
+  &__input {
+    display: none;
+
+    &:checked {
+      ~ #{ $self }__mark-checked {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__label {
+    cursor: pointer;
+    margin-left: 16px;
+  }
+}

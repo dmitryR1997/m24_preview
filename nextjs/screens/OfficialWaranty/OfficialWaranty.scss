@@ -1,0 +1,33 @@
+.official-waranty {
+  background-color: #ffffff;
+  background-image: url("/images/official-waranty/bg.jpg");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+
+  padding: 23px 26px;
+  box-shadow: 0 10px 20px rgba(156, 156, 156, 0.15);
+  border-radius: 8px;
+
+  height: 454px;
+
+  &__title {
+    margin: 0 0 8px;
+
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  &__description {
+    margin: 0 0 8px;
+
+    font-size: 13px;
+    color: #A0A3BD;
+  }
+
+  &__link {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #6E0069;
+  }
+}

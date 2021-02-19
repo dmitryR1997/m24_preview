@@ -1,0 +1,64 @@
+.catalog-page-content {
+  &__header {
+    margin: 40px 0 24px;
+
+    &-slider {
+      margin: 24px 0 0;
+    }
+  }
+
+  &__product-filter {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 56px;
+
+    &-item {
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    select {
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+
+      appearance:none;
+
+      background-image: url("/icons/arrow-down.svg");
+      background-position: center right 4px;
+      background-repeat: no-repeat;
+      padding: 4px 32px 4px 0;
+    }
+  }
+
+  &__product-list-item {
+    margin: 0 0 80px;
+  }
+
+  &__product-nav {
+    margin: 80px 0 16px;
+    text-align: center;
+  }
+
+  &__product-total {
+    margin: 0 0 80px;
+
+    line-height: 2.3;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #8F688E;
+  }
+
+  &__explame-massager {
+    margin: 0 0 80px;
+  }
+
+  &__experts-help {
+    margin: 0 0 89px;
+  }
+
+  &__video-reviews {
+    margin: 0 0 56px;
+  }
+}

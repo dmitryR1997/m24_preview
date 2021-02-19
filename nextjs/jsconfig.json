@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@utils/*": ["utils/*"],
+      "@components/*": ["components/*"],
+      "@screens/*": ["screens/*"],
+
+      "@styles/*": ["styles/*"],
+
+      "@images/*": ["public/images/*"],
+      "@icons/*": ["public/icons/*"],
+
+      "@api/*": ["api/*"],
+      "@actions/*": ["actions/*"],
+      "@reducers/*": ["reducers/*"]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+.video-catalog-content {
+  &__header {
+    margin: 40px 0 32px;
+  }
+
+  &__filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 48px;
+
+    &-item {
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    select {
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+
+      appearance:none;
+
+      background-image: url("/icons/arrow-down.svg");
+      background-position: center right 4px;
+      background-repeat: no-repeat;
+      padding: 4px 32px 4px 0;
+    }
+  }
+
+  &__list {
+    &-item {
+      margin: 0 0 24px;
+    }
+  }
+
+  &__list-nav {
+    margin: 48px 0 16px;
+    text-align: center;
+  }
+
+  &__list-total {
+    margin: 0 0 40px;
+
+    line-height: 2.3;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #8F688E;
+  }
+
+  &__five-reasons {
+    margin: 0 0 48px;
+  }
+
+  &__official-waranty {
+    margin: 0 0 48px;
+  }
+
+  &__experts-help {
+    margin: 0 0 48px;
+  }
+}

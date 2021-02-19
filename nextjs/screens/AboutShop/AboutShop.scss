@@ -1,0 +1,42 @@
+.about-shop {
+  &__header {
+    margin: 0 0 16px;
+  }
+
+  &__description {
+    margin: 0 0 40px;
+    color: #4E4B66;
+  }
+
+  &__menu {
+    &-item {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-link {
+      color: #14142B;
+    }
+  }
+
+  .section-header {
+    &__title {
+      line-height: 1.6;
+    }
+  }
+
+  .accordion-item {
+    background-color: #FAFAFA;
+    transition: background-color 0.2s ease-in-out;
+
+    &__label {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    &--is-open {
+      background-color: #F0F0F0;
+    }
+  }
+}

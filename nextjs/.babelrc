@@ -1,0 +1,23 @@
+﻿{
+  "presets": [
+    "@babel/react",
+    "next/babel"
+  ],
+  "plugins": [
+    "inline-react-svg",
+    ["@babel/transform-runtime"],
+    ["@babel/plugin-transform-parameters"],
+    ["@babel/plugin-transform-arrow-functions"],
+    ["@babel/plugin-transform-destructuring"],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
+    [
+      "styled-components",
+      { "ssr": true, "displayName": true, "preprocess": false }
+    ]
+  ]
+}

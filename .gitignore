@@ -1,0 +1,7 @@
+__pycache__
+.DS_Store
+.idea
+.data
+.env
+collected_static
+storage/media
