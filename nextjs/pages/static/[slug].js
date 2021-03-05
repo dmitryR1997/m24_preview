@@ -13,6 +13,7 @@ import FiveReasons from "@screens/FiveReasons";
 import OfficialWaranty from "@screens/OfficialWaranty";
 
 import "@styles/pages/StaticPage.scss"
+import ExplameMassager from "@screens/ExplameMassager";
 
 const StaticPage = () => {
   const content = useRef()
@@ -56,6 +57,15 @@ const StaticPage = () => {
           <h1 className="static-page__title">
             {pageContent.NAME}
           </h1>
+
+          {slug === "o-magazine" &&
+            <>
+              <h3>Мы знаем о массажерах и массажных креслах ВСЁ!</h3>
+              <div className="static-page__explame-massager">
+                <ExplameMassager showHeader={false} />
+              </div>
+            </>
+          }
 
           <div className="static-page__content" dangerouslySetInnerHTML={{ __html: pageContent.DETAIL_TEXT }} />
         </Container>

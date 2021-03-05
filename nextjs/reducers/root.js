@@ -4,12 +4,14 @@ import layout from "./layout"
 import category from "./category"
 import filter from "./filter"
 import product from "./product"
+import cart from "./cart"
 
 const root = combineReducers({
   layout,
   category,
   product,
-  filter
+  filter,
+  cart
 })
 
 export default root

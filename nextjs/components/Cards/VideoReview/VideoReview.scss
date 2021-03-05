@@ -1,5 +1,7 @@
 .video-review-card {
   &__image {
+    margin: 0 0 16px;
+
     position: relative;
     overflow: hidden;
 
@@ -63,7 +65,7 @@
   }
 
   &__title {
-    margin: 16px 0 0;
+    margin: 8px 0 0;
     padding-right: 50px;
 
     font-family: 'Poppins', sans-serif;

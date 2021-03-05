@@ -1,4 +1,4 @@
-import {keyframes} from "@emotion/react";
+import { keyframes } from "@emotion/react";
 
 export default keyframes`
   from {
@@ -10,4 +10,4 @@ export default keyframes`
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
-`;
+`

@@ -12,6 +12,8 @@
 
   padding: 19px 71px;
 
+  transition: all ease-in-out 0.2s;
+
   &--outline {
     font-family: 'Poppins', sans-serif;
     color: #14142B;
@@ -27,5 +29,20 @@
 
     font-size: 14px;
     font-weight: 600;
+  }
+
+  &--in-cart {
+    background-image: url("/icons/checkbox.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: transparent;
+  }
+
+  &--is-loading {
+    background-image: url("/images/button-preloader.svg");
+    background-size: 30px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: transparent;
   }
 }

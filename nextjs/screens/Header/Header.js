@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from "react"
-import { Zoom } from "react-awesome-reveal"
 import PropTypes from "prop-types"
 import Link from "next/link"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 import classnames from "classnames"
 
 import { connect } from "react-redux"
@@ -64,44 +63,42 @@ const Header = ({ isOpenMainMenu, isOpenHeaderSearch, isProduct }) => {
           "header--open-main-menu": isOpenMainMenu
         })}
       >
-        <Zoom delay={300} duration={400} triggerOnce>
-          <Container>
-            <div className="header__wrapper">
-              {isProduct &&
-                <div className="header__arrow-back">
-                  <Link href={`/catalog/${code}`}>
-                    <a href={`/catalog/${code}`}>
-                      <ArrowBack/>
-                    </a>
-                  </Link>
-                </div>
+        <Container>
+          <div className="header__wrapper">
+            {isProduct &&
+              <div className="header__arrow-back">
+                <Link href={`/catalog/${code}`}>
+                  <a href={`/catalog/${code}`}>
+                    <ArrowBack/>
+                  </a>
+                </Link>
+              </div>
+            }
+
+            <Link href="/">
+              <a className="header__logo" href="/">
+                <SiteLogo/>
+              </a>
+            </Link>
+
+            <div className="header__nav">
+              {!isProduct &&
+                <>
+                  <div className="header__nav-item header__nav-item--hide-on-open-menu">
+                    <HeaderSearch/>
+                  </div>
+                  <div className="header__nav-item header__nav-item--hide-on-open-menu">
+                    <MiniCart/>
+                  </div>
+                </>
               }
 
-              <Link href="/">
-                <a className="header__logo" href="/">
-                  <SiteLogo/>
-                </a>
-              </Link>
-
-              <div className="header__nav">
-                {!isProduct &&
-                  <>
-                    <div className="header__nav-item header__nav-item--hide-on-open-menu">
-                      <HeaderSearch/>
-                    </div>
-                    <div className="header__nav-item header__nav-item--hide-on-open-menu">
-                      <MiniCart/>
-                    </div>
-                  </>
-                }
-
-                <div className="header__nav-item">
-                  <MainMenuBurger/>
-                </div>
+              <div className="header__nav-item">
+                <MainMenuBurger/>
               </div>
             </div>
-          </Container>
-        </Zoom>
+          </div>
+        </Container>
       </div>
 
       {!isProduct &&

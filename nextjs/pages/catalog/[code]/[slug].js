@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import {useRouter} from "next/router";
+import {useRouter} from "next/router"
+import num_word from "@utils/NumWord"
 
 import { fetchProduct } from "@api/product"
 
@@ -80,9 +81,12 @@ const ProductPage = () => {
 
             <Container classes={["single-product__purchase"]}>
               <div className="single-product__purchase-left">
-                <div className="single-product__credit-price">
-                  134 800 ₽/мес. в рассрочку
-                </div>
+                {details.credit_line &&
+                  <div className="single-product__credit-price">
+                    { (details.price / 12).toFixed(0) } ₽/мес. в рассрочку
+                  </div>
+                }
+
                 {details.discount_price &&
                 <div className="single-product__old-price">
                   Цена <strike><Amount amount={details.discount_price}/></strike>
@@ -94,7 +98,7 @@ const ProductPage = () => {
               </div>
 
               <div className="single-product__purchase-right">
-                <AddToCart/>
+                <AddToCart id={parseInt(details.id)} />
               </div>
             </Container>
 
@@ -104,7 +108,7 @@ const ProductPage = () => {
                   Наличие
                 </div>
                 <div className="single-product__info-item-value">
-                  На складе
+                  { details.quantity > 0 ? "На складе" : "Под заказ" }
                 </div>
               </div>
               <div className="single-product__info-item">
@@ -112,7 +116,7 @@ const ProductPage = () => {
                   Доставка
                 </div>
                 <div className="single-product__info-item-value">
-                  Завтра
+                  { details.quantity > 0 ? "1-2 дня" : "-" }
                 </div>
               </div>
               <div className="single-product__info-item">
@@ -120,13 +124,21 @@ const ProductPage = () => {
                   Продано
                 </div>
                 <div className="single-product__info-item-value">
-                  18 штук
+                  {details.sale_count}
+
+                  { num_word(details.sale_count, [" штука", " штуки", " штук"]) }
                 </div>
               </div>
             </Container>
 
             <Container classes={["single-product__video-reviews"]}>
-              <VideoReviews params={{ product_id: details.id }} hideHeader={true}/>
+              <VideoReviews
+                gallery={details.gallery}
+                params={{ product_id: details.id }}
+                hideHeader={true}
+                hideTags={true}
+                hideCatalogLink={true}
+              />
             </Container>
 
             <Container>
@@ -171,18 +183,20 @@ const ProductPage = () => {
                     <div
                       id="tab-1"
                       label="Виды массажа"
+                      open={true}
                     >
                       {details.types_massage &&
                         <div className="single-product__advant-list">
                           {details.types_massage.map((type, key) => (
                             <div key={key} className="single-product__advant-list-item">
-                              <img src="https://massagery24.ru/upload/pictovar/119.png" alt="Icon"/>
-                              {type}
+                              <img src={`/icons/types_massage/${type.icon}.png`} alt="Icon"/>
+                              {type.title}
                             </div>
                           ))}
                         </div>
                       }
                     </div>
+
                   </Accordion>
                 </Tab>
 

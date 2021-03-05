@@ -8,6 +8,7 @@ import SliderProductCard from "@components/Cards/SliderProduct"
 import api from "@api/index"
 
 import "./NewProductsSlider.scss"
+import Banner from "@components/Cards/Banner/Banner";
 
 const NewProductsSlider = () => {
   const [products, setProducts] = useState([])
@@ -20,21 +21,26 @@ const NewProductsSlider = () => {
 
   return (
     <section className="new-products-slider">
-      <Fade delay={600} triggerOnce>
-        <Container>
-          <Slider
-            visibleHiddenSlides
-            pagination
-          >
-            {products.map((product, key) => (
+      <Container>
+        <Slider
+          visibleHiddenSlides
+          pagination
+        >
+          {products.map((product, key) => (
+            product.view === "product" ?
               <SliderProductCard
                 key={key}
                 product={product}
+              /> :
+              <Banner
+                type={product.type}
+                title={product.title}
+                description={product.title_second}
+                image={product.image}
               />
-            ))}
-          </Slider>
-        </Container>
-      </Fade>
+          ))}
+        </Slider>
+      </Container>
     </section>
   )
 }

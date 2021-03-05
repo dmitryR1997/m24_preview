@@ -5,6 +5,11 @@
     margin: 0 0 40px;
     color: #4E4B66;
 
+    img {
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+
     li {
       position: relative;
 
@@ -34,6 +39,10 @@
   }
 
   &__catalog {
+    margin: 0 0 48px;
+  }
+
+  &__explame-massager {
     margin: 0 0 48px;
   }
 

@@ -60,7 +60,7 @@ const WeTeachYou = () => {
         </VisibilitySensor>
 
         <div className="we-teach-you__slider">
-          <VideoReviews params={{ home_page: true }} hideHeader={true}/>
+          <VideoReviews params={{ home_page: true }} hideHeader={true} hideTags={true} />
         </div>
       </Container>
     </section>

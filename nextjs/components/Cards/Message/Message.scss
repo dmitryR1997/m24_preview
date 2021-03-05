@@ -1,0 +1,30 @@
+.message-card {
+  position: relative;
+  background-color: #FFFFFF;
+  padding: 35px 33px 43px;
+  box-shadow: 0 10px 20px rgba(156, 156, 156, 0.15);
+  border-radius: 16px;
+  text-align: center;
+
+  &__close {
+    position: absolute;
+    top: 15px;
+    right: 16px;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.9;
+
+    margin: 0 0 32px;
+  }
+
+  &__description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4E4B66;
+
+    margin: 0 0 32px;
+  }
+}

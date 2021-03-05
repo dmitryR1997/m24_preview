@@ -1,50 +1,45 @@
-import React, { useMemo } from "react"
-import { createStore, applyMiddleware } from "redux"
-import { composeWithDevTools } from "redux-devtools-extension"
+import { createStore, applyMiddleware, combineReducers } from "redux"
+import { createWrapper, HYDRATE } from "next-redux-wrapper"
 import thunkMiddleware from "redux-thunk"
+import combinedReducer from "@reducers/root"
 
-import rootReducer from "@reducers/root"
+// BINDING MIDDLEWARE
+const bindMiddleware = (middleware) => {
+  if (process.env.NODE_ENV !== "production") {
+    const { composeWithDevTools } = require("redux-devtools-extension")
+    return composeWithDevTools(applyMiddleware(...middleware))
+  }
 
-let store
+  return applyMiddleware(...middleware)
+};
 
+const makeStore = ({ isServer }) => {
+  if (isServer) {
+    //If it's on server side, create a store
+    return createStore(combinedReducer, bindMiddleware([thunkMiddleware]))
+  } else {
+    //If it's on client side, create a store which will persist
+    const { persistStore, persistReducer } = require("redux-persist")
+    const storage = require("redux-persist/lib/storage").default
 
-function initStore (initialState) {
-  return createStore(
-    rootReducer,
-    initialState,
-    composeWithDevTools(applyMiddleware(thunkMiddleware))
-  )
-}
+    const persistConfig = {
+      key: "nextjs",
+      whitelist: ["cart"],
+      storage
+    }
 
-export class PersistGateServer extends React.Component {
-  render () {
-    return this.props.children
+    const persistedReducer = persistReducer(persistConfig, combinedReducer) // Create a new reducer with our existing reducer
+
+    const store = createStore(
+      persistedReducer,
+      bindMiddleware([thunkMiddleware])
+    ) // Creating the store again
+
+    store.__persistor = persistStore(store) // This creates a persistor object & push that persisted object to .__persistor, so that we can avail the persistability feature
+
+    return store
   }
 }
 
-export const initializeStore = (preloadedState) => {
-  let _store = store ?? initStore(preloadedState)
-
-  if (preloadedState && store) {
-    _store = initStore({
-      ...store.getState(),
-      ...preloadedState,
-    })
-
-    store = undefined
-  }
-
-  if (typeof window === "undefined") {
-    return _store
-  }
-
-  if (!store) {
-    store = _store
-  }
-
-  return _store
-}
-
-export function useStore (initialState) {
-  return useMemo(() => initializeStore(initialState), [initialState])
-}
+// Export the wrapper & wrap the pages/_app.js with this wrapper only
+export const wrapper = createWrapper(makeStore);

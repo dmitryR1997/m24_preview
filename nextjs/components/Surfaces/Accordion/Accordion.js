@@ -28,7 +28,7 @@ const Accordion = ({ children }) => {
 
   return (
     <div className="accordion">
-      {children.length >= 1 &&
+      {children.length >= 1 ?
         children.map((item, i) => (
           <AccordionSection
             key={i}
@@ -39,7 +39,14 @@ const Accordion = ({ children }) => {
           >
             {item}
           </AccordionSection>
-        ))
+        )) : <AccordionSection
+              onClick={() => onClickHandler(children.props.id)}
+              isOpen={!!openSections[children.props.id]}
+              isLink={!children.props.children}
+              label={children.props.label}
+            >
+              {children}
+            </AccordionSection>
       }
     </div>
   )

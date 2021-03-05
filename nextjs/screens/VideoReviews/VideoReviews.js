@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox"
 
 import { fetchVideos } from "@api/video"
 
@@ -20,7 +21,7 @@ const endSlide = () => {
   )
 }
 
-const VideoReviews = ({ params, hideHeader }) => {
+const VideoReviews = ({ params, hideHeader, hideTags, hideCatalogLink, gallery }) => {
   const [videos, setVideos] = useState(false)
 
   useEffect(() => {
@@ -34,13 +35,28 @@ const VideoReviews = ({ params, hideHeader }) => {
           <VideoReviewCard
             key={key}
             video={video}
+            hideTags={hideTags}
           />
         )
 
         result.push(slide)
 
-        if (key === data.length - 1) result.push(endSlide)
+        if (key === data.length - 1 && !hideCatalogLink) result.push(endSlide)
       })
+
+      if (gallery) {
+        gallery.forEach((src, key) => {
+          const image = (
+            <VideoReviewCard
+              key={result.length + key}
+              image={src.original}
+              hideTags={hideTags}
+            />
+          )
+
+          result.push(image)
+        })
+      }
 
       setVideos(result)
     })
@@ -56,16 +72,20 @@ const VideoReviews = ({ params, hideHeader }) => {
         </div>
       }
 
-      <div className="video-reviews__slider">
-        {videos &&
-          <Slider
-            visibleHiddenSlides
-            pagination
-          >
-            {videos}
-          </Slider>
-        }
-      </div>
+      <SimpleReactLightbox>
+        <SRLWrapper>
+          <div className="video-reviews__slider">
+            {videos &&
+              <Slider
+                visibleHiddenSlides
+                pagination
+              >
+                {videos}
+              </Slider>
+            }
+          </div>
+        </SRLWrapper>
+      </SimpleReactLightbox>
     </section>
   )
 }

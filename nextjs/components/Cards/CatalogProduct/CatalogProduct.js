@@ -44,22 +44,20 @@ const CatalogProduct = ({ product, size }) => {
           {product.name}
         </h3>
 
-        {product.discount_price &&
+        {product.discount_price > 0 &&
           <div className="catalog-product-card__old-price">
             <Amount
-              amount={product.discount_price}
+              amount={product.price}
               old
             />
           </div>
         }
 
-        {product.price &&
-          <div className="catalog-product-card__current-price">
-            <Amount
-              amount={product.price}
-            />
-          </div>
-        }
+        <div className="catalog-product-card__current-price">
+          <Amount
+            amount={product.discount_price > 0 ? product.discount_price : product.price}
+          />
+        </div>
       </div>
     </article>
   )

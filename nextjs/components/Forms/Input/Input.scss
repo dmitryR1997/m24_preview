@@ -1,0 +1,47 @@
+%label-movement {
+  font-size: 10px;
+  top: 11px;
+  transform: translateY(0);
+  transition: all 0.125s cubic-bezier(0.2, 0, 0.03, 1);
+}
+
+.input {
+  position: relative;
+
+  &__control,
+  &__label {
+    font-size: 16px;
+    letter-spacing: 0.75px;
+    line-height: 1.4;
+  }
+
+  &__control {
+    padding: 27px 16px 10px 16px;
+    background-color: #EFF0F7;
+    border-radius: 16px;
+    width: 100%;
+    font-weight: 600;
+    color: #14142B;
+
+    &:focus,
+    &:valid {
+      ~ label {
+        @extend %label-movement;
+      }
+    }
+  }
+
+  &__label {
+    font-weight: 400;
+    color: #A0A3BD;
+
+    cursor: pointer;
+
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    transition: all 0.25s cubic-bezier(0.2, 0, 0.03, 1);
+    pointer-events: none
+  }
+}

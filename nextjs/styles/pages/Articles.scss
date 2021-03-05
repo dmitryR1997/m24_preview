@@ -11,6 +11,20 @@
     }
   }
 
+  &__nav {
+    margin: 80px 0 16px;
+    text-align: center;
+  }
+
+  &__total {
+    margin: 0 0 80px;
+    line-height: 2.3;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #8F688E;
+  }
+
+
   &__five-reasons {
     margin: 0 0 48px;
   }

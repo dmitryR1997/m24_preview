@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 
 import { fetchProducts } from "@api/product"
 
@@ -11,23 +11,59 @@ import FiveReasons from "@screens/FiveReasons"
 import "./Catalog.scss"
 
 const Catalog = ({ params }) => {
+  const loader = useRef(null)
+
   const [products, setProducts] = useState([])
   const [total, setTotal] = useState([])
   const [page, setPage] = useState(1)
+  const [firstLoaded, setFirstLoaded] = useState(false)
 
   const loadProducts = (page) => {
     fetchProducts({
       ...params,
+      "include_sections": true,
       "nav-products": `page-${page}`
     }).then(({ data }) => {
-      setProducts(prev => [...prev, ...data.data])
+      if (page === 1) {
+        setProducts(data.data)
+      } else {
+        setProducts(prev => [...prev, ...data.data])
+      }
+
       setTotal(data.total)
+
+      if (!firstLoaded) {
+        setFirstLoaded(true)
+      }
     })
   }
+
+  const handleObserver = (entities) => {
+    const target = entities[0]
+
+    if (target.isIntersecting) {
+      setPage((page) => page + 1)
+    }
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      root: null,
+      threshold: 1.0
+    })
+
+    if (loader.current) {
+      observer.observe(loader.current)
+    }
+  }, [firstLoaded])
 
   useEffect(() => {
     loadProducts(page)
   }, [page])
+
+  useEffect(() => {
+    loadProducts(1)
+  }, [params.section_id])
 
   return (
     <div className="catalog">
@@ -64,17 +100,20 @@ const Catalog = ({ params }) => {
 
         {products.length > 0 &&
         <>
-          <div className="catalog__product-nav">
-            <Button
-              onClick={() => setPage(page + 1)}
-              label="Показать ещё"
-              size="xs"
-              outline
-            />
+          <div className="catalog__product-nav" ref={loader}>
+            {!((page * 5) >= total) &&
+              <Button
+                ref={loader}
+                onClick={() => setPage(page + 1)}
+                label="Показать ещё"
+                size="xs"
+                outline
+              />
+            }
           </div>
 
           <div className="catalog__product-total">
-            Всего {total} моделей
+            Показано {page * 5} из {total} моделей
           </div>
         </>
         }

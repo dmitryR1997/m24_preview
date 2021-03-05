@@ -37,7 +37,9 @@ const HomePage = () => {
         </div>
 
         <div className="home-page-content__explame-massager">
-          <ExplameMassager />
+          <Container>
+            <ExplameMassager/>
+          </Container>
         </div>
 
         <div className="home-page-content__catalog-slider">

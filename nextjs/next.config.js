@@ -7,6 +7,10 @@ const withSourceMaps = require("@zeit/next-source-maps")
 const withCss = require("@zeit/next-css")
 const withSass = require("@zeit/next-sass")
 
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true"
+})
+
 const nextConfig = {
   // htmlAttrs: { lang: "ru-Ru" },
   // trailingSlash: true,
@@ -47,5 +51,6 @@ module.exports = withPlugins([
       },
     },
   ],
-  [withImages]
+  [withImages],
+  [withBundleAnalyzer]
 ], nextConfig)

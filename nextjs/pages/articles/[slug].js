@@ -13,6 +13,7 @@ import FiveReasons from "@screens/FiveReasons";
 import OfficialWaranty from "@screens/OfficialWaranty";
 
 import "@styles/pages/StaticPage.scss"
+import {fetchArticle} from "@api/article";
 
 const StaticPage = () => {
   const content = useRef()
@@ -28,7 +29,7 @@ const StaticPage = () => {
   useEffect(() => {
     if (!slug) return
 
-    fetchStatic(slug).then(({ data }) => {
+    fetchArticle(slug).then(({ data }) => {
       setPageContent(data)
     })
   }, [slug])

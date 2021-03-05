@@ -34,7 +34,8 @@ const AboutShop = ({ showText }) => {
             id="tab-1"
             label="О магазине"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat lacinia quam, id porttitor tellus auctor quis. Cras id neque velit. Nulla facilisis ac ligula quis blandit. Nunc bibendum at est rhoncus varius. In felis arcu, porta rutrum tristique sed, gravida id lorem. Nullam ut risus vitae diam tincidunt dapibus vel ac elit. Nunc accumsan ornare pellentesque.
+            <p>С 2015 года мы продали более 14 000 массажёров и массажных кресел по всей России. Наши менеджеры помогут подобрать нужный массажёр, т.к. разбираются во всех тонкостях и деталях. Все менеджеры регулярно обучаются в шоу-румах производителей и в наших розничных магазинах, где есть возможность попробовать практически весь ассортимен массажных кресел массажёров. Кроме того, мы единственный магазин, который делает подробные видео-обзоры массажного оборудования, помогая вам ориентироваться в этом сложном оборудовании. В Москве у нас 5 шоу-румов, где вы можете абсолютно бесплатно протестировать любое устройство.</p>
+            <p>Позвоните нам или приходите в один из магазинов. Пробуйте массажёры и сделайте свою жизнь легче.</p>
           </div>
 
           <div
@@ -91,14 +92,15 @@ const AboutShop = ({ showText }) => {
             id="tab-3"
             label="Где купить?"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat lacinia quam, id porttitor tellus auctor quis. Cras id neque velit. Nulla facilisis ac ligula quis blandit. Nunc bibendum at est rhoncus varius. In felis arcu, porta rutrum tristique sed, gravida id lorem. Nullam ut risus vitae diam tincidunt dapibus vel ac elit. Nunc accumsan ornare pellentesque.
+            <p>Позвоните нам или приходите в один из магазинов. Пробуйте массажёры и сделайте свою жизнь легче.</p>
           </div>
 
           <div
             id="tab-4"
             label="Свяжитесь с нами"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat lacinia quam, id porttitor tellus auctor quis. Cras id neque velit. Nulla facilisis ac ligula quis blandit. Nunc bibendum at est rhoncus varius. In felis arcu, porta rutrum tristique sed, gravida id lorem. Nullam ut risus vitae diam tincidunt dapibus vel ac elit. Nunc accumsan ornare pellentesque.
+            <p><a href="tel:88005503289">8 800 550-32-89</a></p>
+            <p>Ежедневно с 9.00 до 21.00 по московскому времени.</p>
           </div>
         </Accordion>
       </Container>

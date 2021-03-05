@@ -1,0 +1,52 @@
+.call-me {
+  $self: &;
+
+  position: fixed;
+  right: 20px;
+  bottom: 70px;
+
+  &__list {
+    position: absolute;
+    overflow: hidden;
+    bottom: calc(100% + 4px);
+    max-height: 0;
+    transition: max-height 0.15s ease-out;
+
+    &-item {
+      margin-bottom: 4px;
+      cursor: pointer;
+      background-color: #B2D92E;
+      width: 52px;
+      height: 52px;
+      line-height: 52px;
+
+      border-radius: 50%;
+      text-align: center;
+      transition: all 0.15s ease-in-out;
+    }
+  }
+
+  &__toggle {
+    cursor: pointer;
+    background-color: #B2D92E;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+
+    border-radius: 50%;
+    text-align: center;
+    transition: all 0.15s ease-in-out;
+  }
+
+  &--is-open {
+    #{ $self }__toggle {
+      background-color: #ffffff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    #{ $self }__list {
+      max-height: 500px;
+      transition: max-height 0.25s ease-in;
+    }
+  }
+}

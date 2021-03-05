@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import classnames from "classnames"
-import { Fade } from "react-awesome-reveal"
 
 import { fetchProducts } from "@api/product"
 
@@ -51,37 +50,35 @@ const ProductsList = () => {
   return (
     <div className="products-list">
       <Container>
-        <Fade triggerOnce>
-          <div className="products-list__filter">
-            {Object.keys(filterList).map((item, key) => (
-              <div key={key}
-                   onClick={() => setFilter(item)}
-                   className={classnames("products-list__filter-item", {
-                     "products-list__filter-item--active": filter === item
-                   })}
-              >
-                {filterList[item]}
-              </div>
-            ))}
-          </div>
-        </Fade>
-
-        <div className="products-list__grid">
-          {products.map((product, key) => (
-            <div
-              key={key}
-              className="products-list__grid-item"
+        <div className="products-list__filter">
+          {Object.keys(filterList).map((item, key) => (
+            <div key={key}
+                 onClick={() => setFilter(item)}
+                 className={classnames("products-list__filter-item", {
+                   "products-list__filter-item--active": filter === item
+                 })}
             >
-              <CatalogProduct
-                product={product}
-                size="xs"
-              />
+              {filterList[item]}
             </div>
           ))}
         </div>
 
         {products.length > 0 &&
           <>
+            <div className="products-list__grid">
+              {products.map((product, key) => (
+                <div
+                  key={key}
+                  className="products-list__grid-item"
+                >
+                  <CatalogProduct
+                    product={product}
+                    size="xs"
+                  />
+                </div>
+              ))}
+            </div>
+
             <div className="products-list__nav">
               <Button
                 label="Показать ещё"

@@ -38,13 +38,11 @@ const PreviewBrands = () => {
         </div>
 
         <div className="preview-brands__nav">
-          <Link href="/brands">
-            <Button
-              label="Все бренды"
-              size="xs"
-              outline
-            />
-          </Link>
+          <Button
+            label="Все бренды"
+            size="xs"
+            outline
+          />
         </div>
       </Container>
     </section>

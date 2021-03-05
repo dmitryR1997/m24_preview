@@ -1,17 +1,36 @@
-import React from "react"
+import React, { useState, useCallback } from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
+import { useRouter } from "next/router"
+
+import { connect, useDispatch } from "react-redux"
+import { addToCart } from "@actions/cart"
 
 import Amount from "@components/Display/Amount"
 import Slider from "@components/Surfaces/Slider"
 import Button from "@components/Forms/Button"
+
+import getProdutLink from "@utils/getProdutLink";
 
 import "./Product.scss"
 
 import PlayIcon from "../../../public/icons/play-button.svg"
 import ComparisonIcon from "../../../public/icons/comparison.svg"
 
-const Product = ({ product }) => {
+const Product = ({ product, cartList }) => {
+  const router = useRouter()
+  const dispatch = useDispatch()
+
+  const [inCart, setInCart] = useState(cartList.some(item => item.id === product.id))
+
+  const addToCartHandler = useCallback(() => {
+    if (!inCart) {
+      dispatch(addToCart({id: parseInt(product.id), quantity: 1}))
+    }
+
+    router.push("/cart")
+  }, [inCart, product])
+
   return (
     <article
       className="product-card"
@@ -30,8 +49,8 @@ const Product = ({ product }) => {
 
       {product.images && product.images.length > 0
         ? <div className="product-card__slider">
-            <Link href={`/catalog/${product.category_code}/${product.code}`}>
-              <a href={`/catalog/${product.category_code}/${product.code}`}>
+            <Link href={getProdutLink(product)}>
+              <a href={getProdutLink(product)}>
                 <Slider
                   pagination
                 >
@@ -48,8 +67,8 @@ const Product = ({ product }) => {
           </div>
 
         : <div className="product-card__image-none">
-            <Link href={`/catalog/${product.category_code}/${product.code}`}>
-              <a href={`/catalog/${product.category_code}/${product.code}`}>
+            <Link href={getProdutLink(product)}>
+              <a href={getProdutLink(product)}>
                 <img src="/images/image-not-found.svg" alt="Product Image None"/>
               </a>
             </Link>
@@ -71,19 +90,17 @@ const Product = ({ product }) => {
       {product.discount_price > 0 &&
         <div className="product-card__old-price">
           <Amount
-            amount={product.discount_price}
+            amount={product.price}
             old
           />
         </div>
       }
 
-      {product.price > 0 &&
       <div className="product-card__current-price">
-          <Amount
-            amount={product.price}
-          />
-        </div>
-      }
+        <Amount
+          amount={product.discount_price > 0 ? product.discount_price : product.price}
+        />
+      </div>
 
       <div className="product-card__nav">
         <div className="product-card__nav-item">
@@ -93,6 +110,8 @@ const Product = ({ product }) => {
         <div className="product-card__nav-item">
           <Button
             label="Купить"
+            onClick={addToCartHandler}
+            inCart={inCart}
           />
         </div>
 
@@ -105,7 +124,14 @@ const Product = ({ product }) => {
 }
 
 Product.propTypes = {
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
+  cartList: PropTypes.array.isRequired
 }
 
-export default Product
+const mapStateToolProps = state => {
+  return {
+    cartList: state.cart.list
+  }
+}
+
+export default connect(mapStateToolProps)(Product)

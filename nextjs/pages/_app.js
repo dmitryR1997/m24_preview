@@ -1,10 +1,7 @@
-import React, { useEffect } from "react"
-import PropTypes from "prop-types"
-import { Provider } from "react-redux"
-import { persistStore } from "redux-persist"
-import { useRouter } from "next/router"
-
-import { useStore, PersistGateServer } from "../store"
+import App from "next/app"
+import { wrapper } from "../store"
+import { useStore } from "react-redux"
+import { PersistGate } from "redux-persist/integration/react"
 
 // General styles
 import "../styles/general.scss"
@@ -12,30 +9,14 @@ import "../styles/general.scss"
 // Plugins styles
 import "swiper/swiper.scss"
 
-const App = ({ Component, pageProps }) => {
-  const store = useStore(pageProps.initialReduxState)
-
-  const router = useRouter()
-
-  useEffect(() => {
-    router.events.on("routeChangeComplete", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "instant"
-      })
-    })
-  }, [])
+function MyApp({ Component, pageProps }) {
+  const store = useStore((state) => state)
 
   return (
-    <Provider store={store}>
+    <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
       <Component {...pageProps} />
-    </Provider>
-  )
+    </PersistGate>
+  );
 }
 
-App.propTypes = {
-  Component: PropTypes.any,
-  pageProps: PropTypes.any
-}
-
-export default App
+export default wrapper.withRedux(MyApp)

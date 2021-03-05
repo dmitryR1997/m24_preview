@@ -1,21 +1,18 @@
-import React, { useEffect, useState, useCallback } from "react"
-import { useRouter } from "next/router"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
-import { connect, useDispatch } from "react-redux"
+import { useRouter } from "next/router"
+import { connect } from "react-redux"
 
 import { hideMainMenu } from "@actions/layout"
-import { setFilter, updateFilter } from "@actions/filter"
 
 import { fetchCategory } from "@api/category"
-import { fetchProducts } from "@api/product"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
 import CatalogFilterToggle from "@components/Utils/CatalogFilterToggle"
 import SectionHeader from "@components/Display/SectionHeader"
-import ProductCard from "@components/Cards/Product"
 import CatalogFilter from "@components/Utils/CatalogFilter"
-import Button from "@components/Forms/Button"
+import Catalog from "@components/Utils/Catalog"
 
 import VideoReviews from "@screens/VideoReviews"
 import ExpertsHelp from "@screens/ExpertsHelp"
@@ -24,30 +21,12 @@ import ExplameMassager from "@screens/ExplameMassager"
 import "@styles/pages/catalog.scss"
 
 const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
-  const dispatch = useDispatch()
   const router = useRouter()
   const { code } = router.query
 
-  const [currentPage, setCurrentPage] = useState(1)
   const [category, setCategory] = useState([])
-  const [products, setProducts] = useState([])
-  const [productsTotal, setProductsTotal] = useState(0)
 
   const sortHandler = (event) => {
-    setProducts([])
-    setCurrentPage(1)
-
-    dispatch(updateFilter({
-      field: "sort",
-      value: event.target.value
-    }))
-  }
-
-  const loadProducts = (filter) => {
-    fetchProducts(filter).then(({ data }) => {
-      setProducts(prev => [...prev, ...data.data])
-      setProductsTotal(data.total)
-    })
   }
 
   useEffect(() => {
@@ -62,40 +41,12 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
     })
   }, [code])
 
-  useEffect(() => {
-    if (!category.ID) return
-
-    setProducts([])
-    setCurrentPage(1)
-
-    dispatch(setFilter({
-      section_id: category.ID,
-      "nav-products": `page-1`
-    }))
-  }, [category])
-
-  useEffect(() => {
-    if (currentPage === 1) return
-
-    dispatch(updateFilter({
-      field: "nav-products",
-      value: `page-${currentPage}`
-    }))
-  }, [currentPage])
-
-  useEffect(() => {
-    if (filter.length === 0) return
-
-    loadProducts(filter)
-  }, [filter])
-
-  useEffect( () => () => dispatch(setFilter([])), [] )
 
   return (
     <Layout>
       <div className="catalog-page-content">
         {category.ID &&
-        <CatalogFilter sectionId={category.ID}/>
+          <CatalogFilter sectionId={category.ID}/>
         }
 
         <Container>
@@ -111,7 +62,7 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
 
             {category.ID &&
             <div className="catalog-page-content__header-slider">
-              <VideoReviews params={{ section_id: category.ID }} hideHeader={true}/>
+              <VideoReviews params={{ section_id: category.ID }} hideHeader={true} hideTags={true} />
             </div>
             }
           </div>
@@ -129,39 +80,18 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
               </select>
             </div>
           </div>
-
-          <div className="catalog-page-content__product-list">
-            {products.map((product, key) => (
-              <div key={key}
-                   className="catalog-page-content__product-list-item"
-              >
-                <ProductCard
-                  product={product}
-                />
-              </div>
-            ))}
-          </div>
-
-          {products.length > 0 &&
-            <>
-              <div className="catalog-page-content__product-nav">
-                <Button
-                  onClick={() => setCurrentPage(currentPage + 1)}
-                  label="Показать ещё"
-                  size="xs"
-                  outline
-                />
-              </div>
-
-              <div className="catalog-page-content__product-total">
-                Всего {productsTotal} моделей
-              </div>
-            </>
-          }
         </Container>
 
+        {category.ID &&
+        <div className="catalog-page-content__products">
+          <Catalog params={{section_id: category.ID}}/>
+        </div>
+        }
+
         <div className="catalog-page-content__explame-massager">
-          <ExplameMassager/>
+          <Container>
+            <ExplameMassager/>
+          </Container>
         </div>
 
         <div className="catalog-page-content__experts-help">
@@ -170,7 +100,10 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
 
         <div className="catalog-page-content__video-reviews">
           <Container>
-            <VideoReviews params={{ home_page: true }}/>
+            <VideoReviews
+              params={{ home_page: true }}
+              hideTags={true}
+            />
           </Container>
         </div>
       </div>

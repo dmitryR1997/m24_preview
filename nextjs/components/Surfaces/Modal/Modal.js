@@ -14,7 +14,8 @@ const styles = {
     inset: "80px 40px",
     border: "none",
     padding: 0,
-    background: "transparent"
+    background: "transparent",
+    height: "360px"
   }
 }
 

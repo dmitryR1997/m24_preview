@@ -1,0 +1,75 @@
+.order-page {
+  margin: 40px 0 0;
+
+  &__list {
+    &-item {
+      margin: 0 0 24px;
+    }
+  }
+
+  &__form-title {
+    margin: 32px 0 16px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: rgba(20, 20, 43, 0.5);
+  }
+
+  &__form-group {
+    margin: 16px 0 0;
+  }
+
+  &__total {
+    margin: 32px 0;
+
+    &-row {
+      display: flex;
+      justify-content: space-between;
+
+      font-family: "SF UI Text", sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: 0.75px;
+
+      margin: 17px 0 0;
+
+      &:last-child {
+        font-size: 18px;
+        margin: 24px 0 0;
+      }
+    }
+
+    &-cell {
+      color: #4E4B66;
+
+      &:last-child {
+        color: #14142B;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__continue {
+    margin: 32px 0 42px;
+    text-align: center;
+  }
+
+  &__explame-massager {
+    margin: 0 0 48px;
+  }
+
+  &__five-reasons {
+    margin: 0 0 48px;
+  }
+
+  &__official-waranty {
+    margin: 0 0 48px;
+  }
+
+  &__realeted-products {
+    margin: 0 0 48px;
+  }
+
+  &__experts-help {
+    margin: 0 0 48px;
+  }
+}

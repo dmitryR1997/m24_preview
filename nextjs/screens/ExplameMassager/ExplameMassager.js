@@ -14,59 +14,55 @@ import "./ExplameMassager.scss"
 const ExplameMassager = ({ showHeader }) => {
   return (
     <section className="explame-massager">
-      <Fade>
-        <Container>
-          {showHeader &&
-            <div className="explame-massager__header">
-              <SectionHeader
-                title="Попробуйте массажер"
-                description="В нашем шоу-руме есть тест-драйв"
-              />
-            </div>
-          }
+      {showHeader &&
+        <div className="explame-massager__header">
+          <SectionHeader
+            title="Попробуйте массажер"
+            description="В нашем шоу-руме есть тест-драйв"
+          />
+        </div>
+      }
 
-          <div className="explame-massager__slider">
-            <Slider
-              visibleHiddenSlides
-              pagination
-            >
-              <InfoCard
-                preText="Видеообзор"
-                title="Шоу-рум</br>Румянцево"
+      <div className="explame-massager__slider">
+        <Slider
+          visibleHiddenSlides
+          pagination
+        >
+          <InfoCard
+            preText="Видеообзор"
+            title="Шоу-рум</br>Румянцево"
 
-                styles={{
-                  backgroundColor: "#E7EAF0",
-                  backgroundImage: `url(${ImageSlide})`,
-                  backgroundPosition: "right center",
-                  backgroundSize: "50% auto"
-                }}
-              />
-              <InfoCard
-                preText="Видеообзор"
-                title="Шоу-рум</br>Румянцево"
+            styles={{
+              backgroundColor: "#E7EAF0",
+              backgroundImage: `url(${ImageSlide})`,
+              backgroundPosition: "right center",
+              backgroundSize: "50% auto"
+            }}
+          />
+          <InfoCard
+            preText="Видеообзор"
+            title="Шоу-рум</br>Румянцево"
 
-                styles={{
-                  backgroundColor: "#E7EAF0",
-                  backgroundImage: `url(${ImageSlide})`,
-                  backgroundPosition: "right center",
-                  backgroundSize: "50% auto"
-                }}
-              />
-              <InfoCard
-                preText="Видеообзор"
-                title="Шоу-рум</br>Румянцево"
+            styles={{
+              backgroundColor: "#E7EAF0",
+              backgroundImage: `url(${ImageSlide})`,
+              backgroundPosition: "right center",
+              backgroundSize: "50% auto"
+            }}
+          />
+          <InfoCard
+            preText="Видеообзор"
+            title="Шоу-рум</br>Румянцево"
 
-                styles={{
-                  backgroundColor: "#E7EAF0",
-                  backgroundImage: `url(${ImageSlide})`,
-                  backgroundPosition: "right center",
-                  backgroundSize: "50% auto"
-                }}
-              />
-            </Slider>
-          </div>
-        </Container>
-      </Fade>
+            styles={{
+              backgroundColor: "#E7EAF0",
+              backgroundImage: `url(${ImageSlide})`,
+              backgroundPosition: "right center",
+              backgroundSize: "50% auto"
+            }}
+          />
+        </Slider>
+      </div>
     </section>
   )
 }

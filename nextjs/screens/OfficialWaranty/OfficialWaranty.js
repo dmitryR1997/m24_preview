@@ -9,20 +9,18 @@ import "./OfficialWaranty.scss"
 const OfficialWaranty = () => {
   return (
     <Container>
-      <Fade>
-        <section className="official-waranty">
-          <div className="official-waranty__title">
-            Официальная<br/>
-            гарантия
-          </div>
-          <div className="official-waranty__description">
-            В нашем магазине мы продаем только сертифицированный товар с гарантией производителя. Все товары легально завезены в Россию, и имеют сертификаты соответствия.
-          </div>
-          <div className="official-waranty__link">
-            <Link href="/">Подробее</Link>
-          </div>
-        </section>
-      </Fade>
+      <section className="official-waranty">
+        <div className="official-waranty__title">
+          Официальная<br/>
+          гарантия
+        </div>
+        <div className="official-waranty__description">
+          В нашем магазине мы продаем только сертифицированный товар с гарантией производителя. Все товары легально завезены в Россию, и имеют сертификаты соответствия.
+        </div>
+        <div className="official-waranty__link">
+          <Link href="/">Подробее</Link>
+        </div>
+      </section>
     </Container>
   )
 }

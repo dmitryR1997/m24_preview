@@ -1,0 +1,43 @@
+.form-radio {
+  $self: &;
+
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 32px;
+  padding-left: 32px;
+
+  &__mark {
+    position: absolute;
+    z-index: 1;
+
+    top: 50%;
+    left: 0;
+    width: 32px;
+    height: 32px;
+
+    margin-top: -16px;
+
+    background-color: #D6D8E7;
+    border-radius: 50%;
+    border: 8px solid #D6D8E7;
+    transition: all 0.15s ease-in-out;
+  }
+
+  &__input {
+    display: none;
+
+    &:checked {
+      ~ #{ $self }__mark {
+        background-color: #F7F7FC;
+        border: 8px solid #8F688E;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__label {
+    cursor: pointer;
+    margin-left: 16px;
+  }
+}

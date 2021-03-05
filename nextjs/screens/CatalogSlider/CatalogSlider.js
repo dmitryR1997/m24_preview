@@ -53,6 +53,7 @@ const CatalogSlider = () => {
             return (<SliderProductCard
               key={key}
               product={data}
+              link={`/catalog/${category.CODE}`}
               xsHeight
             />)
           })}
