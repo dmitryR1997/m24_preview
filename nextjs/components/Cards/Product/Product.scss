@@ -84,4 +84,15 @@
       cursor: pointer;
     }
   }
+
+  .video-player {
+    position: relative;
+    transform: none;
+    top: 0;
+    left: 0;
+
+    &__icon {
+      background-color: transparent;
+    }
+  }
 }

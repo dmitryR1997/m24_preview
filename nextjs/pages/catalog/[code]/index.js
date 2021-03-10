@@ -26,7 +26,7 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
 
   const [category, setCategory] = useState([])
 
-  const sortHandler = (event) => {
+  const sortHandler = (e) => {
   }
 
   useEffect(() => {
@@ -40,7 +40,6 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
       setCategory(data)
     })
   }, [code])
-
 
   return (
     <Layout>
@@ -84,7 +83,7 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
 
         {category.ID &&
         <div className="catalog-page-content__products">
-          <Catalog params={{section_id: category.ID}}/>
+          <Catalog section_id={category.ID} params={{ ...filter }}/>
         </div>
         }
 
@@ -100,10 +99,12 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
 
         <div className="catalog-page-content__video-reviews">
           <Container>
+            {category.NAME &&
             <VideoReviews
-              params={{ home_page: true }}
+              params={{home_page: true}}
               hideTags={true}
             />
+            }
           </Container>
         </div>
       </div>

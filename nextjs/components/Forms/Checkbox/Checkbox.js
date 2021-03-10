@@ -5,7 +5,7 @@ import CheckboxIcon from "../../../public/icons/checkbox.svg"
 
 import "./Checkbox.scss"
 
-const Checkbox = ({ id, label, image, onClick }) => {
+const Checkbox = ({ id, name, label, value, image, onClick }) => {
   return (
     <label className="form-check" htmlFor={id}>
       {image
@@ -13,7 +13,13 @@ const Checkbox = ({ id, label, image, onClick }) => {
         : <div className="form-check__label">{label}</div>
       }
 
-      <input type="checkbox" className="form-check__input" id={id} />
+      <input type="checkbox"
+             className="form-check__input"
+             name={name}
+             id={id}
+             value={id}
+             onChange={onClick}
+      />
 
       <div className="form-check__mark-checked">
         <CheckboxIcon/>
@@ -26,6 +32,8 @@ const Checkbox = ({ id, label, image, onClick }) => {
 
 Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  value: PropTypes.string,
   image: PropTypes.string,
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func

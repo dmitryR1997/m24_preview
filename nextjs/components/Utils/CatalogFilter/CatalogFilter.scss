@@ -14,6 +14,8 @@
   width: 100%;
   height: 100%;
 
+  padding: 0 0 75px;
+
   &--open {
     transform: translateY(0);
     display: block;
@@ -48,6 +50,7 @@
 
     &--x2 {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
       margin: 0 -8px;
 
@@ -56,6 +59,20 @@
         flex: 0 0 50%;
       }
     }
+  }
+
+  &__more-params {
+    margin: 48px 0;
+    text-align: center;
+  }
+
+  &__nav {
+    margin: 0 0 24px;
+    text-align: center;
+  }
+
+  &__reset {
+    text-align: center;
   }
 
   .accordion-item {

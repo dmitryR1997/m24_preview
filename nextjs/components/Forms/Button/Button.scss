@@ -24,6 +24,13 @@
     box-shadow: none;
   }
 
+  &--transparent {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    color: #6E0069;
+  }
+
   &--xs {
     padding: 11px 30px;
 

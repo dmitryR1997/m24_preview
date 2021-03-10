@@ -123,24 +123,6 @@ const CartPage = ({ cartList, cartQuantity }) => {
             </>
           }
         </Container>
-
-        <div className="cart-page__five-reasons">
-          <Container>
-            <FiveReasons/>
-          </Container>
-        </div>
-
-        <div className="cart-page__official-waranty">
-          <OfficialWaranty/>
-        </div>
-
-        <div className="cart-page__realeted-products">
-          <RealetedProducts params={{ section_id: 69, random: true }}/>
-        </div>
-
-        <div className="cart-page__experts-help">
-          <ExpertsHelp/>
-        </div>
       </div>
     </Layout>
   )

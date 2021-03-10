@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import classnames from "classnames"
 import YouTube from "react-youtube"
 import { connect } from "react-redux"
 
@@ -28,7 +29,7 @@ const Player = (id) => {
   )
 }
 
-const VideoPlayer = ({ openModal, videoId }) => {
+const VideoPlayer = ({ openModal, videoId, icon }) => {
   const openVideoHandler = (id) => {
     openModal(Player(id))
   }
@@ -38,7 +39,7 @@ const VideoPlayer = ({ openModal, videoId }) => {
       <div className="video-player__icon"
            onClick={() => openVideoHandler(videoId)}
       >
-        <VideoPlayIcon/>
+        {icon ? icon : <VideoPlayIcon/>}
       </div>
     </div>
   )
@@ -46,7 +47,8 @@ const VideoPlayer = ({ openModal, videoId }) => {
 
 VideoPlayer.propTypes = {
   openModal: PropTypes.func.isRequired,
-  videoId: PropTypes.string.isRequired
+  videoId: PropTypes.string.isRequired,
+  icon: PropTypes.any
 }
 
 const mapDispatchToProps = {

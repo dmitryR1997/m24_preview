@@ -26,6 +26,10 @@ const RangeInput = ({ min, max, setter }) => {
     setter(range.values)
   }, [range])
 
+  useEffect(() => {
+    setRange({ values: [min, max] })
+  }, [min, max])
+
   return (
     <>
       <Range

@@ -52,7 +52,6 @@ const cart = (state = initialState, action) => {
       }
 
     case CLEAR_CART:
-      console.log(state)
       return {
         ...state,
         list: []

@@ -10,13 +10,14 @@ import { setHeaderOffsetBottom } from "@actions/layout"
 import Container from "@components/Layout/Container"
 import MainMenuBurger from "@components/Utils/MainMenuBurger"
 import MiniCart from "@components/Utils/MiniCart"
-import HeaderSearch from "@components/Utils/HeaderSearch/HeaderSearch"
+import HeaderSearchToggle from "@components/Utils/HeaderSearchToggle"
 import MainMenu from "@components/Utils/MainMenu"
 
 import SiteLogo from "../../public/icons/site-logo.svg"
 import ArrowBack from "../../public/icons/arrow-back.svg"
 
 import "./Header.scss"
+import HeaderSearch from "@components/Utils/HeaderSearch/HeaderSearch";
 
 const Header = ({ isOpenMainMenu, isOpenHeaderSearch, isProduct }) => {
   const header = useRef()
@@ -85,7 +86,7 @@ const Header = ({ isOpenMainMenu, isOpenHeaderSearch, isProduct }) => {
               {!isProduct &&
                 <>
                   <div className="header__nav-item header__nav-item--hide-on-open-menu">
-                    <HeaderSearch/>
+                    <HeaderSearchToggle/>
                   </div>
                   <div className="header__nav-item header__nav-item--hide-on-open-menu">
                     <MiniCart/>
@@ -106,6 +107,7 @@ const Header = ({ isOpenMainMenu, isOpenHeaderSearch, isProduct }) => {
       }
 
       <MainMenu/>
+      <HeaderSearch/>
     </>
   )
 }

@@ -1,3 +1,3 @@
-import MainMenuBurger from "./HeaderSearch"
+import HeaderSearch from "./HeaderSearch"
 
-export default MainMenuBurger
+export default HeaderSearch

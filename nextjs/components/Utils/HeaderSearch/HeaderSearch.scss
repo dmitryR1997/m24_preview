@@ -1,83 +1,68 @@
-.main-menu-burger {
+.header-search {
   $self: &;
 
-  position: relative;
+  transform: translateY(-100%);
+  transition: transform ease-in 0.3s;
+  background-color: #ffffff;
+  top: 0;
+  left: 0;
 
-  margin: 6px 3px;
+  position: fixed;
+  z-index: 99;
+  overflow: auto;
 
-  width: 18px;
-  height: 12px;
+  width: 100%;
+  height: 100%;
 
-  cursor: pointer;
+  &--open {
+    transform: translateY(0);
+    display: block;
+  }
 
-  transition-timing-function: linear;
-  transition-duration: .15s;
-  transition-property: opacity,filter;
+  &__header {
+    background-color: #FCFCFC;
+    box-shadow: 0 8px 16px rgba(17, 17, 17, 0.06);
 
-  &__inner {
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    top: 50%;
-    left: 0;
-    margin-top: -1px;
-
-    transition-duration: 0.22s;
-    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      display: block;
-
-      left: 0;
-
-      background-color: #14142B;
-      border-radius: 5px;
-      height: 2px;
-    }
-
-    &:before {
-      top: -5px;
-
+    &-input {
       width: 100%;
+      margin-right: 22px;
 
-      transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+      input {
+        background-image: url("/icons/search.svg");
+        background-repeat: no-repeat;
+        background-position: left 26px center;
+        background-color: #EFF0F7;
+
+        border-radius: 16px;
+
+        margin: 15px 0;
+        padding: 15px 15px 15px 64px;
+        width: 100%;
+      }
     }
 
-    &:after {
-      bottom: -5px;
+    &-close {
+      cursor: pointer;
+    }
 
-      width: 75%;
+    &-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
     }
   }
 
-  &--open {
-    #{ $self }__inner {
-      background-color: #ffffff;
-      transform: rotate(225deg);
-      transition-delay: 0.12s;
-      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  &__list {
+    &-item {
+      margin: 10px 0;
 
-      &:before,
-      &:after {
-        background-color: #ffffff;
-      }
+      display: flex;
+      align-items: center;
 
-      &:before {
-        top: 0;
-        opacity: 0;
-        transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
-      }
-
-      &:after {
-        width: 100%;
-        bottom: 0;
-        transform: rotate(-90deg);
-        transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+      &-image {
+        margin-right: 22px;
+        width: 60px;
       }
     }
   }

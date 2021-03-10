@@ -23,7 +23,7 @@ const CallMe = () => {
         <div className="call-me__list-item">
           <CallIcon/>
         </div>
-        <div className="call-me__list-item">
+        <div className="call-me__list-item" onClick={() => jivo_api.open()}>
           <ChatIcon/>
         </div>
         <div className="call-me__list-item">

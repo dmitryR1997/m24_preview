@@ -145,7 +145,7 @@ const ProductPage = () => {
               <Tabs>
                 <Tab id={1} label="Описание">
                   {details.detail_text && details.detail_text.length > 0 &&
-                    <div className="single-product__description">
+                    <div className="single-product__description typography">
                       <Accordion>
                         {details.detail_text.map((p, key) => {
                           const container = document.createElement("div")
@@ -189,7 +189,9 @@ const ProductPage = () => {
                         <div className="single-product__advant-list">
                           {details.types_massage.map((type, key) => (
                             <div key={key} className="single-product__advant-list-item">
-                              <img src={`/icons/types_massage/${type.icon}.png`} alt="Icon"/>
+                              <div className="single-product__advant-list-item-icon">
+                                <img src={`/icons/types_massage/${type.icon}.png`} alt="Icon"/>
+                              </div>
                               {type.title}
                             </div>
                           ))}

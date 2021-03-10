@@ -16,6 +16,8 @@ import "./Product.scss"
 
 import PlayIcon from "../../../public/icons/play-button.svg"
 import ComparisonIcon from "../../../public/icons/comparison.svg"
+import NoneVideoIcon from "../../../public/icons/info.svg"
+import VideoPlayer from "@components/Surfaces/VideoPlayer";
 
 const Product = ({ product, cartList }) => {
   const router = useRouter()
@@ -104,7 +106,13 @@ const Product = ({ product, cartList }) => {
 
       <div className="product-card__nav">
         <div className="product-card__nav-item">
-          <PlayIcon/>
+          <div style={{ width: 32 }} />
+          {product.video
+            ? <>
+                <VideoPlayer videoId={product.video.video_id} icon={<PlayIcon/>} />
+              </>
+            : <NoneVideoIcon/>
+          }
         </div>
 
         <div className="product-card__nav-item">
@@ -116,7 +124,8 @@ const Product = ({ product, cartList }) => {
         </div>
 
         <div className="product-card__nav-item">
-          <ComparisonIcon/>
+          <div style={{ width: 32 }} />
+          {/*<ComparisonIcon/>*/}
         </div>
       </div>
     </article>

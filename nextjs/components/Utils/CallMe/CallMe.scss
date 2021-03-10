@@ -2,8 +2,9 @@
   $self: &;
 
   position: fixed;
+  z-index: 99;
   right: 20px;
-  bottom: 70px;
+  bottom: 20px;
 
   &__list {
     position: absolute;
@@ -36,6 +37,7 @@
     border-radius: 50%;
     text-align: center;
     transition: all 0.15s ease-in-out;
+    animation: pulsing 2s infinite;
   }
 
   &--is-open {
@@ -48,5 +50,19 @@
       max-height: 500px;
       transition: max-height 0.25s ease-in;
     }
+  }
+}
+
+@keyframes pulsing {
+  from {
+    box-shadow: 0 0 0 0 rgba(178, 217, 46, 0.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(178, 217, 46, 0.5);
+  }
+
+  to {
+    box-shadow: 0 0 0 0 rgba(178, 217, 46, 0.5);
   }
 }

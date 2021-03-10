@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState, useRef, useCallback } from "react"
 
 import { fetchProducts } from "@api/product"
 
@@ -10,7 +10,7 @@ import FiveReasons from "@screens/FiveReasons"
 
 import "./Catalog.scss"
 
-const Catalog = ({ params }) => {
+const Catalog = ({ section_id, params }) => {
   const loader = useRef(null)
 
   const [products, setProducts] = useState([])
@@ -18,9 +18,10 @@ const Catalog = ({ params }) => {
   const [page, setPage] = useState(1)
   const [firstLoaded, setFirstLoaded] = useState(false)
 
-  const loadProducts = (page) => {
+  const loadProducts = useCallback((page) => {
     fetchProducts({
       ...params,
+      "section_id": section_id,
       "include_sections": true,
       "nav-products": `page-${page}`
     }).then(({ data }) => {
@@ -36,7 +37,7 @@ const Catalog = ({ params }) => {
         setFirstLoaded(true)
       }
     })
-  }
+  }, [section_id, params])
 
   const handleObserver = (entities) => {
     const target = entities[0]
@@ -58,12 +59,21 @@ const Catalog = ({ params }) => {
   }, [firstLoaded])
 
   useEffect(() => {
+    if (page === 1) return
     loadProducts(page)
   }, [page])
 
   useEffect(() => {
+    setPage(1)
     loadProducts(1)
-  }, [params.section_id])
+  }, [section_id])
+
+  useEffect(() => {
+    if (Object.keys(params).length <= 0) return
+
+    setPage(1)
+    loadProducts(1)
+  }, [params])
 
   return (
     <div className="catalog">
@@ -103,7 +113,6 @@ const Catalog = ({ params }) => {
           <div className="catalog__product-nav" ref={loader}>
             {!((page * 5) >= total) &&
               <Button
-                ref={loader}
                 onClick={() => setPage(page + 1)}
                 label="Показать ещё"
                 size="xs"
