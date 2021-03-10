@@ -35,7 +35,7 @@ const AboutShop = ({ showText }) => {
             label="О магазине"
           >
             <p>С 2015 года мы продали более 14 000 массажёров и массажных кресел по всей России. Наши менеджеры помогут подобрать нужный массажёр, т.к. разбираются во всех тонкостях и деталях. Все менеджеры регулярно обучаются в шоу-румах производителей и в наших розничных магазинах, где есть возможность попробовать практически весь ассортимен массажных кресел массажёров. Кроме того, мы единственный магазин, который делает подробные видео-обзоры массажного оборудования, помогая вам ориентироваться в этом сложном оборудовании. В Москве у нас 5 шоу-румов, где вы можете абсолютно бесплатно протестировать любое устройство.</p>
-            <p>Позвоните нам или приходите в один <Link href="/shops">из магазинов.</Link> Пробуйте массажёры и сделайте свою жизнь легче.</p>
+            <p>Позвоните нам или приходите в один <Link href="/contacts">из магазинов.</Link> Пробуйте массажёры и сделайте свою жизнь легче.</p>
           </div>
 
           <div
@@ -44,43 +44,43 @@ const AboutShop = ({ showText }) => {
           >
             <ul className="about-shop__menu">
               <li className="about-shop__menu-item">
-                <Link href="/">
+                <Link href="/content/pay_and_delivery">
                   <a className="about-shop__menu-link" href="/">
                     Оплата и доставка
                   </a>
                 </Link>
               </li>
               <li className="about-shop__menu-item">
-                <Link href="/">
+                <Link href="/content/card_buy">
                   <a className="about-shop__menu-link" href="/">
                     Оплата картой
                   </a>
                 </Link>
               </li>
               <li className="about-shop__menu-item">
-                <Link href="/">
-                  <a className="about-shop__menu-link" href="/">
+                <Link href="/content/credit_buy">
+                  <a href="/content/credit_buy" className="about-shop__menu-link">
                     Рассрочка
                   </a>
                 </Link>
               </li>
               <li className="about-shop__menu-item">
-                <Link href="/">
-                  <a className="about-shop__menu-link" href="/">
+                <Link href="/content/warranty-and-service/">
+                  <a href="/content/warranty-and-service/" className="about-shop__menu-link">
                     Гарантия и сервис
                   </a>
                 </Link>
               </li>
               <li className="about-shop__menu-item">
-                <Link href="/">
-                  <a className="about-shop__menu-link" href="/">
+                <Link href="/cart">
+                  <a cart="/cart" className="about-shop__menu-link">
                     Корзина
                   </a>
                 </Link>
               </li>
               <li className="about-shop__menu-item">
-                <Link href="/">
-                  <a className="about-shop__menu-link" href="/">
+                <Link href="/content/refund">
+                  <a href="/content/refund" className="about-shop__menu-link">
                     Возврат
                   </a>
                 </Link>
@@ -92,7 +92,7 @@ const AboutShop = ({ showText }) => {
             id="tab-3"
             label="Где купить?"
           >
-            <p>Позвоните нам или приходите в один <Link href="/shops">из магазинов.</Link> Пробуйте массажёры и сделайте свою жизнь легче.</p>
+            <p>Позвоните нам или приходите в один <Link href="/contacts">из магазинов.</Link> Пробуйте массажёры и сделайте свою жизнь легче.</p>
           </div>
 
           <div

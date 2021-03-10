@@ -32,11 +32,10 @@ const Catalog = ({ section_id, params, totalSetter }) => {
       }
 
       setTotal(data.total)
-      totalSetter(data.total)
 
-      if (!firstLoaded) {
-        setFirstLoaded(true)
-      }
+      if (typeof totalSetter === "function") totalSetter(data.total)
+
+      if (!firstLoaded) setFirstLoaded(true)
     })
   }, [section_id, params])
 
@@ -112,19 +111,17 @@ const Catalog = ({ section_id, params, totalSetter }) => {
         {products.length > 0 &&
         <>
           <div className="catalog__product-nav" ref={loader}>
-            {!((page * 5) >= total) &&
-              <Button
-                onClick={() => setPage(page + 1)}
-                label="Показать ещё"
-                size="xs"
-                outline
-              />
-            }
+            <Button
+              onClick={() => setPage(page + 1)}
+              label="Показать ещё"
+              size="xs"
+              outline
+            />
           </div>
 
-          <div className="catalog__product-total">
-            Показано {page * 5} из {total} моделей
-          </div>
+          {/*<div className="catalog__product-total">*/}
+          {/*  Показано {page * 5} из {total} моделей*/}
+          {/*</div>*/}
         </>
         }
       </Container>

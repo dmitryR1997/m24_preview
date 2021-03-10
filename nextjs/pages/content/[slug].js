@@ -70,7 +70,7 @@ const StaticPage = () => {
           <div className="static-page__content" dangerouslySetInnerHTML={{ __html: pageContent.DETAIL_TEXT }} />
         </Container>
 
-        {slug === "oformit-rassrochku-na-sayte" &&
+        {slug === "credit_buy" &&
           <div className="static-page__catalog">
             <Catalog params={{ "credit": true }} />
           </div>

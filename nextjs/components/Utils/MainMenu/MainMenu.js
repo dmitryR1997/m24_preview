@@ -60,10 +60,10 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
               }
             </div>
 
-            <div
-              id="tab-2"
-              label="Акции"
-            />
+            {/*<div*/}
+            {/*  id="tab-2"*/}
+            {/*  label="Акции"*/}
+            {/*/>*/}
 
             <div
               id="tab-3"
@@ -73,9 +73,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/stati"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/stati" className="main-menu__list-link">
                       Обзоры
                     </a>
                   </Link>
@@ -83,23 +83,23 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/videos"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/videos" className="main-menu__list-link">
                       Видеообзоры
                     </a>
                   </Link>
                 </li>
-                <li
-                  className="main-menu__list-item">
-                  <Link
-                    href="/"
-                  >
-                    <a href="/" className="main-menu__list-link">
-                      Отзывы
-                    </a>
-                  </Link>
-                </li>
+                {/*<li*/}
+                {/*  className="main-menu__list-item">*/}
+                {/*  <Link*/}
+                {/*    href="/"*/}
+                {/*  >*/}
+                {/*    <a href="/" className="main-menu__list-link">*/}
+                {/*      Отзывы*/}
+                {/*    </a>*/}
+                {/*  </Link>*/}
+                {/*</li>*/}
               </ul>
             </div>
 
@@ -111,9 +111,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/content/pay_and_delivery"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/content/pay_and_delivery" className="main-menu__list-link">
                       Оплата и доставка
                     </a>
                   </Link>
@@ -121,9 +121,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/content/card_buy"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/content/card_buy" className="main-menu__list-link">
                       Оплата картой
                     </a>
                   </Link>
@@ -131,9 +131,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/content/credit_buy"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/content/credit_buy" className="main-menu__list-link">
                       Рассрочка
                     </a>
                   </Link>
@@ -141,9 +141,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/content/warranty-and-service/"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/content/warranty-and-service/" className="main-menu__list-link">
                       Гарантия и сервис
                     </a>
                   </Link>
@@ -151,9 +151,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/content/refund"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/content/refund" className="main-menu__list-link">
                       Возврат
                     </a>
                   </Link>
@@ -169,9 +169,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/content/about"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/content/about" className="main-menu__list-link">
                       О магазине
                     </a>
                   </Link>
@@ -179,9 +179,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/content/about"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/content/about" className="main-menu__list-link">
                       Шоу-румы
                     </a>
                   </Link>
@@ -189,9 +189,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/"
+                    href="/vendors"
                   >
-                    <a href="/" className="main-menu__list-link">
+                    <a href="/vendors" className="main-menu__list-link">
                       Бренды
                     </a>
                   </Link>
