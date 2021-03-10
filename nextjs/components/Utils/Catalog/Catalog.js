@@ -10,7 +10,7 @@ import FiveReasons from "@screens/FiveReasons"
 
 import "./Catalog.scss"
 
-const Catalog = ({ section_id, params }) => {
+const Catalog = ({ section_id, params, totalSetter }) => {
   const loader = useRef(null)
 
   const [products, setProducts] = useState([])
@@ -32,6 +32,7 @@ const Catalog = ({ section_id, params }) => {
       }
 
       setTotal(data.total)
+      totalSetter(data.total)
 
       if (!firstLoaded) {
         setFirstLoaded(true)

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import classnames from "classnames"
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock"
 
 import { connect } from "react-redux"
 import { toggleCatalogFilter } from "@actions//layout"
@@ -11,16 +10,6 @@ import FilterIcon from "../../../public/icons/filter.svg"
 import "./CatalogFilterToggle.scss"
 
 const CatalogFilterToggle = ({ isOpenCatalogFilter, toggleCatalogFilter }) => {
-  useEffect(() => {
-    const body = document.querySelector("body")
-
-    if (isOpenCatalogFilter) {
-      disableBodyScroll(body)
-    } else {
-      enableBodyScroll(body)
-    }
-  }, [isOpenCatalogFilter])
-
   return (
     <div
       className={classnames("catalog-filter-toggle", {

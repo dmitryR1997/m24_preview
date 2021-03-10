@@ -3,10 +3,10 @@ import {
   HIDE_MAIN_MENU,
   TOGGLE_HEADER_SEARCH,
   SET_HEADER_OFFSET_BOTTOM,
-  TOGGLE_CATALOG_FILTER, OPEN_MODAL, HIDE_MODAL
+  TOGGLE_CATALOG_FILTER,
+  OPEN_MODAL,
+  HIDE_MODAL
 } from "@actions/layout"
-
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock"
 
 const initialState = {
   isOpenMainMenu: false,
@@ -19,17 +19,9 @@ const initialState = {
 const layout = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_MAIN_MENU:
-      if (!state.isOpenMainMenu) {
-        disableBodyScroll(document.querySelector("body"))
-      } else {
-        enableBodyScroll(document.querySelector("body"))
-      }
-
       return { ...state, isOpenMainMenu: !state.isOpenMainMenu }
 
     case HIDE_MAIN_MENU:
-      enableBodyScroll(document.querySelector("body"))
-
       return { ...state, isOpenMainMenu: false }
 
     case TOGGLE_HEADER_SEARCH:

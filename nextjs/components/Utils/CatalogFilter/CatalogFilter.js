@@ -3,41 +3,39 @@ import PropTypes from "prop-types"
 import classnames from "classnames"
 import debounce from "lodash.debounce"
 
-
-import { connect, useDispatch } from "react-redux"
+import { connect } from "react-redux"
 import { toggleCatalogFilter } from "@actions/layout"
+import { setFilter, updateFilter } from "@actions/filter"
 
 import { fetchMinMaxPrices } from "@api/category"
+import { fetchBrands } from "@api/brand"
 
 import Container from "@components/Layout/Container"
 import Accordion from "@components/Surfaces/Accordion"
 import RangeInput from "@components/Forms/RangeInput"
 import Checkbox from "@components/Forms/Checkbox/Checkbox"
+import Button from "@components/Forms/Button"
+
+import num_word from "@utils/NumWord"
 
 import CloseIcon from "../../../public/icons/close.svg"
 
 import "./CatalogFilter.scss"
-import {fetchBrands} from "@api/brand";
-import Button from "@components/Forms/Button";
-import {updateFilter} from "@actions/filter";
 
-const CatalogFilter = ({ isOpenCatalogFilter, filter, toggleCatalogFilter, sectionId }) => {
-  const dispatch = useDispatch()
-
+const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFilter, updateFilter, sectionId, total }) => {
   const [minMaxPrices, setMinMaxPrices] = useState(false)
   const [brands, setBrands] = useState([])
   const [showMore, setShowMore] = useState(false)
   const [price, setPrice] = useState({})
 
-
   const priceChangeHandler = (value) => {
     if (minMaxPrices.min === value[0] && minMaxPrices.max === value[1]) return
 
     setPrice(value)
-    dispatch(updateFilter({ field: "price", value }))
+    updateFilter({ field: "price", value })
   }
 
-  const delayedPriceChangeHandler = useCallback(debounce(priceChangeHandler, 500), [minMaxPrices]);
+  const delayedPriceChangeHandler = useCallback(debounce(priceChangeHandler, 500), [minMaxPrices])
 
   const checkboxHandler = (e) => {
     const checked = e.target.checked
@@ -66,10 +64,10 @@ const CatalogFilter = ({ isOpenCatalogFilter, filter, toggleCatalogFilter, secti
 
     if (!newValue) return
 
-    dispatch(updateFilter({
+    updateFilter({
       field: name,
       value: newValue
-    }))
+    })
   }
 
   useEffect(() => {
@@ -83,7 +81,6 @@ const CatalogFilter = ({ isOpenCatalogFilter, filter, toggleCatalogFilter, secti
       setBrands(data)
     })
   }, [sectionId])
-
 
   return (
     <div
@@ -110,6 +107,7 @@ const CatalogFilter = ({ isOpenCatalogFilter, filter, toggleCatalogFilter, secti
             <div
               id="price-filter"
               label="Цена"
+              open={true}
             >
               {minMaxPrices && minMaxPrices.min !== minMaxPrices.max &&
                 <RangeInput
@@ -123,27 +121,101 @@ const CatalogFilter = ({ isOpenCatalogFilter, filter, toggleCatalogFilter, secti
             <div
               id="country-filter"
               label="Производство"
+              open={true}
             >
-              <select name="country">
-                <option value={false}>Все</option>
-                <option value="939b48ed16841e78a14cc659bc54e77c">ЕС</option>
-                <option value="4fd684e177987d3f0ad832fbe2e0a1cb">США</option>
-                <option value="f8d15d5559a2b6149518e08b45564e38">Швейцария</option>
-                <option value="8fe39cd3d263993b80c20d1482ef67a3">Израиль</option>
-                <option value="fec236cb353ed4f8c95391216528b76f">Германия</option>
-                <option value="36b0b095e30da01fe5249e0dc0deb588">Китай</option>
-                <option value="e80b59cccaa483cdd25007bdf4241eef">Япония</option>
-                <option value="3c1ad5f833191441147012d4e91bc7c1">Малайзия</option>
-                <option value="99be931f68dc638748fb48fd62414f70">Тайвань</option>
-                <option value="32f21188a6ff3dbeea2c5a0ad22273ab">Сингапур</option>
-                <option value="405b7bcbd3d6505190bd7e687d9f5eee">Южная Корея</option>
-                <option value="d98b1d0fdd223d65c270fce88091b976">Россия</option>
-              </select>
+              <div className="catalog-filter__grid catalog-filter__grid--x2">
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="ЕС"
+                            id="939b48ed16841e78a14cc659bc54e77c"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="США"
+                            id="4fd684e177987d3f0ad832fbe2e0a1cb"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Швейцария"
+                            id="f8d15d5559a2b6149518e08b45564e38"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Израиль"
+                            id="8fe39cd3d263993b80c20d1482ef67a3"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Германия"
+                            id="fec236cb353ed4f8c95391216528b76f"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Китай"
+                            id="36b0b095e30da01fe5249e0dc0deb588"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Япония"
+                            id="e80b59cccaa483cdd25007bdf4241eef"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Малайзия"
+                            id="3c1ad5f833191441147012d4e91bc7c1"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Тайвань"
+                            id="99be931f68dc638748fb48fd62414f70"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Сингапур"
+                            id="32f21188a6ff3dbeea2c5a0ad22273ab"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Южная Корея"
+                            id="405b7bcbd3d6505190bd7e687d9f5eee"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+                <div className="catalog-filter__grid-item">
+                  <Checkbox label="Россия"
+                            id="405b7bcbd3d6505190bd7e687d9f5eee"
+                            name="COUNTRY"
+                            onClick={checkboxHandler}
+                  />
+                </div>
+              </div>
             </div>
 
             <div
               id="manufacturer-filter"
               label="Производитель"
+              open={true}
             >
               <div className="catalog-filter__grid catalog-filter__grid catalog-filter__grid--x2">
                 {brands.map((brand, key) => (
@@ -1209,13 +1281,18 @@ const CatalogFilter = ({ isOpenCatalogFilter, filter, toggleCatalogFilter, secti
                   onClick={() => setShowMore(!showMore)}
           />
         </div>
+
         <div className="catalog-filter__nav">
-          <Button label="Показать" />
+          <Button label={`Показать ${total} ${num_word(total, [" модель", " модели", " моделей"])}`}
+                  onClick={toggleCatalogFilter}
+          />
         </div>
+
         <div className="catalog-filter__reset">
           <Button label="Сбросить фильтр"
                   size="xs"
                   transparent={true}
+                  onClick={() => setFilter({})}
           />
         </div>
       </Container>
@@ -1224,21 +1301,26 @@ const CatalogFilter = ({ isOpenCatalogFilter, filter, toggleCatalogFilter, secti
 }
 
 CatalogFilter.propTypes = {
+  filter: PropTypes.any.isRequired,
   isOpenCatalogFilter: PropTypes.bool,
   toggleCatalogFilter: PropTypes.func.isRequired,
-  filter: PropTypes.array.isRequired,
-  sectionId: PropTypes.string.isRequired
+  setFilter: PropTypes.func.isRequired,
+
+  sectionId: PropTypes.string.isRequired,
+  total: PropTypes.number.isRequired
 }
 
 const mapStateToolProps = state => {
   return {
-    isOpenCatalogFilter: state.layout.isOpenCatalogFilter,
-    filter: state.filter.items
+    filter: state.filter.items,
+    isOpenCatalogFilter: state.layout.isOpenCatalogFilter
   }
 }
 
 const mapDispatchToProps = {
-  toggleCatalogFilter
+  toggleCatalogFilter,
+  updateFilter,
+  setFilter
 }
 
 export default connect(mapStateToolProps, mapDispatchToProps)(CatalogFilter)

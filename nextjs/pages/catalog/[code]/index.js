@@ -25,6 +25,7 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
   const { code } = router.query
 
   const [category, setCategory] = useState([])
+  const [total, setTotal] = useState(0)
 
   const sortHandler = (e) => {
   }
@@ -45,7 +46,9 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
     <Layout>
       <div className="catalog-page-content">
         {category.ID &&
-          <CatalogFilter sectionId={category.ID}/>
+          <CatalogFilter
+            sectionId={category.ID} total={total}
+          />
         }
 
         <Container>
@@ -54,7 +57,7 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
             <div className="catalog-page-content__header-title">
               <SectionHeader
                 title={category.NAME}
-                description={`${category.COUNT} моделей`}
+                description={total > 0 ? `${total} моделей` : ''}
               />
             </div>
             }
@@ -83,7 +86,11 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
 
         {category.ID &&
         <div className="catalog-page-content__products">
-          <Catalog section_id={category.ID} params={{ ...filter }}/>
+          <Catalog
+            section_id={category.ID}
+            params={{ ...filter }}
+            totalSetter={setTotal}
+          />
         </div>
         }
 
