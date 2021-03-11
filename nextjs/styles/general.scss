@@ -176,6 +176,7 @@ input[type=number] {
   }
 }
 
-#jvlabelWrap {
-  display: none;
+#jvlabelWrap,
+.__jivoMobileButton {
+  display: none !important;
 }
