@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 import { connect, useDispatch } from "react-redux"
 import { openModal } from "@actions/layout"
 import { clearCart } from "@actions/cart"
-import { addOrder } from "@api/order"
+import {addOrder, addToCrm} from "@api/order"
 import { getCartQuantity } from "../../selectors/cart"
 
 import Layout from "@components/Layout/Layout"
@@ -64,7 +64,10 @@ const OrderPage = ({ cartList, cartQuantity }) => {
             description="Менеджер свяжется с Вами в ближайшее время"
           />
         ))
+
         setLoading(false)
+
+        addToCrm(data.id)
 
         router.push("/")
       } else {

@@ -53,6 +53,15 @@
   }
 }
 
+.calll-me-form {
+  &__input {
+    margin: 10px 0;
+  }
+
+  &__button {
+    margin: 32px 0 0;
+  }
+}
 @keyframes pulsing {
   from {
     box-shadow: 0 0 0 0 rgba(178, 217, 46, 0.5);
