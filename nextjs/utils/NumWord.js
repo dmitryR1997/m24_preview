@@ -1,4 +1,4 @@
-export default function num_word(value, words){
+export default function num_word(value, words) {
   value = Math.abs(value) % 100
   var num = value % 10
 

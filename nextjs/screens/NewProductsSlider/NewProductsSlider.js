@@ -33,6 +33,7 @@ const NewProductsSlider = () => {
                 product={product}
               /> :
               <Banner
+                key={key}
                 type={product.type}
                 title={product.title}
                 description={product.title_second}

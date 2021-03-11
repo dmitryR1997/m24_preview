@@ -1,9 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Fade } from "react-awesome-reveal"
 
-import Container from "@components/Layout/Container"
-import Slider from "@components/Surfaces/Slider"
 import InfoCard from "@components/Cards/Info"
 import SectionHeader from "@components/Display/SectionHeader"
 
@@ -24,44 +21,17 @@ const ExplameMassager = ({ showHeader }) => {
       }
 
       <div className="explame-massager__slider">
-        <Slider
-          visibleHiddenSlides
-          pagination
-        >
-          <InfoCard
-            preText="Видеообзор"
-            title="Шоу-рум</br>Румянцево"
-
-            styles={{
-              backgroundColor: "#E7EAF0",
-              backgroundImage: `url(${ImageSlide})`,
-              backgroundPosition: "right center",
-              backgroundSize: "50% auto"
-            }}
-          />
-          <InfoCard
-            preText="Видеообзор"
-            title="Шоу-рум</br>Румянцево"
-
-            styles={{
-              backgroundColor: "#E7EAF0",
-              backgroundImage: `url(${ImageSlide})`,
-              backgroundPosition: "right center",
-              backgroundSize: "50% auto"
-            }}
-          />
-          <InfoCard
-            preText="Видеообзор"
-            title="Шоу-рум</br>Румянцево"
-
-            styles={{
-              backgroundColor: "#E7EAF0",
-              backgroundImage: `url(${ImageSlide})`,
-              backgroundPosition: "right center",
-              backgroundSize: "50% auto"
-            }}
-          />
-        </Slider>
+        <InfoCard
+          preText="Видеообзор"
+          title="Шоу-рум<br/>Румянцево"
+          videoId="PAnVOr3qpVg"
+          styles={{
+            backgroundColor: "#E7EAF0",
+            backgroundImage: `url(${ImageSlide})`,
+            backgroundPosition: "right center",
+            backgroundSize: "50% auto"
+          }}
+        />
       </div>
     </section>
   )

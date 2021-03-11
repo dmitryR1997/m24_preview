@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import { connect } from "react-redux"
 
 import { hideMainMenu } from "@actions/layout"
+import { updateFilter } from "@actions/filter"
 
 import { fetchCategory } from "@api/category"
 
@@ -20,7 +21,7 @@ import ExplameMassager from "@screens/ExplameMassager"
 
 import "@styles/pages/catalog.scss"
 
-const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
+const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu, updateFilter }) => {
   const router = useRouter()
   const { code } = router.query
 
@@ -28,6 +29,12 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
   const [total, setTotal] = useState(0)
 
   const sortHandler = (e) => {
+    const value = e.target.value
+
+    updateFilter({
+      field: "sort",
+      value
+    })
   }
 
   useEffect(() => {
@@ -88,7 +95,7 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu }) => {
         <div className="catalog-page-content__products">
           <Catalog
             section_id={category.ID}
-            params={{ ...filter }}
+            params={filter.items}
             totalSetter={setTotal}
           />
         </div>
@@ -125,7 +132,8 @@ CatalogPage.propTypes = {
   category: PropTypes.object,
   filter: PropTypes.any,
   isOpenMainMenu: PropTypes.bool.isRequired,
-  hideMainMenu: PropTypes.func.isRequired
+  hideMainMenu: PropTypes.func.isRequired,
+  updateFilter: PropTypes.func.isRequired
 }
 
 const mapStateToolProps = state => {
@@ -133,13 +141,14 @@ const mapStateToolProps = state => {
     productsTotal: state.product.total,
     products: state.product.items,
     category: state.category.item,
-    filter: state.filter.items,
+    filter: state.filter,
     isOpenMainMenu: state.layout.isOpenMainMenu
   }
 }
 
 const mapDispatchToProps = {
-  hideMainMenu
+  hideMainMenu,
+  updateFilter
 }
 
 export default connect(mapStateToolProps, mapDispatchToProps)(CatalogPage)

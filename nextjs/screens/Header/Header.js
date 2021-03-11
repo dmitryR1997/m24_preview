@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback, useRef } from "react"
+import React, {useEffect, useState, useCallback, useRef} from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import {useRouter} from "next/router"
 import classnames from "classnames"
 
-import { connect } from "react-redux"
-import { setHeaderOffsetBottom } from "@actions/layout"
+import {connect} from "react-redux"
+import {setHeaderOffsetBottom} from "@actions/layout"
 
 import Container from "@components/Layout/Container"
 import MainMenuBurger from "@components/Utils/MainMenuBurger"
@@ -19,11 +19,11 @@ import ArrowBack from "../../public/icons/arrow-back.svg"
 import "./Header.scss"
 import HeaderSearch from "@components/Utils/HeaderSearch/HeaderSearch";
 
-const Header = ({ isOpenMainMenu, isOpenHeaderSearch, isProduct }) => {
+const Header = ({isOpenMainMenu, isOpenHeaderSearch, isProduct}) => {
   const header = useRef()
   const router = useRouter()
 
-  const { code } = router.query
+  const {code} = router.query
 
   const [headerHeight, setHeaderHeight] = useState(0)
   const [stickyOffsetStart, setStickyOffsetStart] = useState(0)
@@ -67,13 +67,13 @@ const Header = ({ isOpenMainMenu, isOpenHeaderSearch, isProduct }) => {
         <Container>
           <div className="header__wrapper">
             {isProduct &&
-              <div className="header__arrow-back">
-                <Link href={`/catalog/${code}`}>
-                  <a href={`/catalog/${code}`}>
-                    <ArrowBack/>
-                  </a>
-                </Link>
-              </div>
+            <div className="header__arrow-back">
+              <Link href={`/catalog/${code}`}>
+                <a href={`/catalog/${code}`}>
+                  <ArrowBack/>
+                </a>
+              </Link>
+            </div>
             }
 
             <Link href="/">
@@ -84,15 +84,14 @@ const Header = ({ isOpenMainMenu, isOpenHeaderSearch, isProduct }) => {
 
             <div className="header__nav">
               {!isProduct &&
-                <>
-                  <div className="header__nav-item header__nav-item--hide-on-open-menu">
-                    <HeaderSearchToggle/>
-                  </div>
-                  <div className="header__nav-item header__nav-item--hide-on-open-menu">
-                    <MiniCart/>
-                  </div>
-                </>
+              <div className="header__nav-item header__nav-item--hide-on-open-menu">
+                <HeaderSearchToggle/>
+              </div>
               }
+
+              <div className="header__nav-item header__nav-item--hide-on-open-menu">
+                <MiniCart/>
+              </div>
 
               <div className="header__nav-item">
                 <MainMenuBurger/>
@@ -103,7 +102,7 @@ const Header = ({ isOpenMainMenu, isOpenHeaderSearch, isProduct }) => {
       </div>
 
       {!isProduct &&
-        <div id="header-fake" style={{ height: headerHeight }}/>
+      <div id="header-fake" style={{height: headerHeight}}/>
       }
 
       <MainMenu/>

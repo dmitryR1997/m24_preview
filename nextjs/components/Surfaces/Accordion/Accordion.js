@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, {useState, useEffect} from "react"
 import AccordionSection from "@components/Surfaces/AccordionSection"
 
 import "./Accordion.scss"
 
-const Accordion = ({ children }) => {
+const Accordion = ({children}) => {
   const [openSections, setOpenSections] = useState({})
 
   const onClickHandler = (id) => {
@@ -23,6 +23,13 @@ const Accordion = ({ children }) => {
           [item.props.id]: true
         }))
       })
+    } else {
+      if (children.props.open) {
+        setOpenSections(prev => ({
+          ...prev,
+          [children.props.id]: true
+        }))
+      }
     }
   }, [])
 
@@ -40,13 +47,13 @@ const Accordion = ({ children }) => {
             {item}
           </AccordionSection>
         )) : <AccordionSection
-              onClick={() => onClickHandler(children.props.id)}
-              isOpen={!!openSections[children.props.id]}
-              isLink={!children.props.children}
-              label={children.props.label}
-            >
-              {children}
-            </AccordionSection>
+          onClick={() => onClickHandler(children.props.id)}
+          isOpen={!!openSections[children.props.id]}
+          isLink={!children.props.children}
+          label={children.props.label}
+        >
+          {children}
+        </AccordionSection>
       }
     </div>
   )

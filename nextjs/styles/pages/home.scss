@@ -21,6 +21,10 @@
 
   &__catalog-slider {
     margin: 0 0 72px;
+
+    .slider-product-card {
+      background-size: auto;
+    }
   }
 
   &__preview-brands {

@@ -39,7 +39,7 @@ const ExpertsHelp = ({ hideText }) => {
               Консультанты с&nbsp;радостью ответят на&nbsp;ваши вопросы по&nbsp;контактному телефону
             </div>
 
-            <a className="experts-help__tel">
+            <a href="tel:+78002221690" className="experts-help__tel">
               +7 (800) 222-16-90
             </a>
 

@@ -8,6 +8,7 @@ import CatalogProduct from "@components/Cards/CatalogProduct"
 import Button from "@components/Forms/Button"
 
 import "./ProductsList.scss"
+import showTotal from "@utils/showTotal";
 
 const filterList = {
   NEWPRODUCT: "Новинка",
@@ -89,7 +90,7 @@ const ProductsList = () => {
             </div>
 
             <div className="products-list__total">
-              Всего {productsTotal} моделей
+              {showTotal(page, 4, productsTotal)}
             </div>
           </>
         }

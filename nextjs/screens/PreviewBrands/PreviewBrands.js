@@ -37,13 +37,15 @@ const PreviewBrands = () => {
           ))}
         </div>
 
-        <div className="preview-brands__nav">
-          <Button
-            label="Все бренды"
-            size="xs"
-            outline
-          />
-        </div>
+        <Link href="/vendors">
+          <div className="preview-brands__nav">
+            <Button
+              label="Все бренды"
+              size="xs"
+              outline
+            />
+          </div>
+        </Link>
       </Container>
     </section>
   )

@@ -11,10 +11,8 @@ import Slider from "@components/Surfaces/Slider"
 import AddToCart from "@components/Utils/AddToCart"
 import Accordion from "@components/Surfaces/Accordion"
 import { Tabs, Tab } from "@components/Surfaces/Tabs/Tabs"
-import ReviewCard from "@components/Cards/Review"
 import ProductParamsList from "@components/Utils/ProductParamsList/ProductParamsList"
 import Alert from "@components/Display/Alert"
-import Button from "@components/Forms/Button"
 
 import OfficialWaranty from "@screens/OfficialWaranty"
 import FiveReasons from "@screens/FiveReasons"
@@ -83,7 +81,10 @@ const ProductPage = () => {
               <div className="single-product__purchase-left">
                 {details.credit_line &&
                   <div className="single-product__credit-price">
-                    { (details.price / 12).toFixed(0) } ₽/мес. в рассрочку
+                    <Amount
+                      amount={parseInt((details.price / 12).toFixed(0))}
+                      text=" / мес. в рассрочку"
+                    />
                   </div>
                 }
 
@@ -198,37 +199,36 @@ const ProductPage = () => {
                         </div>
                       }
                     </div>
-
                   </Accordion>
                 </Tab>
 
-                <Tab id={3} label="Отзывы">
-                  {details.reviews && details.reviews.length &&
-                  <div className="single-product__review-list">
-                    {details.reviews.map((review, key) => (
-                      <div
-                        key={key}
-                        className="single-product__review-list-item"
-                      >
-                        <ReviewCard review={review}/>
-                      </div>
-                    ))}
-                  </div>
-                  }
+                {/*<Tab id={3} label="Отзывы">*/}
+                {/*  {details.reviews && details.reviews.length &&*/}
+                {/*  <div className="single-product__review-list">*/}
+                {/*    {details.reviews.map((review, key) => (*/}
+                {/*      <div*/}
+                {/*        key={key}*/}
+                {/*        className="single-product__review-list-item"*/}
+                {/*      >*/}
+                {/*        <ReviewCard review={review}/>*/}
+                {/*      </div>*/}
+                {/*    ))}*/}
+                {/*  </div>*/}
+                {/*  }*/}
 
-                  <div className="single-product__review-nav">
-                    <Button
-                      label="Показать ещё"
-                      size="xs"
-                      outline
-                    />
-                  </div>
+                {/*  <div className="single-product__review-nav">*/}
+                {/*    <Button*/}
+                {/*      label="Показать ещё"*/}
+                {/*      size="xs"*/}
+                {/*      outline*/}
+                {/*    />*/}
+                {/*  </div>*/}
 
-                  <div className="single-product__review-total">
-                    Всего 873 моделей
-                  </div>
+                {/*  <div className="single-product__review-total">*/}
+                {/*    Всего 873 моделей*/}
+                {/*  </div>*/}
 
-                </Tab>
+                {/*</Tab>*/}
               </Tabs>
             </Container>
 

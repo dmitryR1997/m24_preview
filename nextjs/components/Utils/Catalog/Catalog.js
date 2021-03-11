@@ -7,8 +7,11 @@ import ProductCard from "@components/Cards/Product"
 import Button from "@components/Forms/Button"
 
 import FiveReasons from "@screens/FiveReasons"
+import showTotal from "@utils/showTotal"
 
 import "./Catalog.scss"
+
+const PER_PAGE =  5
 
 const Catalog = ({ section_id, params, totalSetter }) => {
   const loader = useRef(null)
@@ -17,6 +20,7 @@ const Catalog = ({ section_id, params, totalSetter }) => {
   const [total, setTotal] = useState([])
   const [page, setPage] = useState(1)
   const [firstLoaded, setFirstLoaded] = useState(false)
+  const [end, setEnd] = useState(false)
 
   const loadProducts = useCallback((page) => {
     fetchProducts({
@@ -32,6 +36,8 @@ const Catalog = ({ section_id, params, totalSetter }) => {
       }
 
       setTotal(data.total)
+
+      if (data.data.length < PER_PAGE) setEnd(true)
 
       if (typeof totalSetter === "function") totalSetter(data.total)
 
@@ -62,11 +68,6 @@ const Catalog = ({ section_id, params, totalSetter }) => {
     if (page === 1) return
     loadProducts(page)
   }, [page])
-
-  useEffect(() => {
-    setPage(1)
-    loadProducts(1)
-  }, [section_id])
 
   useEffect(() => {
     if (Object.keys(params).length <= 0) return
@@ -108,8 +109,9 @@ const Catalog = ({ section_id, params, totalSetter }) => {
           })}
         </div>
 
-        {products.length > 0 &&
+        {total > 0 &&
         <>
+          {!end &&
           <div className="catalog__product-nav" ref={loader}>
             <Button
               onClick={() => setPage(page + 1)}
@@ -118,9 +120,10 @@ const Catalog = ({ section_id, params, totalSetter }) => {
               outline
             />
           </div>
+          }
 
           {/*<div className="catalog__product-total">*/}
-          {/*  Показано {page * 5} из {total} моделей*/}
+          {/*  {showTotal(page, PER_PAGE, total)}*/}
           {/*</div>*/}
         </>
         }

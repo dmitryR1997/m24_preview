@@ -29,8 +29,6 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
   const [price, setPrice] = useState({})
 
   const priceChangeHandler = (value) => {
-    if (minMaxPrices.min === value[0] && minMaxPrices.max === value[1]) return
-
     setPrice(value)
     updateFilter({ field: "price", value })
   }

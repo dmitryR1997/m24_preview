@@ -19,55 +19,35 @@ const Footer = () => {
         <p className="footer__pre-text">Хотите оставаться в курсе новинок?</p>
 
         <div className="footer__social">
-          <Link
-            href="/"
-          >
-            <a href="/" className="footer__social-link">
-              <FB/>
-            </a>
-          </Link>
-          <Link
-            href="/"
-          >
-            <a href="/" className="footer__social-link">
-              <VK/>
-            </a>
-          </Link>
-          <Link
-            href="/"
-          >
-            <a href="/" className="footer__social-link">
-              <OK/>
-            </a>
-          </Link>
-          <Link
-            href="/"
-          >
-            <a href="/" className="footer__social-link">
-              <Instagram/>
-            </a>
-          </Link>
-          <Link
-            href="/"
-          >
-            <a href="/" className="footer__social-link">
-              <YouTube/>
-            </a>
-          </Link>
+          <a href="https://www.facebook.com/massagery24/" target="_blank" className="footer__social-link">
+            <FB/>
+          </a>
+          <a href="https://vk.com/massagery24" target="_blank" className="footer__social-link">
+            <VK/>
+          </a>
+          <a href="https://ok.ru/group/54165989097650" target="_blank" className="footer__social-link">
+            <OK/>
+          </a>
+          <a href="https://www.instagram.com/massagery24.ru/" target="_blank" className="footer__social-link">
+            <Instagram/>
+          </a>
+          <a href="https://www.youtube.com/channel/UCEc8g8X6nl0nsS32OWXn9kg" target="_blank" className="footer__social-link">
+            <YouTube/>
+          </a>
         </div>
 
         <Link
-          href="/"
+          href="/content/agree"
         >
-          <a href="/" className="footer__info-link">
+          <a href="/content/agree" className="footer__info-link">
             Согласие на обработку персональных данных
           </a>
         </Link>
 
         <Link
-          href="/"
+          href="/content/personaldata"
         >
-          <a href="/" className="footer__info-link">
+          <a href="/content/personaldata" className="footer__info-link">
             Политика в отношении обработки персональных данных
           </a>
         </Link>

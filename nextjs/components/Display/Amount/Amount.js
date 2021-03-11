@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import "./Amount.scss"
 
-const Amount = ({ amount, old }) => {
+const Amount = ({ amount, old, text }) => {
   const [styleDeg, setStyleDeg] = useState(false)
   const amountBlock = useRef(null)
 
@@ -26,7 +26,7 @@ const Amount = ({ amount, old }) => {
 
   return (
     <div className="amount" ref={amountBlock}>
-      { amount.toLocaleString("ru") } ₽
+      { amount.toLocaleString("ru") } ₽{text && text}
 
       {old && styleDeg &&
         <div
@@ -42,7 +42,8 @@ const Amount = ({ amount, old }) => {
 
 Amount.propTypes = {
   amount: PropTypes.number.isRequired,
-  old: PropTypes.bool
+  old: PropTypes.bool,
+  text: PropTypes.string
 }
 
 export default Amount
