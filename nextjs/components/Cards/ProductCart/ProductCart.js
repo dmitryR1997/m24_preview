@@ -40,6 +40,10 @@ const ProductCart = ({ product, cartData }) => {
     <article
       className="product-cart"
     >
+      {/*<input type="hidden" className="gtm-category-id" value={} />*/}
+      {/*<input type="hidden" className="gtm-product-id" value={product.id}>*/}
+      {/*<input type="hidden" className="gtm-product-price" value={product.discount_price ? product.discount_price : product.price}>*/}
+
       <div className="product-cart__delete" onClick={() => dispatch(removeFromCart(product.id))}>
         <DeleteIcon/>
       </div>

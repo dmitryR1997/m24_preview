@@ -36,10 +36,13 @@ const ProductPage = () => {
   }, [slug])
 
   return (
-    <Layout productPage>
+    <Layout pageType="product" productPage>
       <div className="single-product">
         {details.id &&
           <>
+            <input type="hidden" className="gtm-product-id" value={details.id} />
+            <input type="hidden" className="gtm-product-price" value={details.price} />
+
             <div className="single-product__header">
               <Container
                 disablePadding

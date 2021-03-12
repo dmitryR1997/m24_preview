@@ -11,9 +11,13 @@ import Footer from "@screens/Footer"
 
 import "./Layout.scss"
 
-const Layout = ({ children, productPage }) => {
+const Layout = ({ children, pageType, productPage }) => {
   return (
     <div className="default-layout">
+      {pageType &&
+      <input className="gtm-page-type" type="hidden" value={pageType} />
+      }
+
       <div className="default-layout__top">
         {!productPage &&
           <BeforeHeader />
@@ -39,6 +43,7 @@ const Layout = ({ children, productPage }) => {
 }
 
 Layout.propTypes = {
+  pageType: PropTypes.string,
   productPage: PropTypes.bool
 }
 

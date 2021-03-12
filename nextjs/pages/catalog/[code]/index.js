@@ -50,12 +50,17 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu, updateFilter }) => 
   }, [code])
 
   return (
-    <Layout>
+    <Layout pageType="category">
       <div className="catalog-page-content">
         {category.ID &&
-          <CatalogFilter
-            sectionId={category.ID} total={total}
-          />
+          <>
+            <input type="hidden" className="gtm-category-name" value={category.NAME} />
+            <input type="hidden" className="gtm-category-id" value={category.ID} />
+
+            <CatalogFilter
+              sectionId={category.ID} total={total}
+            />
+          </>
         }
 
         <Container>

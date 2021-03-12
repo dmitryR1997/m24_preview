@@ -16,7 +16,7 @@ import "@styles/pages/home.scss"
 
 const HomePage = () => {
   return (
-    <Layout>
+    <Layout pageType="home">
       <div className="home-page-content">
         <div className="home-page-content__slider">
           <NewProductsSlider />
