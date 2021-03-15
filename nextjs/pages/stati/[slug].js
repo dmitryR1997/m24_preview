@@ -29,6 +29,8 @@ const StaticPage = () => {
   useEffect(() => {
     if (!slug) return
 
+    console.log(slug)
+
     fetchArticle(slug).then(({ data }) => {
       setPageContent(data)
     })

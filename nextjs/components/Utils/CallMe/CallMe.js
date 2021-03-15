@@ -1,20 +1,24 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import classnames from "classnames"
 
-import CallIcon from "../../../public/icons/call-v2.svg"
-import ChatIcon from "../../../public/icons/chat.svg"
-import WhatsappIcon from "../../../public/icons/whatsapp.svg"
-import TelegramIcon from "../../../public/icons/telegram.svg"
+import { useDispatch } from "react-redux"
+import { openModal } from "@actions/layout"
+import { callMe } from "@api/order"
+
+import Message from "@components/Cards/Message/Message"
+import Input from "@components/Forms/Input"
+import Button from "@components/Forms/Button"
+
+const icons = [
+  require("../../../public/icons/call-v2.svg"),
+  require("../../../public/icons/chat.svg"),
+  require("../../../public/icons/whatsapp.svg"),
+  require("../../../public/icons/telegram.svg"),
+]
 
 import CloseIcon from "../../../public/icons/close.svg"
 
 import "./CallMe.scss"
-import Message from "@components/Cards/Message/Message";
-import Input from "@components/Forms/Input";
-import Button from "@components/Forms/Button";
-import {openModal} from "@actions/layout";
-import {useDispatch} from "react-redux";
-import {callMe} from "@api/order";
 
 const CallMeModal = () => {
   const dispatch = useDispatch()
@@ -71,6 +75,17 @@ const CallMeModal = () => {
 const CallMe = () => {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
+  const [icon, setIcon] = useState(0)
+
+  useEffect(() => {
+    setInterval(() => {
+      setIcon(prev => {
+        if (prev > 2) return 0
+
+        return prev + 1
+      })
+    }, 5000)
+  }, [])
 
   return (
     <>
@@ -81,21 +96,24 @@ const CallMe = () => {
       >
         <div className="call-me__list">
           <div className="call-me__list-item" onClick={() => dispatch(openModal(<CallMeModal/>))}>
-            <CallIcon/>
+            <img src={icons[0]} alt="Chat image" />
           </div>
           <div className="call-me__list-item" onClick={() => jivo_api.open()}>
-            <ChatIcon/>
+            <img src={icons[1]} alt="Chat image" />
           </div>
           <div className="call-me__list-item">
-            <WhatsappIcon/>
+            <img src={icons[2]} alt="Chat image" />
           </div>
           <div className="call-me__list-item">
-            <TelegramIcon/>
+            <img src={icons[3]} alt="Chat image" />
           </div>
         </div>
 
         <div className="call-me__toggle" onClick={() => setOpen(!open)}>
-          {!open ? <CallIcon/> : <CloseIcon/>}
+          {!open
+            ? <img src={icons[icon]} alt="Chat image" />
+            : <CloseIcon/>
+          }
         </div>
       </div>
     </>

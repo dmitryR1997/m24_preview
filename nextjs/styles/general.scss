@@ -165,6 +165,39 @@ input[type=number] {
   }
 }
 
+.static-banner {
+  position: relative;
+  padding: 13px 23px;
+  height: 327px;
+
+  &__pre-title,
+  &__title {
+    position: relative;
+    z-index: 3;
+  }
+
+  &__pre-title {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #A0A3BD;
+    line-height: 1.7;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 900;
+    color: #14142B;
+    line-height: 1.3;
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
 .typography {
   img {
     margin: 10px 0 16px;

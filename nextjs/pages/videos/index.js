@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, {useEffect, useRef, useState} from "react"
 
 import { fetchVideos } from "@api/video"
 
@@ -15,15 +15,48 @@ import OfficialWaranty from "@screens/OfficialWaranty";
 
 import "@styles/pages/VideoReviews.scss"
 
+const PER_PAGE = 7
+
 const VideosPage = () => {
+  const loader = useRef(null)
+
   const [videos, setVideos] = useState([])
   const [page, setPage] = useState(1)
+  const [firstLoaded, setFirstLoaded] = useState(false)
+  const [end, setEnd] = useState(false)
+
+  const handleObserver = (entities) => {
+    const target = entities[0]
+
+    if (target.isIntersecting) {
+      setPage((page) => page + 1)
+    }
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      root: null,
+      threshold: 1.0
+    })
+
+
+    if (loader.current) {
+      observer.observe(loader.current)
+    }
+  }, [firstLoaded])
 
   useEffect(() => {
     fetchVideos({
       page
     }).then(({ data }) => {
-      setVideos(data)
+      if (page === 1) {
+        setVideos(data)
+      } else {
+        setVideos(prev => [...prev, ...data])
+      }
+      if (data.length < PER_PAGE) setEnd(true)
+
+      if (!firstLoaded) setFirstLoaded(true)
     })
   }, [page])
 
@@ -53,8 +86,8 @@ const VideosPage = () => {
           </div>
 
           <div className="video-catalog-content__list">
-            {videos.map(video => (
-              <div className="video-catalog-content__list-item">
+            {videos.map((video, key) => (
+              <div key={key} className="video-catalog-content__list-item">
                 <VideoReviewCard video={video} hideTitle={true} />
               </div>
             ))}
@@ -62,7 +95,8 @@ const VideosPage = () => {
 
           {videos.length > 0 &&
             <>
-              <div className="video-catalog-content__list-nav">
+              {!end &&
+              <div className="video-catalog-content__list-nav" ref={loader}>
                 <Button
                   onClick={() => setPage(page + 1)}
                   label="Показать ещё"
@@ -70,10 +104,11 @@ const VideosPage = () => {
                   outline
                 />
               </div>
+              }
 
-              <div className="video-catalog-content__list-total">
-                Всего 128 видео
-              </div>
+              {/*<div className="video-catalog-content__list-total">*/}
+              {/*  Всего 128 видео*/}
+              {/*</div>*/}
             </>
           }
         </Container>

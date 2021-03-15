@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, {useEffect, useRef, useState} from "react"
 
 import { fetchArticles } from "@api/article";
 
@@ -15,15 +15,50 @@ import OfficialWaranty from "@screens/OfficialWaranty"
 
 import "@styles/pages/Articles.scss"
 
+const PER_PAGE = 4
+
 const ArticlesPage = () => {
+  const loader = useRef(null)
+
   const [articles, setArticles] = useState([])
 
   const [page, setPage] = useState(1)
   const [total, setTotal] = useState(1)
+  const [firstLoaded, setFirstLoaded] = useState(false)
+  const [end, setEnd] = useState(false)
+
+  const handleObserver = (entities) => {
+    const target = entities[0]
+
+    if (target.isIntersecting) {
+      setPage((page) => page + 1)
+    }
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      root: null,
+      threshold: 1.0
+    })
+
+
+    if (loader.current) {
+      observer.observe(loader.current)
+    }
+  }, [firstLoaded])
 
   useEffect(() => {
     fetchArticles({ page }).then(({ data }) => {
-      setArticles(prev => [...prev, ...data.data])
+      if (page === 1) {
+        setArticles(data.data)
+      } else {
+        setArticles(prev => [...prev, ...data.data])
+      }
+
+      if (data.data.length < PER_PAGE) setEnd(true)
+
+      if (!firstLoaded) setFirstLoaded(true)
+
       setTotal(data.total)
     })
   }, [page])
@@ -46,7 +81,7 @@ const ArticlesPage = () => {
                   text={article.text}
                   title={article.title}
                   image={article.image}
-                  href={`/articles/${article.slug}`}
+                  href={`/stati/${article.slug}`}
                 />
               </div>
             ))}
@@ -54,23 +89,23 @@ const ArticlesPage = () => {
 
           {articles.length > 0 &&
             <>
-              <div className="articles-page__nav">
-                {!((page * 3) >= total) &&
+              {!end &&
+              <div className="articles-page__nav" ref={loader}>
                 <Button
                   label="Показать ещё"
                   size="xs"
                   outline
                   onClick={() => setPage(page + 1)}
                 />
-                }
               </div>
+              }
 
-              <div className="articles-page__total">
-                {!((page * 3) >= total)
-                  ? <>Показано {page * 3} из {total}</>
-                  : <>Показано {total} из {total}</>
-                }
-              </div>
+              {/*<div className="articles-page__total">*/}
+              {/*  {!((page * 3) >= total)*/}
+              {/*    ? <>Показано {page * 3} из {total}</>*/}
+              {/*    : <>Показано {total} из {total}</>*/}
+              {/*  }*/}
+              {/*</div>*/}
             </>
           }
         </Container>

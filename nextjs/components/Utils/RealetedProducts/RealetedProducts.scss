@@ -10,4 +10,12 @@
   .swiper-slide {
     width: 192px;
   }
+
+  .catalog-product-card {
+    &__image,
+    &__image-none {
+      height: 192px;
+      object-fit: contain;
+    }
+  }
 }

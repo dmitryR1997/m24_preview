@@ -4,13 +4,13 @@ import Link from "next/link"
 
 import "./Banner.scss"
 
-const Banner = ({ type, title, description, image, link }) => {
+const Banner = ({ type, title, description, image, view, link }) => {
   return (
     <Link href={link ? link : '/'}>
       <article
         className={`banner`}
       >
-        {title &&
+        {title && view === "banner" &&
         <div className="banner__header">
           {type &&
           <div

@@ -15,6 +15,7 @@ const Layout = ({ children, pageType }) => {
   const isHome = pageType === "home"
   const isCatalog = pageType === "category"
   const isProduct = pageType === "product"
+  const isCart = pageType === "cart"
 
   return (
     <div className="default-layout">
@@ -35,7 +36,9 @@ const Layout = ({ children, pageType }) => {
       </div>
 
       <div className="default-layout__bottom">
-        <AboutShop showText={!isProduct} />
+        {!isCart &&
+        <AboutShop showText={!isProduct}/>
+        }
 
         <Footer />
       </div>

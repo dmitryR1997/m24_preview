@@ -38,6 +38,8 @@ const NewProductsSlider = () => {
                 title={product.title}
                 description={product.title_second}
                 image={product.image}
+                view={product.view}
+                link={product.link}
               />
           ))}
         </Slider>
