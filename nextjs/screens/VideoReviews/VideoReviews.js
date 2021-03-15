@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import Link from "next/link"
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox"
 
 import { fetchVideos } from "@api/video"
@@ -12,12 +13,14 @@ import "./VideoReviews.scss"
 
 const endSlide = () => {
   return (
-    <div className="video-review-card__nav">
-      <Button
-        label="Все видеообзоры"
-        outline
-      />
-    </div>
+    <Link href="/videos">
+      <div className="video-review-card__nav">
+        <Button
+          label="Все видеообзоры"
+          outline
+        />
+      </div>
+    </Link>
   )
 }
 

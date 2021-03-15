@@ -14,7 +14,7 @@ const BeforeHeader = () => {
             доставка по России
           </div>
           <div className="before-header__info">
-            <a href="tel:88005503269" className="before-header__info-tel d-block text-decoration-none">
+            <a href="tel:88005503269" className="before-header__info-tel d-block text-decoration-none roistat_phone">
               8 800 550-32-69
             </a>
             <div className="before-header__info-time-work">

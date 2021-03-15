@@ -8,23 +8,24 @@ import SectionHeader from "@components/Display/SectionHeader"
 
 import "./AboutShop.scss"
 
-const AboutShop = ({ showText }) => {
+const AboutShop = ({ text, showText }) => {
   return (
     <section className="about-shop">
       {showText &&
         <Container>
-          <div className="about-shop__header">
-            <SectionHeader
-              title="Покупка<br/>массажного кресла"
-            />
-          </div>
+          <div className="about-shop__text typography" dangerouslySetInnerHTML={{ __html: text }}/>
+          {/*<div className="about-shop__header">*/}
+          {/*  <SectionHeader*/}
+          {/*    title="Покупка<br/>массажного кресла"*/}
+          {/*  />*/}
+          {/*</div>*/}
 
-          <div className="about-shop__description">
-            Массажные кресла являются одними из&nbsp;самых популярных предметов для релаксации и&nbsp;отдыха после
-            тяжёлого трудового дня, длительной поездки или активных занятий спортом. Прямое воздействие
-            на&nbsp;&laquo;нагруженные&raquo; участки тела позволяет достигать эффекта полного расслабления, придаёт сил,
-            бодрит и&nbsp;создаёт непередаваемое ощущение лёгкости и&nbsp;комфорта.
-          </div>
+          {/*<div className="about-shop__description">*/}
+          {/*  Массажные кресла являются одними из&nbsp;самых популярных предметов для релаксации и&nbsp;отдыха после*/}
+          {/*  тяжёлого трудового дня, длительной поездки или активных занятий спортом. Прямое воздействие*/}
+          {/*  на&nbsp;&laquo;нагруженные&raquo; участки тела позволяет достигать эффекта полного расслабления, придаёт сил,*/}
+          {/*  бодрит и&nbsp;создаёт непередаваемое ощущение лёгкости и&nbsp;комфорта.*/}
+          {/*</div>*/}
         </Container>
       }
 
@@ -99,7 +100,7 @@ const AboutShop = ({ showText }) => {
             id="tab-4"
             label="Свяжитесь с нами"
           >
-            <p><a href="tel:88005503289">8 800 550-32-89</a></p>
+            <p><a href="tel:88005503289" className="roistat_phone">8 800 550-32-89</a></p>
             <p>Ежедневно с 9.00 до 21.00 по московскому времени.</p>
           </div>
         </Accordion>
@@ -109,6 +110,7 @@ const AboutShop = ({ showText }) => {
 }
 
 AboutShop.propTypes = {
+  text: PropTypes.string,
   showText: PropTypes.bool
 }
 

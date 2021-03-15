@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
+import Head from "next/head"
 import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { connect } from "react-redux"
 
-import { hideMainMenu } from "@actions/layout"
 import { updateFilter } from "@actions/filter"
 
 import { fetchCategory } from "@api/category"
@@ -20,12 +20,14 @@ import ExpertsHelp from "@screens/ExpertsHelp"
 import ExplameMassager from "@screens/ExplameMassager"
 
 import "@styles/pages/catalog.scss"
+import {fetchSeo} from "@api/seo";
 
-const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu, updateFilter }) => {
+const CatalogPage = ({ filter, updateFilter }) => {
   const router = useRouter()
   const { code } = router.query
 
   const [category, setCategory] = useState([])
+  const [seo, setSeo] = useState({})
   const [total, setTotal] = useState(0)
 
   const sortHandler = (e) => {
@@ -40,17 +42,25 @@ const CatalogPage = ({ filter, isOpenMainMenu, hideMainMenu, updateFilter }) => 
   useEffect(() => {
     if (!code) return
 
-    if (isOpenMainMenu) {
-      hideMainMenu()
-    }
-
     fetchCategory(code).then(({ data }) => {
       setCategory(data)
+    })
+
+    fetchSeo(`массажеры24.рф/catalog/${code}/`).then(({data}) => {
+      setSeo(data)
     })
   }, [code])
 
   return (
     <Layout pageType="category">
+      {seo &&
+        <Head>
+          <title>{seo.title}</title>
+          <meta name="description" content={seo.description} />
+          <meta name="keywords" content={seo.keywords} />
+        </Head>
+      }
+
       <div className="catalog-page-content">
         {category.ID &&
           <>
@@ -146,13 +156,11 @@ const mapStateToolProps = state => {
     productsTotal: state.product.total,
     products: state.product.items,
     category: state.category.item,
-    filter: state.filter,
-    isOpenMainMenu: state.layout.isOpenMainMenu
+    filter: state.filter
   }
 }
 
 const mapDispatchToProps = {
-  hideMainMenu,
   updateFilter
 }
 

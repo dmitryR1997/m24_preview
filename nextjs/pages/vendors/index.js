@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import Link from "next/link"
 
 import {fetchBrands} from "@api/brand"
 
@@ -36,9 +37,11 @@ const BrandPage = () => {
           <div className="brands-page__list">
             {brands.map((brand, key) => {
               const item = (
-                <div key={key} className="brands-page__list-item">
-                  <BrandCard image={brand.image}/>
-                </div>
+                <Link key={key} href={`/vendors/${brand.code}`}>
+                  <div className="brands-page__list-item">
+                    <BrandCard image={brand.image}/>
+                  </div>
+                </Link>
               )
 
               if (key === 5) {

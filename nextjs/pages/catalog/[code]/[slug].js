@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
-import {useRouter} from "next/router"
+import Head from "next/head"
+import { useRouter } from "next/router"
 import num_word from "@utils/NumWord"
 
 import { fetchProduct } from "@api/product"
+import { fetchSeo } from "@api/seo"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
@@ -23,7 +25,7 @@ import "@styles/pages/product.scss"
 
 const ProductPage = () => {
   const router = useRouter()
-  const { slug } = router.query
+  const { code, slug } = router.query
 
   const [details, setDetails] = useState({})
 
@@ -36,10 +38,16 @@ const ProductPage = () => {
   }, [slug])
 
   return (
-    <Layout pageType="product" productPage>
+    <Layout pageType="product">
       <div className="single-product">
         {details.id &&
           <>
+            <Head>
+              <title>{details.seo_title}</title>
+              <meta name="description" content={details.seo_description} />
+              <meta name="keywords" content={details.seo_keywords} />
+            </Head>
+
             <input type="hidden" className="gtm-product-id" value={details.id} />
             <input type="hidden" className="gtm-product-price" value={details.price} />
 

@@ -38,7 +38,7 @@ const ShopPage = () => {
               Важно!<br/>
               Перед посещением<br/>
               уточните наличие по телефону<br/>
-              <a href="tel:88002223160" style={{ display: "block", marginTop: 10, fontSize: 18, fontWeight: 700, color: "rgba(141, 178, 16, 1)" }}>8 800 222-31-60</a>
+              <a href="tel:88002223160" className="roistat_phone" style={{ display: "block", marginTop: 10, fontSize: 18, fontWeight: 700, color: "rgba(141, 178, 16, 1)" }}>8 800 222-31-60</a>
             </div>
             <br/><br/>
             <Tabs>

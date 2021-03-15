@@ -179,9 +179,9 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
                 <li
                   className="main-menu__list-item">
                   <Link
-                    href="/content/about"
+                    href="/contacts"
                   >
-                    <a href="/content/about" className="main-menu__list-link">
+                    <a href="/contacts" className="main-menu__list-link">
                       Шоу-румы
                     </a>
                   </Link>
@@ -205,7 +205,7 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
           <div className="main-menu__footer">
             <p>Наши консультанты с радостью ответят на ваши вопросы по контактному телефону</p>
 
-            <a href="tel:88005503269">8 800 550-32-69</a>
+            <a href="tel:88005503269" className="roistat_phone">8 800 550-32-69</a>
           </div>
         </Container>
       </div>

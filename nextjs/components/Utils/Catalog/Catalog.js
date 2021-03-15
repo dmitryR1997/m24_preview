@@ -13,7 +13,7 @@ import "./Catalog.scss"
 
 const PER_PAGE =  5
 
-const Catalog = ({ section_id, params, totalSetter }) => {
+const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
   const loader = useRef(null)
 
   const [products, setProducts] = useState([])
@@ -26,6 +26,7 @@ const Catalog = ({ section_id, params, totalSetter }) => {
     fetchProducts({
       ...params,
       "section_id": section_id,
+      "MANUFACTURER": brand_id,
       "include_sections": true,
       "nav-products": `page-${page}`
     }).then(({ data }) => {
@@ -70,7 +71,7 @@ const Catalog = ({ section_id, params, totalSetter }) => {
   }, [page])
 
   useEffect(() => {
-    if (Object.keys(params).length <= 0) return
+    if (params && Object.keys(params).length <= 0) return
 
     setPage(1)
     loadProducts(1)

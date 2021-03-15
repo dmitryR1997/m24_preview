@@ -23,7 +23,7 @@ const ExpertsHelp = ({ hideText }) => {
 
           <div className="experts-help__expert-contact">
             <div className="experts-help__expert-contact-item">
-              <a href="tel:+7(800)2221690">
+              <a href="tel:+7(800)2221690" className="roistat_phone">
                 <CallIcon/>
               </a>
             </div>
@@ -39,7 +39,7 @@ const ExpertsHelp = ({ hideText }) => {
               Консультанты с&nbsp;радостью ответят на&nbsp;ваши вопросы по&nbsp;контактному телефону
             </div>
 
-            <a href="tel:+78002221690" className="experts-help__tel">
+            <a href="tel:+78002221690" className="experts-help__tel roistat_phone">
               +7 (800) 222-16-90
             </a>
 

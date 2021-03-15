@@ -11,19 +11,23 @@ import Footer from "@screens/Footer"
 
 import "./Layout.scss"
 
-const Layout = ({ children, pageType, productPage }) => {
+const Layout = ({ children, pageType }) => {
+  const isHome = pageType === "home"
+  const isCatalog = pageType === "category"
+  const isProduct = pageType === "product"
+
   return (
     <div className="default-layout">
       {pageType &&
-      <input className="gtm-page-type" type="hidden" value={pageType} />
+        <input className="gtm-page-type" type="hidden" value={pageType} />
       }
 
       <div className="default-layout__top">
-        {!productPage &&
+        {!isProduct &&
           <BeforeHeader />
         }
 
-        <Header isProduct={productPage} />
+        <Header isProduct={isProduct} />
       </div>
 
       <div className="default-layout__content">
@@ -31,7 +35,7 @@ const Layout = ({ children, pageType, productPage }) => {
       </div>
 
       <div className="default-layout__bottom">
-        <AboutShop showText={!productPage} />
+        <AboutShop showText={!isProduct} />
 
         <Footer />
       </div>
@@ -43,8 +47,7 @@ const Layout = ({ children, pageType, productPage }) => {
 }
 
 Layout.propTypes = {
-  pageType: PropTypes.string,
-  productPage: PropTypes.bool
+  pageType: PropTypes.string
 }
 
 export default Layout
