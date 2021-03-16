@@ -100,7 +100,7 @@ const AboutShop = ({ text, showText }) => {
             id="tab-4"
             label="Свяжитесь с нами"
           >
-            <p><a href="tel:88005503289" className="roistat_phone">8 800 550-32-89</a></p>
+            <p><a href="tel:88002221690" className="roistat_phone">8 (800) 222-16-90</a></p>
             <p>Ежедневно с 9.00 до 21.00 по московскому времени.</p>
           </div>
         </Accordion>

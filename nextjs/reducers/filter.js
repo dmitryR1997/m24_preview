@@ -1,10 +1,13 @@
 import {
   SET_FILTER,
-  UPDATE_FILTER
+  UPDATE_FILTER,
+  SET_VIDEO_FILTER,
+  UPDATE_VIDEO_FILTER
 } from "@actions/filter"
 
 const initialState = {
-  items: []
+  items: {},
+  videoItems: {}
 }
 
 const filter = (state = initialState, action) => {
@@ -20,6 +23,21 @@ const filter = (state = initialState, action) => {
         ...state,
         items: {
           ...state.items,
+          [action.payload.field]: action.payload.value
+        }
+      }
+
+    case SET_VIDEO_FILTER:
+      return {
+        ...state,
+        videoItems: action.payload
+      }
+
+    case UPDATE_VIDEO_FILTER:
+      return {
+        ...state,
+        videoItems: {
+          ...state.videoItems,
           [action.payload.field]: action.payload.value
         }
       }

@@ -4,7 +4,7 @@ import { wrapper } from "../store"
 import { useDispatch, useStore } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
 
-import { hideMainMenu } from "@actions/layout"
+import { hideHeaderSearch, hideMainMenu } from "@actions/layout"
 
 import Loader from "@components/Layout/Loader"
 
@@ -27,6 +27,7 @@ function MyApp({ Component, pageProps }) {
       })
 
       dispatch(hideMainMenu())
+      dispatch(hideHeaderSearch())
     })
   },[])
 

@@ -7,7 +7,6 @@ import ProductCard from "@components/Cards/Product"
 import Button from "@components/Forms/Button"
 
 import FiveReasons from "@screens/FiveReasons"
-import showTotal from "@utils/showTotal"
 
 import "./Catalog.scss"
 
@@ -122,10 +121,6 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
             />
           </div>
           }
-
-          {/*<div className="catalog__product-total">*/}
-          {/*  {showTotal(page, PER_PAGE, total)}*/}
-          {/*</div>*/}
         </>
         }
       </Container>

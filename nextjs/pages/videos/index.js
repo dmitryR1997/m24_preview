@@ -1,5 +1,6 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useEffect, useRef, useState, useCallback} from "react"
 
+import { connect } from "react-redux"
 import { fetchVideos } from "@api/video"
 
 import Layout from "@components/Layout/Layout"
@@ -14,16 +15,37 @@ import FiveReasons from "@screens/FiveReasons";
 import OfficialWaranty from "@screens/OfficialWaranty";
 
 import "@styles/pages/VideoReviews.scss"
+import VideoFilter from "@components/Utils/VideoFilter/VideoFilter";
 
 const PER_PAGE = 7
 
-const VideosPage = () => {
+const VideosPage = ({ filter }) => {
   const loader = useRef(null)
 
   const [videos, setVideos] = useState([])
   const [page, setPage] = useState(1)
+  const [total, setTotal] = useState(0)
   const [firstLoaded, setFirstLoaded] = useState(false)
   const [end, setEnd] = useState(false)
+
+  const loadVideos = useCallback((page) => {
+    fetchVideos({
+      page,
+      ...filter
+    }).then(({ data }) => {
+      if (page === 1) {
+        setVideos(data.data)
+      } else {
+        setVideos(prev => [...prev, ...data.data])
+      }
+
+      if (data.data.length < PER_PAGE) setEnd(true)
+
+      if (!firstLoaded) setFirstLoaded(true)
+
+      setTotal(data.total)
+    })
+  }, [filter, firstLoaded])
 
   const handleObserver = (entities) => {
     const target = entities[0]
@@ -46,34 +68,32 @@ const VideosPage = () => {
   }, [firstLoaded])
 
   useEffect(() => {
-    fetchVideos({
-      page
-    }).then(({ data }) => {
-      if (page === 1) {
-        setVideos(data)
-      } else {
-        setVideos(prev => [...prev, ...data])
-      }
-      if (data.length < PER_PAGE) setEnd(true)
-
-      if (!firstLoaded) setFirstLoaded(true)
-    })
+    loadVideos(page)
   }, [page])
+
+  useEffect(() => {
+    if (filter && Object.keys(filter).length <= 0) return
+
+    setPage(1)
+    loadVideos(1)
+  }, [filter])
 
   return (
     <Layout>
+      <VideoFilter total={total} />
+
       <div className="video-catalog-content">
         <Container>
           <div className="video-catalog-content__header">
             <SectionHeader
               title="Видеообзоры"
-              description="389 видео"
+              description={`${total} видео`}
             />
           </div>
 
           <div className="video-catalog-content__filter">
             <div className="video-catalog-content__filter-item">
-              <CatalogFilterToggle/>
+              <CatalogFilterToggle filterId="video" />
             </div>
 
             <div className="video-catalog-content__filter-item">
@@ -131,4 +151,10 @@ const VideosPage = () => {
   )
 }
 
-export default VideosPage
+const mapStateToolProps = state => {
+  return {
+    filter: state.filter.videoItems
+  }
+}
+
+export default connect(mapStateToolProps)(VideosPage)

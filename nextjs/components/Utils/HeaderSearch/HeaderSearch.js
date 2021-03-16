@@ -1,38 +1,49 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useCallback, useEffect } from "react"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import classnames from "classnames"
-import {connect, useDispatch} from "react-redux"
+import debounce from "lodash.debounce"
+
+import { connect } from "react-redux"
 import { toggleHeaderSearch } from "@actions/layout"
+import { fetchProducts } from "@api/product"
+import getProductLink from "@utils/getProdutLink"
 
 import Container from "@components/Layout/Container"
+import Loader from "@components/Layout/Loader"
 
 import CloseIcon from "../../../public/icons/close.svg"
 
 import "./HeaderSearch.scss"
-import {fetchProducts} from "@api/product"
-import getProductLink from "@utils/getProdutLink"
 
 const HeaderSearch = ({ isOpenHeaderSearch, toggleHeaderSearch }) => {
-  const dispatch = useDispatch()
-
+  const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
+  const [q, setQ] = useState("")
 
   const onChangeHandler = (e) => {
     const value = e.target.value
 
-    if(!value) {
-      setProducts([])
+    setQ(value)
+  }
 
+  const delayOnChangeHandler = useCallback(debounce(onChangeHandler, 500), [])
+
+  useEffect(() => {
+    if (!q) {
+      setProducts([])
       return
     }
 
+    setLoading(true)
+
     fetchProducts({
-      name: e.target.value
+      name: q
     }).then(({ data }) => {
       setProducts(data.data)
+      setLoading(false)
     })
-  }
+  }, [q])
 
   return (
     <div
@@ -46,7 +57,7 @@ const HeaderSearch = ({ isOpenHeaderSearch, toggleHeaderSearch }) => {
             <div className="header-search__header-input">
               <input type="text"
                      placeholder="Я ищу..."
-                     onChange={onChangeHandler}
+                     onChange={delayOnChangeHandler}
               />
             </div>
             <div className="header-search__header-close"
@@ -60,8 +71,20 @@ const HeaderSearch = ({ isOpenHeaderSearch, toggleHeaderSearch }) => {
 
       <Container>
         <div className="header-search__list">
-          {products.map(product => (
-            <Link href={getProductLink(product)}>
+          {!loading && products.length === 0 && q.length > 0 &&
+          <div className="header-search__list-empty">
+            По вашему запросу ничего не найдено
+          </div>
+          }
+
+          {loading &&
+          <div className="header-search__list-loader">
+            <Loader/>
+          </div>
+          }
+
+          {products.map((product, key) => (
+            <Link key={key} href={getProductLink(product)}>
               <div className="header-search__list-item">
                 {product.images && product.images.length > 0 &&
                   <div className="header-search__list-item-image">

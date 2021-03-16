@@ -7,6 +7,7 @@ export default function showTotal(currentPage, perPage, total) {
   if (total < perPage) of = perPage
 
   if (showing > of) showing = of
+  if (total < showing) showing = of = total
 
   return `Показано ${showing} из ${of} ${num_word(of, [" модель", " модели", " моделей"])}`
 }

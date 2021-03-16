@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react"
 import classnames from "classnames"
 
 import { fetchProducts } from "@api/product"
+import showTotal from "@utils/showTotal"
 
 import Container from "@components/Layout/Container"
 import CatalogProduct from "@components/Cards/CatalogProduct"
 import Button from "@components/Forms/Button"
 
 import "./ProductsList.scss"
-import showTotal from "@utils/showTotal";
 
 const filterList = {
   NEWPRODUCT: "Новинка",
@@ -80,6 +80,7 @@ const ProductsList = () => {
               ))}
             </div>
 
+            {productsTotal > page * 4 &&
             <div className="products-list__nav">
               <Button
                 label="Показать ещё"
@@ -88,6 +89,7 @@ const ProductsList = () => {
                 onClick={() => setPage(page + 1)}
               />
             </div>
+            }
 
             <div className="products-list__total">
               {showTotal(page, 4, productsTotal)}

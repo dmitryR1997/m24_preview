@@ -32,8 +32,8 @@ const ProductPage = () => {
   useEffect(() => {
     if(!slug) return
 
-    fetchProduct(slug).then(response => {
-      setDetails(response.data)
+    fetchProduct(slug).then(({ data }) => {
+      setDetails(data)
     })
   }, [slug])
 

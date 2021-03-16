@@ -60,6 +60,23 @@
 
         margin: 8px 8px 0 0;
         padding: 7px;
+
+        &--active {
+          background-color: #B2D92E;
+          color: #FFFFFF;
+        }
+      }
+
+      &-all {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: 0.25px;
+
+        color: #9CC218;
+
+        margin: 8px 8px 0 0;
+        padding: 7px;
       }
     }
   }
