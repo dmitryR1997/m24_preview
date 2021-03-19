@@ -11,7 +11,7 @@ import Footer from "@screens/Footer"
 
 import "./Layout.scss"
 
-const Layout = ({ children, pageType }) => {
+const Layout = ({ children, pageType, seoText }) => {
   const isHome = pageType === "home"
   const isCatalog = pageType === "category"
   const isProduct = pageType === "product"
@@ -37,7 +37,7 @@ const Layout = ({ children, pageType }) => {
 
       <div className="default-layout__bottom">
         {!isCart &&
-        <AboutShop showText={!isProduct}/>
+        <AboutShop showText={!isProduct} text={seoText}/>
         }
 
         <Footer />
@@ -50,7 +50,8 @@ const Layout = ({ children, pageType }) => {
 }
 
 Layout.propTypes = {
-  pageType: PropTypes.string
+  pageType: PropTypes.string,
+  seoText: PropTypes.string
 }
 
 export default Layout

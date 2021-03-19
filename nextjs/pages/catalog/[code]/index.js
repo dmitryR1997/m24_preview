@@ -4,8 +4,7 @@ import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { connect } from "react-redux"
 
-import { updateFilter } from "@actions/filter"
-
+import { setFilter, updateFilter } from "@actions/filter"
 import { fetchCategory } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
@@ -14,20 +13,19 @@ import CatalogFilterToggle from "@components/Utils/CatalogFilterToggle"
 import SectionHeader from "@components/Display/SectionHeader"
 import CatalogFilter from "@components/Utils/CatalogFilter"
 import Catalog from "@components/Utils/Catalog"
+import Loader from "@components/Layout/Loader"
 
 import VideoReviews from "@screens/VideoReviews"
 import ExpertsHelp from "@screens/ExpertsHelp"
 import ExplameMassager from "@screens/ExplameMassager"
 
 import "@styles/pages/catalog.scss"
-import {fetchSeo} from "@api/seo";
 
-const CatalogPage = ({ filter, updateFilter }) => {
+const CatalogPage = ({ filter, updateFilter, setFilter, sub }) => {
   const router = useRouter()
   const { code } = router.query
 
   const [category, setCategory] = useState([])
-  const [seo, setSeo] = useState({})
   const [total, setTotal] = useState(0)
 
   const sortHandler = (e) => {
@@ -42,58 +40,57 @@ const CatalogPage = ({ filter, updateFilter }) => {
   useEffect(() => {
     if (!code) return
 
+    setFilter({})
+
     fetchCategory(code).then(({ data }) => {
       setCategory(data)
-    })
 
-    fetchSeo(`массажеры24.рф/catalog/${code}/`).then(({data}) => {
-      setSeo(data)
+      setFilter({
+        ...data.params,
+        update: false
+      })
     })
   }, [code])
 
+  if (!category.ID) return <Loader/>
+
   return (
-    <Layout pageType="category">
-      {seo &&
-        <Head>
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.description} />
-          <meta name="keywords" content={seo.keywords} />
-        </Head>
-      }
+    <Layout pageType="category" seoText={category.seobottom}>
+      <Head>
+        <title>{category.title}</title>
+        <meta name="description" content={category.description} />
+        <meta name="keywords" content={category.keywrods} />
+      </Head>
 
       <div className="catalog-page-content">
-        {category.ID &&
-          <>
-            <input type="hidden" className="gtm-category-name" value={category.NAME} />
-            <input type="hidden" className="gtm-category-id" value={category.ID} />
+        <input type="hidden" className="gtm-category-name" value={category.NAME} />
+        <input type="hidden" className="gtm-category-id" value={category.ID} />
 
-            <CatalogFilter
-              sectionId={category.ID} total={total}
-            />
-          </>
-        }
+        <CatalogFilter
+          sectionId={category.ID} total={total}
+        />
 
         <Container>
           <div className="catalog-page-content__header">
-            {category.NAME &&
             <div className="catalog-page-content__header-title">
               <SectionHeader
-                title={category.NAME}
+                title={category.h1 ? category.h1 : category.NAME}
                 description={total > 0 ? `${total} моделей` : ''}
               />
             </div>
-            }
 
-            {category.ID &&
             <div className="catalog-page-content__header-slider">
-              <VideoReviews params={{ section_id: category.ID }} hideHeader={true} hideTags={true} />
+              <VideoReviews
+                params={{ section_id: category.ID }}
+                hideHeader={true}
+                hideTags={true}
+              />
             </div>
-            }
           </div>
 
           <div className="catalog-page-content__product-filter">
             <div className="catalog-page-content__product-filter-item">
-              <CatalogFilterToggle/>
+              <CatalogFilterToggle filterId="catalog" />
             </div>
 
             <div className="catalog-page-content__product-filter-item">
@@ -106,7 +103,6 @@ const CatalogPage = ({ filter, updateFilter }) => {
           </div>
         </Container>
 
-        {category.ID &&
         <div className="catalog-page-content__products">
           <Catalog
             section_id={category.ID}
@@ -114,7 +110,6 @@ const CatalogPage = ({ filter, updateFilter }) => {
             totalSetter={setTotal}
           />
         </div>
-        }
 
         <div className="catalog-page-content__explame-massager">
           <Container>
@@ -128,12 +123,10 @@ const CatalogPage = ({ filter, updateFilter }) => {
 
         <div className="catalog-page-content__video-reviews">
           <Container>
-            {category.NAME &&
             <VideoReviews
-              params={{home_page: true}}
+              params={{ home_page: true }}
               hideTags={true}
             />
-            }
           </Container>
         </div>
       </div>
@@ -146,8 +139,6 @@ CatalogPage.propTypes = {
   products: PropTypes.array,
   category: PropTypes.object,
   filter: PropTypes.any,
-  isOpenMainMenu: PropTypes.bool.isRequired,
-  hideMainMenu: PropTypes.func.isRequired,
   updateFilter: PropTypes.func.isRequired
 }
 
@@ -161,7 +152,8 @@ const mapStateToolProps = state => {
 }
 
 const mapDispatchToProps = {
-  updateFilter
+  updateFilter,
+  setFilter
 }
 
 export default connect(mapStateToolProps, mapDispatchToProps)(CatalogPage)

@@ -8,7 +8,7 @@ const SectionHeader = ({ title, description }) => {
     <div
       className="section-header"
     >
-      <h2
+      <h1
         className="section-header__title"
         dangerouslySetInnerHTML={{ __html: title }}
       />

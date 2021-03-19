@@ -1,19 +1,19 @@
 import axios from "axios"
-// import { setupCache } from "axios-cache-adapter"
-//
-// const cache = setupCache({
-//   maxAge: 60 * 1000,
-//   exclude: {
-//     query: false
-//   }
-// })
+import { setupCache } from "axios-cache-adapter"
+
+const cache = setupCache({
+  maxAge: 60 * 1000,
+  exclude: {
+    q: false
+  }
+})
 
 const apiUrl = "https://dev.massagery24.ru/api/"
 
 const api = axios.create({
-  baseURL: apiUrl
-  // withCredentials: true
-  // adapter: cache.adapter
+  baseURL: apiUrl,
+  // withCredentials: true,
+  adapter: cache.adapter
 })
 
 export default api

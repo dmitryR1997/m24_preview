@@ -111,7 +111,7 @@ const Product = ({ product, cartList }) => {
             ? <>
                 <VideoPlayer videoId={product.video.video_id} icon={<PlayIcon/>} />
               </>
-            : <Link href={getProdutLink(product)}><NoneVideoIcon/></Link>
+            : <Link href={getProdutLink(product)}><span><NoneVideoIcon/></span></Link>
           }
         </div>
 

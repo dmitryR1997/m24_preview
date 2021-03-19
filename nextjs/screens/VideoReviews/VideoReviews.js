@@ -29,11 +29,11 @@ const VideoReviews = ({ params, hideHeader, hideTags, hideCatalogLink, gallery }
 
   useEffect(() => {
     fetchVideos(params).then(({ data }) => {
-      if (!data.length || data.length === 0) return
+      if (!data.data.length || data.data.length === 0) return
 
       const result = []
 
-      data.forEach((video, key) => {
+      data.data.forEach((video, key) => {
         const slide = (
           <VideoReviewCard
             key={key}
@@ -63,7 +63,7 @@ const VideoReviews = ({ params, hideHeader, hideTags, hideCatalogLink, gallery }
 
       setVideos(result)
     })
-  }, [params])
+  }, [])
 
   return (
     <section className="video-reviews">

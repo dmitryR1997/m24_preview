@@ -69,8 +69,6 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
   }
 
   useEffect(() => {
-    setFilter({})
-
     fetchMinMaxPrices(sectionId).then(({ data }) => {
       setMinMaxPrices(data)
     })
@@ -81,6 +79,12 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
       setBrands(data)
     })
   }, [sectionId])
+
+  useEffect(() => {
+    if(price.length === 2 && !filter.update) {
+      updateFilter({ field: "update", value: true })
+    }
+  }, [price])
 
   return (
     <div
