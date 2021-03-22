@@ -22,13 +22,18 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
   const [end, setEnd] = useState(false)
 
   const loadProducts = useCallback((page) => {
-    fetchProducts({
+    const data = {
       ...params,
       "section_id": section_id,
-      "MANUFACTURER": brand_id,
       "include_sections": true,
       "nav-products": `page-${page}`
-    }).then(({ data }) => {
+    }
+
+    if(brand_id) {
+      data["MANUFACTURER"] = brand_id
+    }
+
+    fetchProducts(data).then(({ data }) => {
       if (page === 1) {
         setProducts(data.data)
       } else {

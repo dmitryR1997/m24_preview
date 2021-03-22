@@ -17,7 +17,7 @@ const Accordion = ({children}) => {
 
   useEffect(() => {
     if (children.length >= 1) {
-      children.filter(item => item.props.open).forEach((item) => {
+      children.filter(item => item.props && item.props.open).forEach((item) => {
         setOpenSections(prev => ({
           ...prev,
           [item.props.id]: true
@@ -36,8 +36,10 @@ const Accordion = ({children}) => {
   return (
     <div className="accordion">
       {children.length >= 1 ?
-        children.map((item, i) => (
-          <AccordionSection
+        children.map((item, i) => {
+          // if (!item.props) return
+
+          return (<AccordionSection
             key={i}
             onClick={() => onClickHandler(item.props.id)}
             isOpen={!!openSections[item.props.id]}
@@ -45,8 +47,8 @@ const Accordion = ({children}) => {
             label={item.props.label}
           >
             {item}
-          </AccordionSection>
-        )) : <AccordionSection
+          </AccordionSection>)
+        }) : <AccordionSection
           onClick={() => onClickHandler(children.props.id)}
           isOpen={!!openSections[children.props.id]}
           isLink={!children.props.children}

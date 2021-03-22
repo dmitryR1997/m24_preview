@@ -19,9 +19,11 @@ import VideoReviews from "@screens/VideoReviews"
 import ExpertsHelp from "@screens/ExpertsHelp"
 import ExplameMassager from "@screens/ExplameMassager"
 
+import filters from "@utils/filters"
+
 import "@styles/pages/catalog.scss"
 
-const CatalogPage = ({ filter, updateFilter, setFilter, sub }) => {
+const CatalogPage = ({ filter, updateFilter, setFilter }) => {
   const router = useRouter()
   const { code } = router.query
 
@@ -67,7 +69,9 @@ const CatalogPage = ({ filter, updateFilter, setFilter, sub }) => {
         <input type="hidden" className="gtm-category-id" value={category.ID} />
 
         <CatalogFilter
-          sectionId={category.ID} total={total}
+          sectionId={category.ID}
+          total={total}
+          filters={filters[code]}
         />
 
         <Container>
