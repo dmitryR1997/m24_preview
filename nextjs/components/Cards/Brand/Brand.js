@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 import "./Brand.scss"
 
@@ -9,7 +10,10 @@ const Brand = ({ image }) => {
       className="brand-card"
     >
       <div className="brand-card__image">
-        <img src={image} alt="Brand Image" />
+        <LazyLoadImage
+          src={image}
+          alt="Brand Image"
+        />
       </div>
     </article>
   )

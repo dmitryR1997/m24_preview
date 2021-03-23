@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import classnames from "classnames"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 import { connect } from "react-redux"
 import { updateVideoFilter } from "@actions/filter"
@@ -44,11 +45,19 @@ const VideoReview = ({ filter, updateVideoFilter, video, image, styles, hideTitl
     >
       <div className="video-review-card__image">
         {video && video.image &&
-          <img src={video.image} alt="Video Review Image"/>
+          <LazyLoadImage
+            src={video.image}
+            height={189}
+            alt="Video Review Image"
+          />
         }
 
         {image &&
-        <img src={image} alt="Video Review Image"/>
+          <LazyLoadImage
+            src={image}
+            height={189}
+            alt="Video Review Image"
+          />
         }
 
         {video && video.video_id &&

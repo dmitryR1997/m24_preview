@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import Amount from "@components/Display/Amount"
 
 import "./CatalogProduct.scss"
@@ -22,7 +23,11 @@ const CatalogProduct = ({ product, size }) => {
           ? <div className="catalog-product-card__image">
               <Link href={`/catalog/${product.category_code}/${product.code}`}>
                 <a href={`/catalog/${product.category_code}/${product.code}`}>
-                  <img src={product.images[0]} alt="Product image" />
+                  <LazyLoadImage
+                    src={product.images[0]}
+                    height={153}
+                    alt="Product image"
+                  />
                 </a>
               </Link>
             </div>

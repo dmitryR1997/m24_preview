@@ -2,6 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
+import { LazyLoadImage } from "react-lazy-load-image-component"
+
 import "./Banner.scss"
 
 const Banner = ({ type, title, description, image, view, link }) => {
@@ -35,7 +37,11 @@ const Banner = ({ type, title, description, image, view, link }) => {
         }
 
         <div className="banner__image">
-          <img src={image} alt="Banner image" />
+          <LazyLoadImage
+            src={image}
+            height={402}
+            alt="Banner image"
+          />
         </div>
       </article>
     </Link>
