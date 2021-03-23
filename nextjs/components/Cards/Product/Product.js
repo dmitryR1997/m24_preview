@@ -1,14 +1,9 @@
-import React, { useState, useCallback } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
-import { useRouter } from "next/router"
-
-import { connect, useDispatch } from "react-redux"
-import { addToCart } from "@actions/cart"
 
 import Amount from "@components/Display/Amount"
 import Slider from "@components/Surfaces/Slider"
-import Button from "@components/Forms/Button"
 
 import getProdutLink from "@utils/getProdutLink";
 
@@ -18,21 +13,9 @@ import PlayIcon from "../../../public/icons/play-button.svg"
 import ComparisonIcon from "../../../public/icons/comparison.svg"
 import NoneVideoIcon from "../../../public/icons/info.svg"
 import VideoPlayer from "@components/Surfaces/VideoPlayer";
+import AddToCart from "@components/Utils/AddToCart/AddToCart";
 
-const Product = ({ product, cartList }) => {
-  const router = useRouter()
-  const dispatch = useDispatch()
-
-  const [inCart, setInCart] = useState(cartList.some(item => item.id === product.id))
-
-  const addToCartHandler = useCallback(() => {
-    if (!inCart) {
-      dispatch(addToCart({id: parseInt(product.id), quantity: 1}))
-    }
-
-    router.push("/cart")
-  }, [inCart, product])
-
+const Product = ({ product }) => {
   return (
     <article
       className="product-card"
@@ -116,10 +99,9 @@ const Product = ({ product, cartList }) => {
         </div>
 
         <div className="product-card__nav-item">
-          <Button
-            label="Купить"
-            onClick={addToCartHandler}
-            inCart={inCart}
+          <AddToCart
+            product={product}
+            text="Купить"
           />
         </div>
 
@@ -133,14 +115,8 @@ const Product = ({ product, cartList }) => {
 }
 
 Product.propTypes = {
-  product: PropTypes.object.isRequired,
-  cartList: PropTypes.array.isRequired
+  product: PropTypes.object.isRequired
 }
 
-const mapStateToolProps = state => {
-  return {
-    cartList: state.cart.list
-  }
-}
 
-export default connect(mapStateToolProps)(Product)
+export default Product

@@ -20,15 +20,19 @@ const Message = ({ title, description, styles, hideModal, hideButton, children }
         <ModalClose/>
       </div>
 
+      {title &&
       <div
         className="message-card__title"
         dangerouslySetInnerHTML={{ __html: title }}
       />
+      }
 
+      {description &&
       <div
         className="message-card__description"
-        dangerouslySetInnerHTML={{ __html: description }}
+        dangerouslySetInnerHTML={{__html: description}}
       />
+      }
 
       {children &&
       <div className="message-card__content">
@@ -49,8 +53,8 @@ const Message = ({ title, description, styles, hideModal, hideButton, children }
 }
 
 Message.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
   styles: PropTypes.object,
   hideModal: PropTypes.func.isRequired
 }

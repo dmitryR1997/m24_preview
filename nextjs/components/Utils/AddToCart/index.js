@@ -1,3 +1,3 @@
-import MainMenuBurger from "./AddToCart"
+import AddToCart from "./AddToCart"
 
-export default MainMenuBurger
+export default AddToCart

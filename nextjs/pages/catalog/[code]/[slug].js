@@ -110,7 +110,7 @@ const ProductPage = () => {
               </div>
 
               <div className="single-product__purchase-right">
-                <AddToCart id={parseInt(details.id)} />
+                <AddToCart product={details} />
               </div>
             </Container>
 

@@ -23,7 +23,7 @@ const Button = ({ label, size, outline, transparent, inCart, isLoading, onClick 
 }
 
 Button.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.any.isRequired,
   size: PropTypes.string,
   outline: PropTypes.bool,
   transparent: PropTypes.bool,

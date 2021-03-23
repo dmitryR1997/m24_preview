@@ -7,8 +7,7 @@ import { connect } from "react-redux"
 import { toggleCatalogFilter } from "@actions/layout"
 import { setFilter, updateFilter } from "@actions/filter"
 
-import { fetchFilters, fetchMinMaxPrices } from "@api/category"
-import { fetchBrands } from "@api/brand"
+import { fetchFilters } from "@api/category"
 
 import Container from "@components/Layout/Container"
 import Accordion from "@components/Surfaces/Accordion"
