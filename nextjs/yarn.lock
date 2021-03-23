@@ -12204,6 +12204,11 @@
     "prop-types" "^15.5.8"
     "react-images" "^0.5.16"
 
+"react-gtm-module@^2.0.11":
+  "integrity" "sha512-8gyj4TTxeP7eEyc2QKawEuQoAZdjKvMY4pgWfycGmqGByhs17fR+zEBs0JUDq4US/l+vbTl+6zvUIx27iDo/Vw=="
+  "resolved" "https://registry.npmjs.org/react-gtm-module/-/react-gtm-module-2.0.11.tgz"
+  "version" "2.0.11"
+
 "react-image-gallery@^1.0.9":
   "integrity" "sha512-JXTlEBv2c/N5vGl0Pfu774JFOuMRnG9TMSwIURMSBDkl70blASJYGBuHCc//8jRZTojUvpBG5A/QT9Gs3Rv4Bw=="
   "resolved" "https://registry.npmjs.org/react-image-gallery/-/react-image-gallery-1.0.9.tgz"

@@ -4,6 +4,14 @@ import { wrapper } from "../store"
 import { useDispatch, useStore } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
 
+
+import TagManager from "react-gtm-module"
+const tagManagerArgs = {
+  gtmId: "GTM-NKKVLD4"
+}
+
+
+
 import { hideHeaderSearch, hideMainMenu } from "@actions/layout"
 
 import Loader from "@components/Layout/Loader"
@@ -20,6 +28,8 @@ function MyApp({ Component, pageProps }) {
   const store = useStore((state) => state)
 
   useEffect(()=> {
+    TagManager.initialize(tagManagerArgs)
+
     router.events.on("routeChangeComplete", () => {
       window.scrollTo({
         top: 0,
