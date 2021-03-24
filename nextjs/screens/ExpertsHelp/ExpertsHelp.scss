@@ -33,6 +33,16 @@
         margin-top: 32px;
       }
     }
+
+    .roistat_phone {
+      display: block;
+      background-image: url("/icons/call.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 26px;
+      height: 26px;
+      font-size: 0;
+    }
   }
 
   &__text {

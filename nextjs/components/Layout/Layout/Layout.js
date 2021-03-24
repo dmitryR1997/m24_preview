@@ -20,12 +20,12 @@ const Layout = ({ children, pageType, seoText }) => {
   return (
     <div className="default-layout">
       {pageType &&
-        <input className="gtm-page-type" type="hidden" value={pageType} />
+      <input className="gtm-page-type" type="hidden" value={pageType} />
       }
 
       <div className="default-layout__top">
         {!isProduct &&
-          <BeforeHeader />
+        <BeforeHeader />
         }
 
         <Header isProduct={isProduct} />

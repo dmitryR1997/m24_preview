@@ -119,15 +119,12 @@ const AddToCart = ({ product, text, cartList }) => {
   }
 
   return (
-    <div className="add-to-cart">
-      <Button
-        onClick={openModalHandler}
-        label={text ? text : <CartIcon/>}
-      />
-    </div>
+    <Button
+      onClick={openModalHandler}
+      label={text ? text : <CartIcon/>}
+    />
   )
 }
-
 
 AddToCart.propTypes = {
   product: PropTypes.object.isRequired,

@@ -1,14 +1,15 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main } from "next/document";
+
+import DeferNextScript from "@utils/DeferNextScript"
 
 export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-        </Head>
+        <Head/>
         <body>
           <Main />
-          <NextScript />
+          <DeferNextScript/>
         </body>
       </Html>
     )
