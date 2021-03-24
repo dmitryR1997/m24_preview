@@ -1,6 +1,5 @@
 {
   "name": "m24-mobile",
-  "homepage": "https://m.massagery24.ru",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
