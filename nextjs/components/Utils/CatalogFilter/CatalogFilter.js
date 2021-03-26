@@ -100,6 +100,22 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
       </div>
 
       <Container>
+        <div className="catalog-filter__fixed">
+          <div className="catalog-filter__nav">
+            <Button label={`Показать ${total} ${num_word(total, [" модель", " модели", " моделей"])}`}
+                    onClick={toggleCatalogFilter}
+            />
+          </div>
+
+          <div className="catalog-filter__reset">
+            <Button label="Сбросить фильтр"
+                    size="xs"
+                    transparent={true}
+                    onClick={() => setFilter({})}
+            />
+          </div>
+        </div>
+
         <div className="catalog-filter__list">
           {list.price &&
             <Accordion>
@@ -125,17 +141,24 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
                 <div
                   key={key}
                   id={item.code}
-                  label={item.name}
+                  label={
+                    <div className="catalog-filter__list-title">
+                      {item.name}
+                      {filter[item.code] && filter[item.code].length > 0 &&
+                        <span>{filter[item.code].length}</span>
+                      }
+                    </div>
+                  }
                   open={true}
                 >
                   <div className="catalog-filter__grid catalog-filter__grid--x2">
                     {item.enums.map((num, key) => (
                       <div key={key} className="catalog-filter__grid-item">
                         <Checkbox label={num.value}
-                                  id={num.xml_id}
+                                  id={num.id}
                                   name={num.property_code}
                                   onClick={checkboxHandler}
-                                  checked={filter.hasOwnProperty(num.property_code) ? filter[num.property_code].includes(num.xml_id) : false}
+                                  checked={filter.hasOwnProperty(num.property_code) ? filter[num.property_code].includes(num.id) : false}
                         />
                       </div>
                     ))}
@@ -147,23 +170,30 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
 
           {list.main && list.main.length > 0 &&
             <div className={classnames("catalog-filter__additional-list", {
-              "catalog-filter__additional-list--open": showMore
+              "catalog-filter__additional-list--open": true
             })}>
               <Accordion>
                 {list.main.map((item, key) => (
                   <div
                     key={key}
                     id={item.code}
-                    label={item.name}
+                    label={
+                      <div className="catalog-filter__list-title">
+                        {item.name}
+                        {filter[item.code] && filter[item.code].length > 0 &&
+                        <span>{filter[item.code].length}</span>
+                        }
+                      </div>
+                    }
                   >
                     <div className="catalog-filter__grid catalog-filter__grid--x2">
                       {item.enums.map((num, key) => (
                         <div key={key} className="catalog-filter__grid-item">
                           <Checkbox label={num.value}
-                                    id={num.xml_id}
+                                    id={num.id}
                                     name={num.property_code}
                                     onClick={checkboxHandler}
-                                    checked={filter.hasOwnProperty(num.property_code) ? filter[num.property_code].includes(num.xml_id) : false}
+                                    checked={filter.hasOwnProperty(num.property_code) ? filter[num.property_code].includes(num.id) : false}
                           />
                         </div>
                       ))}
@@ -183,10 +213,10 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
                         {item.enums.map((num, key) => (
                           <div key={key} className="catalog-filter__grid-item">
                             <Checkbox label={item.name}
-                                      id={num.xml_id}
+                                      id={num.id}
                                       name={num.property_code}
                                       onClick={checkboxHandler}
-                                      checked={filter.hasOwnProperty(num.property_code) ? filter[num.property_code].includes(num.xml_id) : false}
+                                      checked={filter.hasOwnProperty(num.property_code) ? filter[num.property_code].includes(num.id) : false}
                             />
                           </div>
                         ))}
@@ -197,30 +227,6 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
               </Accordion>
             </div>
           }
-        </div>
-
-        {list.default && list.default.length > 0 &&
-        <div className="catalog-filter__more-params">
-          <Button label="Расширенные поиск"
-                  outline={true}
-                  size="xs"
-                  onClick={() => setShowMore(!showMore)}
-          />
-        </div>
-        }
-
-        <div className="catalog-filter__nav">
-          <Button label={`Показать ${total} ${num_word(total, [" модель", " модели", " моделей"])}`}
-                  onClick={toggleCatalogFilter}
-          />
-        </div>
-
-        <div className="catalog-filter__reset">
-          <Button label="Сбросить фильтр"
-                  size="xs"
-                  transparent={true}
-                  onClick={() => setFilter({})}
-          />
         </div>
       </Container>
     </div>

@@ -82,7 +82,7 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
   }, [page])
 
   useEffect(() => {
-    if ((params && Object.keys(params).length <= 0) || !params.update) return
+    if ((params && Object.keys(params).length <= 0) || (params && !params.update)) return
 
     setPage(1)
     loadProducts(1)

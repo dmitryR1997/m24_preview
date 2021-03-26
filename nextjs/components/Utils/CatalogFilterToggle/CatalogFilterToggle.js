@@ -9,7 +9,7 @@ import FilterIcon from "../../../public/icons/filter.svg"
 
 import "./CatalogFilterToggle.scss"
 
-const CatalogFilterToggle = ({ isOpenCatalogFilter, isOpenVideoFilter, toggleCatalogFilter, toggleVideoFilter, filterId }) => {
+const CatalogFilterToggle = ({ filter, isOpenCatalogFilter, isOpenVideoFilter, toggleCatalogFilter, toggleVideoFilter, filterId }) => {
   const clickHandler = () => {
     if (filterId === "catalog") {
       toggleCatalogFilter()
@@ -30,12 +30,16 @@ const CatalogFilterToggle = ({ isOpenCatalogFilter, isOpenVideoFilter, toggleCat
       </div>
       <div className="catalog-filter-toggle__label">
         Фильтр
+        {Object.keys(filter).length - 2 > 0 &&
+          <span>{Object.keys(filter).length - 2}</span>
+        }
       </div>
     </div>
   )
 }
 
 CatalogFilterToggle.propTypes = {
+  filter: PropTypes.object.isRequired,
   filterId: PropTypes.string.isRequired,
   isOpenCatalogFilter: PropTypes.bool,
   isOpenVideoFilter: PropTypes.bool,
@@ -45,6 +49,7 @@ CatalogFilterToggle.propTypes = {
 
 const mapStateToolProps = state => {
   return {
+    filter: state.filter.items,
     isOpenCatalogFilter: state.layout.isOpenCatalogFilter,
     isOpenVideoFilter: state.layout.isOpenVideoFilter
   }

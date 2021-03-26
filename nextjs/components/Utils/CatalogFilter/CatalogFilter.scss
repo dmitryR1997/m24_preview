@@ -8,7 +8,7 @@
   left: 0;
 
   position: fixed;
-  z-index: 99;
+  z-index: 100;
   overflow: auto;
 
   width: 100%;
@@ -40,6 +40,29 @@
       justify-content: space-between;
       align-items: center;
 
+    }
+  }
+
+  &__list {
+    margin-top: -118px;
+    padding-bottom: 180px;
+
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      span {
+        background-color: #14142B;
+        border-radius: 33px;
+
+        font-size: 12px;
+        font-weight: 600;
+        color: #FFFFFF;
+        margin-right: 18px;
+        padding: 0 8px;
+      }
     }
   }
 
@@ -84,6 +107,16 @@
 
   &__reset {
     text-align: center;
+  }
+
+  &__fixed {
+    background-color: #FFFFFF;
+    position: sticky;
+    z-index: 1;
+    width: 100%;
+    left: 0;
+    top: calc(100% - 58px);
+    padding: 0 0 15px;
   }
 
   .accordion-item {

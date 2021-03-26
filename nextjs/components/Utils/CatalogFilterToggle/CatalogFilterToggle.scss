@@ -6,4 +6,17 @@
   &__icon {
     margin-right: 8px;
   }
+
+  &__label {
+    span {
+      background-color: #14142B;
+      border-radius: 33px;
+
+      font-size: 12px;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-left: 8px;
+      padding: 5px 8px;
+    }
+  }
 }

@@ -53,15 +53,26 @@
   }
 }
 
-.calll-me-form {
+.call-me-form {
   &__input {
     margin: 10px 0;
   }
 
   &__button {
-    margin: 32px 0 0;
+    margin: 32px 0;
+  }
+
+  &__text {
+    font-size: 10px;
+    line-height: 1.2;
+    color: #4F4F4F;
+
+    a {
+      border-bottom: 1px dashed;
+    }
   }
 }
+
 @keyframes pulsing {
   from {
     box-shadow: 0 0 0 0 rgba(178, 217, 46, 0.5);

@@ -6,6 +6,7 @@ import { connect, useDispatch } from "react-redux"
 import { openModal } from "@actions/layout"
 import { clearCart } from "@actions/cart"
 import { addOrder, addToCrm } from "@api/order"
+import { fetchCategories } from "@api/category"
 import { getCartQuantity } from "../../selectors/cart"
 
 import Layout from "@components/Layout/Layout"
@@ -18,7 +19,6 @@ import Button from "@components/Forms/Button"
 import { isServer } from '../../env'
 
 import "@styles/pages/OrderPage.scss"
-import { fetchCategories } from "@api/category";
 
 const initialForm = {
   first_name: "",

@@ -93,7 +93,8 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu, categories
 
             <div
               id="tab-4"
-              label="Сервис"
+              label="Услуги"
+              open={true}
             >
               <ul className="main-menu__list">
                 <li
@@ -151,7 +152,8 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu, categories
 
             <div
               id="tab-5"
-              label="Компания"
+              label="Магазин"
+              open={true}
             >
               <ul className="main-menu__list">
                 <li
@@ -160,7 +162,7 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu, categories
                     href="/content/about"
                   >
                     <a href="/content/about" className="main-menu__list-link">
-                      О магазине
+                      О нас
                     </a>
                   </Link>
                 </li>

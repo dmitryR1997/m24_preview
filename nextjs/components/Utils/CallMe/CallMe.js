@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import Link from "next/link"
 import classnames from "classnames"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 
@@ -58,15 +59,19 @@ const CallMeModal = () => {
       title="Заказать звонок"
       hideButton
     >
-      <form className="calll-me-form" onSubmit={formHandler}>
-        <div className="calll-me-form__input">
+      <form className="call-me-form" onSubmit={formHandler}>
+        <div className="call-me-form__input">
           <Input label="Ваше имя" id="name" handler={onFormChange} />
         </div>
-        <div className="calll-me-form__input">
+        <div className="call-me-form__input">
           <Input label="Ваш номер телефона" id="phone" mask="+7 (999) 999-99-99" handler={onFormChange} />
         </div>
-        <div className="calll-me-form__button">
+        <div className="call-me-form__button">
           <Button label="Отправить" isLoading={loading} />
+        </div>
+        <div className="call-me-form__text">
+          Оформляя заказ, вы даёте согласие на<br/>
+          <Link href="/content/agree/">обработку персональных данных</Link>
         </div>
       </form>
     </Message>

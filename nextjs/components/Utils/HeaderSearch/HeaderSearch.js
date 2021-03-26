@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react"
+import React, { useState, useCallback, useEffect, useRef } from "react"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import classnames from "classnames"
@@ -17,6 +17,7 @@ import CloseIcon from "../../../public/icons/close.svg"
 import "./HeaderSearch.scss"
 
 const HeaderSearch = ({ isOpenHeaderSearch, toggleHeaderSearch }) => {
+  const input = useRef()
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
   const [q, setQ] = useState("")
@@ -45,6 +46,11 @@ const HeaderSearch = ({ isOpenHeaderSearch, toggleHeaderSearch }) => {
     })
   }, [q])
 
+  useEffect(() => {
+    if(isOpenHeaderSearch) {
+     input.current.focus()
+    }
+  }, [isOpenHeaderSearch])
   return (
     <div
       className={classnames("header-search", {
@@ -58,6 +64,7 @@ const HeaderSearch = ({ isOpenHeaderSearch, toggleHeaderSearch }) => {
               <input type="text"
                      placeholder="Я ищу..."
                      onChange={delayOnChangeHandler}
+                     ref={input}
               />
             </div>
             <div className="header-search__header-close"
