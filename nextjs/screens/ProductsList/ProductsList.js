@@ -16,8 +16,8 @@ const filterList = {
   DISCOUNT: "Скидки"
 }
 
-const ProductsList = () => {
-  const [products, setProducts] = useState([])
+const ProductsList = ({ fetchedProducts }) => {
+  const [products, setProducts] = useState(fetchedProducts)
   const [productsTotal, setProductsTotal] = useState(0)
   const [filter, setFilter] = useState("NEWPRODUCT")
   const [page, setPage] = useState(1)

@@ -11,7 +11,7 @@ import Footer from "@screens/Footer"
 
 import "./Layout.scss"
 
-const Layout = ({ children, pageType, seoText }) => {
+const Layout = ({ children, pageType, categories, seoText }) => {
   const isHome = pageType === "home"
   const isCatalog = pageType === "category"
   const isProduct = pageType === "product"
@@ -28,7 +28,7 @@ const Layout = ({ children, pageType, seoText }) => {
         <BeforeHeader />
         }
 
-        <Header isProduct={isProduct} />
+        <Header categories={categories} isProduct={isProduct} />
       </div>
 
       <div className="default-layout__content">

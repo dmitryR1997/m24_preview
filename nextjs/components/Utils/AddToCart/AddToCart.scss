@@ -16,4 +16,16 @@
       border-bottom: 1px dashed;
     }
   }
+
+  .input {
+    &__control {
+      background-color: #FFFFFF;
+      border: 1px solid #14142B;
+    }
+  }
+
+  .button {
+    width: 100%;
+    padding: 19px;
+  }
 }

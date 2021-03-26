@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import classnames from "classnames"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 import { useDispatch } from "react-redux"
 import { openModal } from "@actions/layout"
@@ -96,22 +97,22 @@ const CallMe = () => {
       >
         <div className="call-me__list">
           <div className="call-me__list-item" onClick={() => dispatch(openModal(<CallMeModal/>))}>
-            <img src={icons[0]} alt="Chat image" />
+            <LazyLoadImage width={24} height={24} src={icons[0]} alt="Chat image" />
           </div>
           <div className="call-me__list-item" onClick={() => jivo_api.open()}>
-            <img src={icons[1]} alt="Chat image" />
+            <img width={24} height={24} src={icons[1]} alt="Chat image" />
           </div>
           <div className="call-me__list-item">
-            <img src={icons[2]} alt="Chat image" />
+            <img width={24} height={24} src={icons[2]} alt="Chat image" />
           </div>
           <div className="call-me__list-item">
-            <img src={icons[3]} alt="Chat image" />
+            <img width={24} height={24} src={icons[3]} alt="Chat image" />
           </div>
         </div>
 
         <div className="call-me__toggle" onClick={() => setOpen(!open)}>
           {!open
-            ? <img src={icons[icon]} alt="Chat image" />
+            ? <img width={24} height={24} src={icons[icon]} alt="Chat image" />
             : <CloseIcon/>
           }
         </div>

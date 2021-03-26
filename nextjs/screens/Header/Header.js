@@ -19,7 +19,7 @@ import ArrowBack from "../../public/icons/arrow-back.svg"
 import "./Header.scss"
 import HeaderSearch from "@components/Utils/HeaderSearch/HeaderSearch";
 
-const Header = ({isOpenMainMenu, isOpenHeaderSearch, isProduct}) => {
+const Header = ({isOpenMainMenu, isOpenHeaderSearch, isProduct, categories}) => {
   const header = useRef()
   const router = useRouter()
 
@@ -105,7 +105,7 @@ const Header = ({isOpenMainMenu, isOpenHeaderSearch, isProduct}) => {
       <div id="header-fake" style={{height: headerHeight}}/>
       }
 
-      <MainMenu/>
+      <MainMenu categories={categories} />
       <HeaderSearch/>
     </>
   )

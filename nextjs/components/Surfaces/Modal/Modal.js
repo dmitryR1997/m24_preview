@@ -11,9 +11,9 @@ Modal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.75)"
 
 const styles = {
   content: {
-    top: "40px",
-    left: "40px",
-    right: "40px",
+    top: "24px",
+    left: "24px",
+    right: "24px",
     bottom: "auto",
     padding: "0",
     background: "transparent",

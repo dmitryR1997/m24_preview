@@ -39,6 +39,7 @@ const Banner = ({ type, title, description, image, view, link }) => {
         <div className="banner__image">
           <LazyLoadImage
             src={image}
+            width={290}
             height={402}
             alt="Banner image"
           />

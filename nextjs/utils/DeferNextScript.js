@@ -35,9 +35,7 @@ class DeferNextScript extends NextScript {
             bundle.file
           )}${devOnlyCacheBusterQueryString}`}
           nonce={this.props.nonce}
-          crossOrigin={
-            this.props.crossOrigin || process.env.__NEXT_CROSS_ORIGIN
-          }
+          crossOrigin="anonymous"
         />
       );
     });
@@ -64,9 +62,7 @@ class DeferNextScript extends NextScript {
           )}${devOnlyCacheBusterQueryString}`}
           nonce={this.props.nonce}
           defer={!isDevelopment}
-          crossOrigin={
-            this.props.crossOrigin || process.env.__NEXT_CROSS_ORIGIN
-          }
+          crossOrigin="anonymous"
         />
       );
     });

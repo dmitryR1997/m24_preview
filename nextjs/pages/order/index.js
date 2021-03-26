@@ -15,8 +15,10 @@ import Input from "@components/Forms/Input"
 import Radio from "@components/Forms/Radio"
 import Button from "@components/Forms/Button"
 
+import { isServer } from '../../env'
 
 import "@styles/pages/OrderPage.scss"
+import { fetchCategories } from "@api/category";
 
 const initialForm = {
   first_name: "",
@@ -28,11 +30,11 @@ const initialForm = {
   pay: 1
 }
 
-const OrderPage = ({ cartList, cartQuantity }) => {
+const OrderPage = ({ cartList, cartQuantity, categories }) => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  if(cartList.length === 0) {
+  if(cartList.length === 0 && !isServer) {
     router.push("/")
   }
 
@@ -82,7 +84,7 @@ const OrderPage = ({ cartList, cartQuantity }) => {
   }
 
   return (
-    <Layout>
+    <Layout categories={categories}>
       <div className="order-page">
         <Container>
           <h1 className="order-page__title">
@@ -195,6 +197,16 @@ const mapStateToolProps = state => {
   return {
     cartList: state.cart.list,
     cartQuantity: getCartQuantity(state)
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
   }
 }
 

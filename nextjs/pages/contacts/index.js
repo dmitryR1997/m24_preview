@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { YMaps, Map, Clusterer, Placemark } from "react-yandex-maps"
 
-import {fetchShops} from "@api/shop"
+import { fetchShops } from "@api/shop"
+import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
@@ -9,14 +10,13 @@ import { Tabs, Tab } from "@components/Surfaces/Tabs/Tabs"
 import ShopCard from "@components/Cards/Shop"
 import RealetedProducts from "@components/Utils/RealetedProducts"
 
-
 import FiveReasons from "@screens/FiveReasons"
 import OfficialWaranty from "@screens/OfficialWaranty"
 import ExpertsHelp from "@screens/ExpertsHelp"
 
 import "@styles/pages/StaticPage.scss"
 
-const ShopPage = () => {
+const ShopPage = ({ categories }) => {
   const [shops, setShops] = useState([])
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const ShopPage = () => {
   }, [])
 
   return (
-    <Layout>
+    <Layout categories={categories}>
       <div className="static-page">
         <Container>
           <h1 className="static-page__title">
@@ -98,6 +98,16 @@ const ShopPage = () => {
       </div>
     </Layout>
   )
+}
+
+export async function getStaticProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
+  }
 }
 
 export default ShopPage

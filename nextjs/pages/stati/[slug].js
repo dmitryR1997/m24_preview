@@ -14,8 +14,9 @@ import OfficialWaranty from "@screens/OfficialWaranty";
 
 import "@styles/pages/StaticPage.scss"
 import {fetchArticle} from "@api/article";
+import {fetchCategories} from "@api/category";
 
-const StaticPage = () => {
+const StaticPage = ({ categories }) => {
   const content = useRef()
   const router = useRouter()
   const { slug } = router.query
@@ -53,7 +54,7 @@ const StaticPage = () => {
   }, [pageContent])
 
   return (
-    <Layout>
+    <Layout categories={categories}>
       <div className="static-page" ref={content}>
         <Container>
           <h1 className="static-page__title">
@@ -90,5 +91,16 @@ const StaticPage = () => {
     </Layout>
   )
 }
+
+export async function getServerSideProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
+  }
+}
+
 
 export default StaticPage

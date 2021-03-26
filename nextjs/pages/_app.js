@@ -1,16 +1,17 @@
-import { useEffect } from "react"
+import React, { useEffect } from "react"
 import { useRouter } from "next/router"
-import { wrapper } from "../store"
-import { useDispatch, useStore } from "react-redux"
-import { PersistGate } from "redux-persist/integration/react"
 
+import { useStore, PersistGateServer } from '../store'
+import { Provider, useDispatch } from "react-redux"
+import { persistStore } from 'redux-persist'
+import { PersistGate as PersistGateClient } from 'redux-persist/integration/react'
+
+import { isServer } from '../env'
 
 import TagManager from "react-gtm-module"
 const tagManagerArgs = {
   gtmId: "GTM-NKKVLD4"
 }
-
-
 
 import { hideHeaderSearch, hideMainMenu } from "@actions/layout"
 
@@ -23,9 +24,11 @@ import "../styles/general.scss"
 import "swiper/swiper.scss"
 
 function MyApp({ Component, pageProps }) {
-  const dispatch = useDispatch()
+  const store = useStore(pageProps.initialReduxState)
+  const persistor = persistStore(store)
+  const PersistGate = isServer ? PersistGateServer : PersistGateClient
+
   const router = useRouter()
-  const store = useStore((state) => state)
 
   useEffect(()=> {
     TagManager.initialize(tagManagerArgs)
@@ -36,16 +39,21 @@ function MyApp({ Component, pageProps }) {
         behavior: "instant"
       })
 
-      dispatch(hideMainMenu())
-      dispatch(hideHeaderSearch())
+      store.dispatch(hideMainMenu())
+      store.dispatch(hideHeaderSearch())
     })
   },[])
 
   return (
-    <PersistGate persistor={store.__persistor} loading={<Loader/>}>
-      <Component {...pageProps} />
-    </PersistGate>
-  );
+    <Provider store={store}>
+      <PersistGate
+        loading={<Loader/>}
+        persistor={persistor}
+      >
+        <Component {...pageProps} />
+      </PersistGate>
+    </Provider>
+  )
 }
 
-export default wrapper.withRedux(MyApp)
+export default MyApp

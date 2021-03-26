@@ -1,4 +1,3 @@
 import api from "./index"
 
-
-export const fetchVideos = params => api.get("video/list.php", { params })
+export const fetchVideos = async (params) => api.get("video/list.php", { params })

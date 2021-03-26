@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react"
 import { fetchProducts } from "@api/product"
 
 import Container from "@components/Layout/Container"
+import Loader from "@components/Layout/Loader"
 import ProductCard from "@components/Cards/Product"
 import Button from "@components/Forms/Button"
 
@@ -20,8 +21,11 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
   const [page, setPage] = useState(1)
   const [firstLoaded, setFirstLoaded] = useState(false)
   const [end, setEnd] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const loadProducts = useCallback((page) => {
+    setLoading(true)
+
     const data = {
       ...params,
       "section_id": section_id,
@@ -47,6 +51,8 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
       if (typeof totalSetter === "function") totalSetter(data.total)
 
       if (!firstLoaded) setFirstLoaded(true)
+
+      setLoading(false)
     })
   }, [section_id, params])
 
@@ -85,6 +91,12 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
   return (
     <div className="catalog">
       <Container>
+        {loading &&
+        <>
+          <Loader/>
+        </>
+        }
+
         <div className="catalog__product-list">
           {products.map((product, key) => {
             const item = (
@@ -114,6 +126,12 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
             )
           })}
         </div>
+
+        {loading &&
+          <>
+          <Loader/>
+          </>
+        }
 
         {total > 0 &&
         <>

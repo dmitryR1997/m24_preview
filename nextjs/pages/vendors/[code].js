@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 import { fetchBrand } from "@api/brand"
+import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
@@ -13,7 +14,7 @@ import ExplameMassager from "@screens/ExplameMassager"
 
 import "@styles/pages/catalog.scss"
 
-const BrandPage = () => {
+const BrandPage = ({ categories }) => {
   const router = useRouter()
   const { code } = router.query
 
@@ -29,7 +30,7 @@ const BrandPage = () => {
   }, [code])
 
   return (
-    <Layout pageType="category">
+    <Layout pageType="category" categories={categories}>
       <div className="catalog-page-content">
         <Container>
           <div className="catalog-page-content__header">
@@ -66,5 +67,16 @@ const BrandPage = () => {
     </Layout>
   )
 }
+
+export async function getServerSideProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
+  }
+}
+
 
 export default BrandPage

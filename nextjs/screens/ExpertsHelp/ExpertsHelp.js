@@ -23,9 +23,7 @@ const ExpertsHelp = ({ hideText }) => {
 
           <div className="experts-help__expert-contact">
             <div className="experts-help__expert-contact-item">
-              <a href="tel:+88002221690" className="roistat_phone">
-                <CallIcon/>
-              </a>
+              <a href="tel:+88002221690" className="roistat_phone"/>
             </div>
             <div className="experts-help__expert-contact-item" onClick={() => jivo_api.open()}>
               <CommentIcon/>

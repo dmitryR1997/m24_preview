@@ -18,8 +18,9 @@ import FiveReasons from "@screens/FiveReasons";
 import OfficialWaranty from "@screens/OfficialWaranty"
 
 import "@styles/pages/CartPage.scss"
+import {fetchCategories} from "@api/category";
 
-const CartPage = ({ cartList, cartQuantity }) => {
+const CartPage = ({ cartList, cartQuantity, categories }) => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -62,7 +63,7 @@ const CartPage = ({ cartList, cartQuantity }) => {
   }
 
   return (
-    <Layout pageType="cart">
+    <Layout pageType="cart" categories={categories}>
       <div className="cart-page">
         <Container>
           <h1 className="cart-page__title">
@@ -137,6 +138,16 @@ const mapStateToolProps = state => {
   return {
     cartList: state.cart.list,
     cartQuantity: getCartQuantity(state)
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
   }
 }
 

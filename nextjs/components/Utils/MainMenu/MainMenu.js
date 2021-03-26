@@ -12,19 +12,7 @@ import Container from "@components/Layout/Container"
 
 import "./MainMenu.scss"
 
-const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu }) => {
-  const dispatch = useDispatch()
-
-  const [categories, setCategories] = useState([])
-
-  useEffect(() => {
-    if (isOpenMainMenu) hideMainMenu()
-
-    fetchCategories().then(({ data }) => {
-      setCategories(data)
-    })
-  }, [])
-
+const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu, categories }) => {
   return (
     <div
       className={classnames("main-menu", {
@@ -224,7 +212,6 @@ const mapStateToolProps = state => {
   return {
     isOpenMainMenu: state.layout.isOpenMainMenu,
     headerOffsetBottom: state.layout.headerOffsetBottom,
-    categories: state.category.items
   }
 }
 

@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import { connect } from "react-redux"
 
 import { setFilter, updateFilter } from "@actions/filter"
-import { fetchCategory } from "@api/category"
+import {fetchCategories, fetchCategory} from "@api/category"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
@@ -23,7 +23,7 @@ import filters from "@utils/filters"
 
 import "@styles/pages/catalog.scss"
 
-const CatalogPage = ({ filter, updateFilter, setFilter }) => {
+const CatalogPage = ({ filter, updateFilter, setFilter, categories }) => {
   const router = useRouter()
   const { code } = router.query
 
@@ -57,7 +57,7 @@ const CatalogPage = ({ filter, updateFilter, setFilter }) => {
   if (!category.ID) return <Loader/>
 
   return (
-    <Layout pageType="category" seoText={category.seobottom}>
+    <Layout pageType="category" seoText={category.seobottom} categories={categories}>
       <Head>
         <title>{category.title}</title>
         <meta name="description" content={category.description} />
@@ -159,5 +159,16 @@ const mapDispatchToProps = {
   updateFilter,
   setFilter
 }
+
+export async function getServerSideProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
+  }
+}
+
 
 export default connect(mapStateToolProps, mapDispatchToProps)(CatalogPage)

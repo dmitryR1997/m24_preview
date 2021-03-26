@@ -13,11 +13,12 @@
   }
 
   &__name {
+    margin: 0 0 16px;
     max-width: 142px;
 
     font-size: 16px;
     font-weight: 700;
-    line-height: 2;
+    line-height: 1.2;
     text-align: left;
 
     color: #14142B;
@@ -41,4 +42,6 @@
     font-weight: 600;
     color: #14142B;
   }
+
 }
+

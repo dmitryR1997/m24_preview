@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState, useCallback} from "react"
 
 import { connect } from "react-redux"
 import { fetchVideos } from "@api/video"
+import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
 import CatalogFilterToggle from "@components/Utils/CatalogFilterToggle"
@@ -19,7 +20,7 @@ import VideoFilter from "@components/Utils/VideoFilter/VideoFilter";
 
 const PER_PAGE = 7
 
-const VideosPage = ({ filter }) => {
+const VideosPage = ({ filter, categories }) => {
   const loader = useRef(null)
 
   const [videos, setVideos] = useState([])
@@ -79,7 +80,7 @@ const VideosPage = ({ filter }) => {
   }, [filter])
 
   return (
-    <Layout>
+    <Layout categories={categories}>
       <VideoFilter total={total} />
 
       <div className="video-catalog-content">
@@ -154,6 +155,16 @@ const VideosPage = ({ filter }) => {
 const mapStateToolProps = state => {
   return {
     filter: state.filter.videoItems
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
   }
 }
 

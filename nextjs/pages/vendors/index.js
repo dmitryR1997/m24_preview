@@ -14,8 +14,9 @@ import FiveReasons from "@screens/FiveReasons"
 import OfficialWaranty from "@screens/OfficialWaranty"
 
 import "@styles/pages/Brands.scss"
+import {fetchCategories} from "@api/category";
 
-const BrandPage = () => {
+const BrandPage = ({ categories }) => {
   const [brands, setBrands] = useState([])
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const BrandPage = () => {
   }, [])
 
   return (
-    <Layout>
+    <Layout categories={categories}>
       <div className="brands-page">
         <Container>
           <div className="brands-page__header">
@@ -75,6 +76,16 @@ const BrandPage = () => {
       </div>
     </Layout>
   )
+}
+
+export async function getStaticProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
+  }
 }
 
 export default BrandPage

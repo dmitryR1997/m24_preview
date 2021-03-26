@@ -10,15 +10,7 @@ import api from "@api/index"
 import "./NewProductsSlider.scss"
 import Banner from "@components/Cards/Banner/Banner";
 
-const NewProductsSlider = () => {
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    api.get("https://dev.massagery24.ru/api/slider/list.php").then((response) => {
-      setProducts(response.data)
-    })
-  }, [])
-
+const NewProductsSlider = ({ slides }) => {
   return (
     <section className="new-products-slider">
       <Container>
@@ -26,20 +18,20 @@ const NewProductsSlider = () => {
           visibleHiddenSlides
           pagination
         >
-          {products.map((product, key) => (
-            product.view === "product" ?
+          {slides.map((slide, key) => (
+            slide.view === "product" ?
               <SliderProductCard
                 key={key}
                 product={product}
               /> :
               <Banner
                 key={key}
-                type={product.type}
-                title={product.title}
-                description={product.title_second}
-                image={product.image}
-                view={product.view}
-                link={product.link}
+                type={slide.type}
+                title={slide.title}
+                description={slide.title_second}
+                image={slide.image}
+                view={slide.view}
+                link={slide.link}
               />
           ))}
         </Slider>

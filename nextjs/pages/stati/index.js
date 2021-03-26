@@ -14,10 +14,11 @@ import FiveReasons from "@screens/FiveReasons"
 import OfficialWaranty from "@screens/OfficialWaranty"
 
 import "@styles/pages/Articles.scss"
+import {fetchCategories} from "@api/category";
 
 const PER_PAGE = 4
 
-const ArticlesPage = () => {
+const ArticlesPage = ({ categories }) => {
   const loader = useRef(null)
 
   const [articles, setArticles] = useState([])
@@ -64,7 +65,7 @@ const ArticlesPage = () => {
   }, [page])
 
   return (
-    <Layout>
+    <Layout categories={categories}>
       <div className="articles-page">
         <Container>
           <div className="articles-page__header">
@@ -130,6 +131,16 @@ const ArticlesPage = () => {
       </div>
     </Layout>
   )
+}
+
+export async function getStaticProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
+  }
 }
 
 export default ArticlesPage

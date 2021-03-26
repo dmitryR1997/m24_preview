@@ -22,8 +22,9 @@ import ExpertsHelp from "@screens/ExpertsHelp"
 import VideoReviews from "@screens/VideoReviews"
 
 import "@styles/pages/product.scss"
+import {fetchCategories} from "@api/category";
 
-const ProductPage = () => {
+const ProductPage = ({ categories }) => {
   const router = useRouter()
   const { code, slug } = router.query
 
@@ -38,7 +39,7 @@ const ProductPage = () => {
   }, [slug])
 
   return (
-    <Layout pageType="product">
+    <Layout pageType="product" categories={categories}>
       <div className="single-product">
         {details.id &&
           <>
@@ -261,6 +262,16 @@ const ProductPage = () => {
       </div>
     </Layout>
   )
+}
+
+export async function getServerSideProps({ params }) {
+  const categories = await fetchCategories()
+
+  return {
+    props: {
+      categories: categories.data
+    }
+  }
 }
 
 export default ProductPage

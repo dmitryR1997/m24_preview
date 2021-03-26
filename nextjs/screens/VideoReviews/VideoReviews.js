@@ -44,7 +44,7 @@ const VideoReviews = ({ params, hideHeader, hideTags, hideCatalogLink, gallery }
 
         result.push(slide)
 
-        if (key === data.length - 1 && !hideCatalogLink) result.push(endSlide)
+        if (key === data.data.length - 1 && !hideCatalogLink) result.push(endSlide)
       })
 
       if (gallery) {

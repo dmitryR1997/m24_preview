@@ -9,25 +9,10 @@ import SliderProductCard from "@components/Cards/SliderProduct"
 
 import "./CatalogSlider.scss"
 
-const CatalogSlider = () => {
-  const [total, setTotal] = useState(0)
-  const [categories, setCategories] = useState([])
-
-  useEffect(() => {
-    fetchCategories().then(({ data }) => {
-      setCategories(data)
-    })
-  }, [])
-
-  useEffect(() => {
-    if (!categories) return
-
-    const countTotal = categories.reduce((prev, cur) => {
-      return parseInt(prev) + parseInt(cur.COUNT)
-    }, 0)
-
-    setTotal(countTotal)
-  }, [categories])
+const CatalogSlider = ({ categories }) => {
+  const total = categories.reduce((prev, cur) => {
+    return parseInt(prev) + parseInt(cur.COUNT)
+  }, 0)
 
   return (
     <section className="catalog-slider">

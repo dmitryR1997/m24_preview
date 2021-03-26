@@ -92,7 +92,7 @@ const Product = ({ product }) => {
           <div style={{ width: 32 }} />
           {product.video
             ? <>
-                <VideoPlayer videoId={product.video.video_id} icon={<PlayIcon/>} />
+                <VideoPlayer videoId={product.video} icon={<PlayIcon/>} />
               </>
             : <Link href={getProdutLink(product)}><span><NoneVideoIcon/></span></Link>
           }
