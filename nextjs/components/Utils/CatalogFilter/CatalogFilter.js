@@ -24,7 +24,6 @@ import "./CatalogFilter.scss"
 const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFilter, updateFilter, sectionId, total, filters }) => {
   const [list, setList] = useState([])
 
-  const [showMore, setShowMore] = useState(false)
   const [price, setPrice] = useState({})
 
   const priceChangeHandler = (value) => {
@@ -111,7 +110,7 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
             <Button label="Сбросить фильтр"
                     size="xs"
                     transparent={true}
-                    onClick={() => setFilter({})}
+                    onClick={() => setFilter({ update: true })}
             />
           </div>
         </div>
@@ -202,29 +201,23 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
                 ))}
               </Accordion>
 
-              <Accordion>
-                <div
-                  id="other-filter"
-                  label="Другое"
-                >
-                  <div className="catalog-filter__grid catalog-filter__grid--x2">
-                    {list.other.map((item, key) => (
-                      <>
-                        {item.enums.map((num, key) => (
-                          <div key={key} className="catalog-filter__grid-item">
-                            <Checkbox label={item.name}
-                                      id={num.id}
-                                      name={num.property_code}
-                                      onClick={checkboxHandler}
-                                      checked={filter.hasOwnProperty(num.property_code) ? filter[num.property_code].includes(num.id) : false}
-                            />
-                          </div>
-                        ))}
-                      </>
+
+              <div className="catalog-filter__grid">
+                {list.other.map((item, key) => (
+                  <>
+                    {item.enums.map((num, key) => (
+                      <div key={key} className="catalog-filter__grid-item catalog-filter__grid-item--single">
+                        <Checkbox label={item.name}
+                                  id={num.id}
+                                  name={num.property_code}
+                                  onClick={checkboxHandler}
+                                  checked={filter.hasOwnProperty(num.property_code) ? filter[num.property_code].includes(num.id) : false}
+                        />
+                      </div>
                     ))}
-                  </div>
-                </div>
-              </Accordion>
+                  </>
+                ))}
+              </div>
             </div>
           }
         </div>

@@ -84,7 +84,14 @@ const VideoFilter = ({ filter, setVideoFilter, updateVideoFilter, isOpenVideoFil
           <Accordion>
             <div
               id="tag-filter"
-              label="Популярные теги"
+              label={
+                <div className="catalog-filter__list-title">
+                  Популярные теги
+                  {filter["tag"] && filter["tag"].length > 0 &&
+                  <span>{filter["tag"].length}</span>
+                  }
+                </div>
+              }
               open={true}
             >
               <div className="video-filter__grid">
@@ -205,7 +212,14 @@ const VideoFilter = ({ filter, setVideoFilter, updateVideoFilter, isOpenVideoFil
 
             <div
               id="category-filter"
-              label="Категория товара"
+              label={
+                <div className="catalog-filter__list-title">
+                  Категория товара
+                  {filter["catalog_section"] && filter["catalog_section"].length > 0 &&
+                  <span>{filter["catalog_section"].length}</span>
+                  }
+                </div>
+              }
               open={true}
             >
               <div className="video-filter__grid">

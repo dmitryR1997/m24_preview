@@ -77,6 +77,11 @@ const VideosPage = ({ filter, categories }) => {
 
     setPage(1)
     loadVideos(1)
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
   }, [filter])
 
   return (
@@ -95,14 +100,6 @@ const VideosPage = ({ filter, categories }) => {
           <div className="video-catalog-content__filter">
             <div className="video-catalog-content__filter-item">
               <CatalogFilterToggle filterId="video" />
-            </div>
-
-            <div className="video-catalog-content__filter-item">
-              <select>
-                <option value={false}>По популярности</option>
-                <option value="price-desc">По убыванию цены</option>
-                <option value="price-asc">По возрастанию цены</option>
-              </select>
             </div>
           </div>
 

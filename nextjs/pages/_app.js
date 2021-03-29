@@ -2,9 +2,10 @@ import React, { useEffect } from "react"
 import { useRouter } from "next/router"
 
 import { useStore, PersistGateServer } from '../store'
-import { Provider, useDispatch } from "react-redux"
+import { Provider } from "react-redux"
 import { persistStore } from 'redux-persist'
 import { PersistGate as PersistGateClient } from 'redux-persist/integration/react'
+import { hideHeaderSearch, hideMainMenu, hideModal } from "@actions/layout"
 
 import { isServer } from '../env'
 
@@ -12,8 +13,6 @@ import TagManager from "react-gtm-module"
 const tagManagerArgs = {
   gtmId: "GTM-NKKVLD4"
 }
-
-import { hideHeaderSearch, hideMainMenu } from "@actions/layout"
 
 import Loader from "@components/Layout/Loader"
 
@@ -41,6 +40,7 @@ function MyApp({ Component, pageProps }) {
 
       store.dispatch(hideMainMenu())
       store.dispatch(hideHeaderSearch())
+      store.dispatch(hideModal())
     })
   },[])
 

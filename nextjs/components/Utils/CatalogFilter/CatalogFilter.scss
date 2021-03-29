@@ -23,6 +23,7 @@
 
   &__header {
     background-color: #FCFCFC;
+
     &-title {
       font-size: 24px;
       font-weight: 900;
@@ -80,6 +81,10 @@
   &__grid {
     &-item {
       margin: 0 0 26px;
+
+      &--single {
+        margin: 26px 0;
+      }
     }
 
     &--x2 {
@@ -112,7 +117,7 @@
   &__fixed {
     background-color: #FFFFFF;
     position: sticky;
-    z-index: 1;
+    z-index: 101;
     width: 100%;
     left: 0;
     top: calc(100% - 58px);

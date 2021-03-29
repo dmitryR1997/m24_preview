@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, {useEffect, useState} from "react"
 import PropTypes from "prop-types"
 import classnames from "classnames"
 
@@ -9,7 +9,24 @@ import FilterIcon from "../../../public/icons/filter.svg"
 
 import "./CatalogFilterToggle.scss"
 
-const CatalogFilterToggle = ({ filter, isOpenCatalogFilter, isOpenVideoFilter, toggleCatalogFilter, toggleVideoFilter, filterId }) => {
+const CatalogFilterToggle = ({ filter, filterVideo, isOpenCatalogFilter, isOpenVideoFilter, toggleCatalogFilter, toggleVideoFilter, filterId }) => {
+  const [filterCount, setFilterCount] = useState(false)
+
+  useEffect(() => {
+    const filterKeys = ["price", "update", "sort"]
+    const asArray = Object.entries(filter)
+    const filteredArray = asArray.filter(([key, value]) => !filterKeys.includes(key) && value.length && value.length > 0);
+
+    setFilterCount(filteredArray.length)
+  }, [filter])
+
+  useEffect(() => {
+    const asArray = Object.entries(filterVideo)
+    const filteredArray = asArray.filter(([key, value]) => value.length && value.length > 0);
+
+    setFilterCount(filteredArray.length)
+  }, [filterVideo])
+
   const clickHandler = () => {
     if (filterId === "catalog") {
       toggleCatalogFilter()
@@ -30,8 +47,9 @@ const CatalogFilterToggle = ({ filter, isOpenCatalogFilter, isOpenVideoFilter, t
       </div>
       <div className="catalog-filter-toggle__label">
         Фильтр
-        {Object.keys(filter).length - 2 > 0 &&
-          <span>{Object.keys(filter).length - 2}</span>
+
+        {filterCount > 0 &&
+          <span>{filterCount}</span>
         }
       </div>
     </div>
@@ -40,6 +58,7 @@ const CatalogFilterToggle = ({ filter, isOpenCatalogFilter, isOpenVideoFilter, t
 
 CatalogFilterToggle.propTypes = {
   filter: PropTypes.object.isRequired,
+  filterVideo: PropTypes.object.isRequired,
   filterId: PropTypes.string.isRequired,
   isOpenCatalogFilter: PropTypes.bool,
   isOpenVideoFilter: PropTypes.bool,
@@ -50,6 +69,7 @@ CatalogFilterToggle.propTypes = {
 const mapStateToolProps = state => {
   return {
     filter: state.filter.items,
+    filterVideo: state.filter.videoItems,
     isOpenCatalogFilter: state.layout.isOpenCatalogFilter,
     isOpenVideoFilter: state.layout.isOpenVideoFilter
   }
