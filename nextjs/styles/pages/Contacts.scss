@@ -1,0 +1,47 @@
+.contacts-page {
+  &__shop {
+    margin: 32px 0;
+
+    &-title {
+      margin: 0 0 8px;
+
+      font-size: 18px;
+      font-weight: 600;
+      color: #14142B;
+      line-height: 1.9;
+    }
+
+    &-work-time {
+      margin: 0 0 8px;
+
+      font-size: 14px;
+      font-weight: 500;
+      color: #4E4B66;
+
+      &--red {
+        color: #FA5D43;
+      }
+    }
+  }
+}
+
+.get-address-form {
+  &__input {
+    margin: 0 0 24px;
+  }
+
+  &__button {
+    margin: 0 0 32px;
+  }
+
+  &__text {
+    font-size: 10px;
+    line-height: 1.2;
+    color: #4F4F4F;
+
+    a {
+      border-bottom: 1px dashed;
+    }
+  }
+}
+

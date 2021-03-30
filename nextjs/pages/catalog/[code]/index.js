@@ -23,11 +23,7 @@ import filters from "@utils/filters"
 
 import "@styles/pages/catalog.scss"
 
-const CatalogPage = ({ filter, updateFilter, setFilter, categories }) => {
-  const router = useRouter()
-  const { code } = router.query
-
-  const [category, setCategory] = useState([])
+const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categories }) => {
   const [total, setTotal] = useState(0)
 
   const sortHandler = (e) => {
@@ -40,21 +36,8 @@ const CatalogPage = ({ filter, updateFilter, setFilter, categories }) => {
   }
 
   useEffect(() => {
-    if (!code) return
-
     setFilter({})
-
-    fetchCategory(code).then(({ data }) => {
-      setCategory(data)
-
-      setFilter({
-        ...data.params,
-        update: false
-      })
-    })
-  }, [code])
-
-  if (!category.ID) return <Loader/>
+  }, [])
 
   return (
     <Layout pageType="category" seoText={category.seobottom} categories={categories}>
@@ -139,8 +122,7 @@ const CatalogPage = ({ filter, updateFilter, setFilter, categories }) => {
 }
 
 CatalogPage.propTypes = {
-  productsTotal: PropTypes.number.isRequired,
-  products: PropTypes.array,
+  code: PropTypes.string,
   category: PropTypes.object,
   filter: PropTypes.any,
   updateFilter: PropTypes.func.isRequired
@@ -148,9 +130,6 @@ CatalogPage.propTypes = {
 
 const mapStateToolProps = state => {
   return {
-    productsTotal: state.product.total,
-    products: state.product.items,
-    category: state.category.item,
     filter: state.filter
   }
 }
@@ -162,9 +141,11 @@ const mapDispatchToProps = {
 
 export async function getServerSideProps({ params }) {
   const categories = await fetchCategories()
+  const category = await fetchCategory(params.code)
 
   return {
     props: {
+      category: category.data,
       categories: categories.data
     }
   }

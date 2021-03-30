@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import classnames from "classnames"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import Cookies from "js-cookie"
 
 import { useDispatch } from "react-redux"
 import { openModal } from "@actions/layout"
@@ -28,7 +29,8 @@ const CallMeModal = () => {
 
   const [form, setForm] = useState({
     link: window.location.href,
-    pos: 0
+    pos: 0,
+    roistat_visit: Cookies.get("roistat_visit")
   })
 
   const onFormChange = (event) => {

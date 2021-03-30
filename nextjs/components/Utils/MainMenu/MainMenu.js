@@ -12,7 +12,7 @@ import Container from "@components/Layout/Container"
 
 import "./MainMenu.scss"
 
-const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu, categories }) => {
+const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, categories }) => {
   return (
     <div
       className={classnames("main-menu", {
@@ -206,8 +206,7 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, hideMainMenu, categories
 MainMenu.propTypes = {
   isOpenMainMenu: PropTypes.bool.isRequired,
   headerOffsetBottom: PropTypes.number.isRequired,
-  categories: PropTypes.array.isRequired,
-  hideMainMenu: PropTypes.func.isRequired
+  categories: PropTypes.array.isRequired
 }
 
 const mapStateToolProps = state => {
@@ -217,8 +216,5 @@ const mapStateToolProps = state => {
   }
 }
 
-const mapDispatchToProps = {
-  hideMainMenu
-}
 
-export default connect(mapStateToolProps, mapDispatchToProps)(MainMenu)
+export default connect(mapStateToolProps)(MainMenu)

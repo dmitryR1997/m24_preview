@@ -25,7 +25,7 @@ const cart = (state = initialState, action) => {
 
       return {
         ...state,
-        list: [...state.list, { id: action.payload.id, quantity: action.payload.quantity }]
+        list: [...state.list, { id: action.payload.id, old_id: action.payload.old_id, quantity: action.payload.quantity }]
       }
 
     case REMOVE_FROM_CART:

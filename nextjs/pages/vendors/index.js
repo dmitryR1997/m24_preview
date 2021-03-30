@@ -15,6 +15,7 @@ import OfficialWaranty from "@screens/OfficialWaranty"
 
 import "@styles/pages/Brands.scss"
 import {fetchCategories} from "@api/category";
+import Head from "next/dist/next-server/lib/head";
 
 const BrandPage = ({ categories }) => {
   const [brands, setBrands] = useState([])
@@ -29,6 +30,12 @@ const BrandPage = ({ categories }) => {
 
   return (
     <Layout categories={categories}>
+      <Head>
+        <title>Производители массажного оборудования. Купить массажеры</title>
+        <meta name="description" content="Каталог современных производителей массажного оборудования для дома, офиса, салона представленного на нашем сайте. Массажное оборудование по низкой цене с доставкой" />
+        <meta name="keywords" content="Производители массажного оборудования" />
+      </Head>
+
       <div className="brands-page">
         <Container>
           <div className="brands-page__header">

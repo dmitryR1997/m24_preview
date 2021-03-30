@@ -27,6 +27,7 @@ const CatalogFilterToggle = ({ filter, filterVideo, isOpenCatalogFilter, isOpenV
     setFilterCount(filteredArray.length)
   }, [filterVideo])
 
+
   const clickHandler = () => {
     if (filterId === "catalog") {
       toggleCatalogFilter()

@@ -7,7 +7,7 @@ import { persistStore } from 'redux-persist'
 import { PersistGate as PersistGateClient } from 'redux-persist/integration/react'
 import { hideHeaderSearch, hideMainMenu, hideModal } from "@actions/layout"
 
-import { isServer } from '../env'
+import { isServer } from "../env"
 
 import TagManager from "react-gtm-module"
 const tagManagerArgs = {

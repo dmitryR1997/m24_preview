@@ -15,25 +15,15 @@ import OfficialWaranty from "@screens/OfficialWaranty";
 import "@styles/pages/StaticPage.scss"
 import ExplameMassager from "@screens/ExplameMassager";
 import {fetchCategories} from "@api/category";
+import Head from "next/dist/next-server/lib/head";
 
-const StaticPage = ({ categories }) => {
+const StaticPage = ({ categories, pageContent, slug }) => {
   const content = useRef()
-  const router = useRouter()
-  const { slug } = router.query
-
-  const [pageContent, setPageContent] = useState([])
 
   const accordionClickHandler = (event) => {
     event.target.closest(".accordion-item").classList.toggle("accordion-item--is-open")
   }
 
-  useEffect(() => {
-    if (!slug) return
-
-    fetchStatic(slug).then(({ data }) => {
-      setPageContent(data)
-    })
-  }, [slug])
 
   useEffect(() => {
     if (!pageContent) return
@@ -53,6 +43,12 @@ const StaticPage = ({ categories }) => {
 
   return (
     <Layout categories={categories}>
+      <Head>
+        <title>{pageContent.seo_title}</title>
+        <meta name="description" content={pageContent.seo_description} />
+        <meta name="keywords" content={pageContent.seo_keywords} />
+      </Head>
+
       <div className="static-page" ref={content}>
         <Container>
           <h1 className="static-page__title">
@@ -101,10 +97,13 @@ const StaticPage = ({ categories }) => {
 
 export async function getServerSideProps({ params }) {
   const categories = await fetchCategories()
+  const pageContent = await fetchStatic(params.slug)
 
   return {
     props: {
-      categories: categories.data
+      slug: params.slug,
+      categories: categories.data,
+      pageContent: pageContent.data
     }
   }
 }

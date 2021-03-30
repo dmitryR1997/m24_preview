@@ -31,6 +31,7 @@ const FiveReasons = ({ hideHeader }) => {
           <InfoCard
             preText="По всей России"
             title="Бесплатная<br/>доставка"
+            link="/content/pay_and_delivery/"
 
             styles={{
               backgroundColor: "#F7F7FC",
@@ -38,9 +39,11 @@ const FiveReasons = ({ hideHeader }) => {
               backgroundPosition: "right center"
             }}
           />
+
           <InfoCard
             preText="Нашли дешевле?"
             title="Дадим<br/>лучшую цену"
+            link="/content/dadim-luchshuyu-tsenu"
 
             styles={{
               backgroundColor: "#F7F7FC",
@@ -48,9 +51,11 @@ const FiveReasons = ({ hideHeader }) => {
               backgroundPosition: "right center"
             }}
           />
+
           <InfoCard
             preText="Наличные, карта, безнал"
             title="Удобная<br/>оплата"
+            link="/content/pay_and_delivery/"
 
             styles={{
               backgroundColor: "#F7F7FC",
@@ -62,6 +67,7 @@ const FiveReasons = ({ hideHeader }) => {
           <InfoCard
             preText="Лучшие модели"
             title="Проверенные<br/>поставщики"
+            link="/vendors/"
 
             styles={{
               backgroundColor: "#F7F7FC",
@@ -73,6 +79,7 @@ const FiveReasons = ({ hideHeader }) => {
           <InfoCard
             preText="Не подошёл товар?"
             title="Возврат<br/>14 дней"
+            link="/content/refund/"
 
             styles={{
               backgroundColor: "#F7F7FC",

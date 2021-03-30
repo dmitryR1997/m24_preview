@@ -23,9 +23,11 @@ const PreviewBrands = ({ brands }) => {
 
         <div className="preview-brands__list">
           {brands.map((brand, key) => (
-            <div key={key} className="preview-brands__list-item">
-              <BrandCard image={brand.image}/>
-            </div>
+            <Link key={key} href={`/vendors/${brand.code}`}>
+              <div className="preview-brands__list-item">
+                <BrandCard image={brand.image}/>
+              </div>
+            </Link>
           ))}
         </div>
 

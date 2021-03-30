@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState, useCallback} from "react"
+import Head from "next/head"
 
 import { connect } from "react-redux"
 import { fetchVideos } from "@api/video"
@@ -86,6 +87,11 @@ const VideosPage = ({ filter, categories }) => {
 
   return (
     <Layout categories={categories}>
+      <Head>
+        <title>Видеообзоры</title>
+        <meta name="description" content="" />
+      </Head>
+
       <VideoFilter total={total} />
 
       <div className="video-catalog-content">

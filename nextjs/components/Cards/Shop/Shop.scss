@@ -1,52 +1,59 @@
-.article {
-  background-color: #FFFFFF;
-  box-shadow: 0 10px 20px rgba(156, 156, 156, 0.15);
-  border-radius: 8px;
-  padding: 16px 16px 24px;
-
-  cursor: pointer;
+.shop {
+  margin: 32px 0;
 
   &__image {
     overflow: hidden;
-    border-radius: 8px;
-
-    margin: 0 0 16px;
+    border-radius: 16px;
   }
 
   &__title {
-    margin: 0 0 16px;
+    margin: 0 0 8px;
 
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 1px;
+    color: #14142B;
   }
 
-  &__text {
-    font-family: "Poppins", sans-serif;
+  &__work-time {
+    font-size: 14px;
+    font-weight: 500;
     color: #4E4B66;
   }
 
-  &__nav {
-    display: flex;
-    justify-content: flex-end;
-    margin: 18px 0 0;
+  &__brands-list {
+    &-item {
+      margin: 16px 0;
 
-    &-more {
-      margin-right: auto;
+      &-title {
+        margin: 0 0 8px;
 
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.25px;
-      color: #8F688E;
+        font-size: 14px;
+        font-weight: 700;
+        color: #4E4B66;
+      }
+
+      &__description {
+        font-size: 14px;
+        font-weight: 500;
+        color: #4E4B66;
+      }
     }
+  }
 
-    &-info {
-      font-family: "Poppins", sans-serif;
-      letter-spacing: 0.25px;
-      color: #B2D92E;
+  .accordion-item {
+    &__label {
+      padding: 16px 0 0;
 
-      svg {
-        margin-right: 8px
+      &-text {
+        font-size: 16px;
+      }
+
+      &-icon {
+        svg {
+          path {
+            stroke: #14142B;
+          }
+        }
       }
     }
   }

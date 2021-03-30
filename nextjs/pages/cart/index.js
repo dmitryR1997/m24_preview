@@ -4,21 +4,17 @@ import Link from "next/link"
 
 import { connect } from "react-redux"
 import { fetchProducts } from "@api/product"
+import { fetchCategories } from "@api/category"
 import { getCartQuantity } from "../../selectors/cart"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
 import ProductCart from "@components/Cards/ProductCart/ProductCart"
-import RealetedProducts from "@components/Utils/RealetedProducts"
 import Amount from "@components/Display/Amount"
 import Button from "@components/Forms/Button"
 
-import ExpertsHelp from "@screens/ExpertsHelp"
-import FiveReasons from "@screens/FiveReasons";
-import OfficialWaranty from "@screens/OfficialWaranty"
 
 import "@styles/pages/CartPage.scss"
-import {fetchCategories} from "@api/category";
 
 const CartPage = ({ cartList, cartQuantity, categories }) => {
   const [products, setProducts] = useState([])

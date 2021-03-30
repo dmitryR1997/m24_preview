@@ -1,12 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Link from "next/link"
 
 import VideoPlayer from "@components/Surfaces/VideoPlayer"
 
 import "./Info.scss"
 
-const Info = ({ preText, title, videoId, styles }) => {
-  return (
+const Info = ({ preText, title, videoId, link, styles }) => {
+  const content = (
     <article
       className="info-card"
       style={{ ...styles }}
@@ -27,12 +28,19 @@ const Info = ({ preText, title, videoId, styles }) => {
       />
     </article>
   )
+
+  if(link) {
+    return <Link href={link}>{content}</Link>
+  }
+
+  return content
 }
 
 Info.propTypes = {
   preText: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   videoId: PropTypes.string,
+  link: PropTypes.string,
   styles: PropTypes.object
 }
 

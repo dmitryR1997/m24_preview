@@ -55,7 +55,7 @@ const OneClickModal = ({ product, inCart }) => {
 
     oneClickBuy({
       ...form,
-      ELEMENT_ID: product.id
+      ELEMENT_ID: parseInt(product.old_id)
     }).then(({ data }) => {
       setForm(initialForm)
       dispatch(openModal(
@@ -72,9 +72,12 @@ const OneClickModal = ({ product, inCart }) => {
   const addToCartHandler = useCallback(() => {
     dispatch(hideModal())
 
+    console.log(product)
+
     if(!inCart) {
       dispatch(addToCart({
         id: parseInt(product.id),
+        old_id: parseInt(product.old_id),
         quantity: 1
       }))
     }

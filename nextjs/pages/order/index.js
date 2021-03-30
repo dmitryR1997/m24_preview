@@ -132,17 +132,17 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
               <div className="order-page__form-group">
                 <Radio  label="Самовывоз"
                         id="delivery"
-                        value={3}
+                        value={2}
                         handler={onFormChange}
-                        checked={parseInt(form.delivery) === 3}
+                        checked={parseInt(form.delivery) === 2}
                 />
               </div>
               <div className="order-page__form-group">
                 <Radio  label="Доставка курьером"
                         id="delivery"
-                        value={2}
+                        value={1}
                         handler={onFormChange}
-                        checked={parseInt(form.delivery) === 2}
+                        checked={parseInt(form.delivery) === 1}
                 />
               </div>
               {parseInt(form.delivery) === 2 &&
@@ -169,9 +169,9 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
               <div className="order-page__form-group">
                 <Radio  label="Курьеру банковской картой"
                         id="pay"
-                        value={10}
+                        value={12}
                         handler={onFormChange}
-                        checked={parseInt(form.pay) === 10}
+                        checked={parseInt(form.pay) === 12}
                 />
               </div>
             </div>

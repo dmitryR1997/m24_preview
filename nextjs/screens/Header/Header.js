@@ -1,11 +1,11 @@
 import React, {useEffect, useState, useCallback, useRef} from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 import classnames from "classnames"
 
 import {connect} from "react-redux"
-import {setHeaderOffsetBottom} from "@actions/layout"
+import { setHeaderOffsetBottom } from "@actions/layout"
 
 import Container from "@components/Layout/Container"
 import MainMenuBurger from "@components/Utils/MainMenuBurger"
@@ -102,10 +102,9 @@ const Header = ({isOpenMainMenu, isOpenHeaderSearch, isProduct, categories}) => 
       </div>
 
       {!isProduct &&
-      <div id="header-fake" style={{height: headerHeight}}/>
+      <div id="header-fake" style={{ height: headerHeight }}/>
       }
 
-      <MainMenu categories={categories} />
       <HeaderSearch/>
     </>
   )

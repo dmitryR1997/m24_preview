@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from "react"
+import Head from "next/head"
 
-import { fetchArticles } from "@api/article";
+import { fetchCategories } from "@api/category"
+import { fetchArticles } from "@api/article"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
@@ -14,7 +16,6 @@ import FiveReasons from "@screens/FiveReasons"
 import OfficialWaranty from "@screens/OfficialWaranty"
 
 import "@styles/pages/Articles.scss"
-import {fetchCategories} from "@api/category";
 
 const PER_PAGE = 4
 
@@ -66,6 +67,11 @@ const ArticlesPage = ({ categories }) => {
 
   return (
     <Layout categories={categories}>
+      <Head>
+        <title>Обзоры и советы</title>
+        <meta name="description" content="Каталог обзоров и советов от нашего интернет магазина Массажёры24.РФ." />
+      </Head>
+
       <div className="articles-page">
         <Container>
           <div className="articles-page__header">

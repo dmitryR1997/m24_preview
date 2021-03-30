@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react"
-import { useRouter } from "next/router"
-
+import React, { useState } from "react"
 import { fetchBrand } from "@api/brand"
 import { fetchCategories } from "@api/category"
 
@@ -13,24 +11,19 @@ import ExpertsHelp from "@screens/ExpertsHelp"
 import ExplameMassager from "@screens/ExplameMassager"
 
 import "@styles/pages/catalog.scss"
+import Head from "next/dist/next-server/lib/head";
 
-const BrandPage = ({ categories }) => {
-  const router = useRouter()
-  const { code } = router.query
-
-  const [brand, setBrand] = useState([])
+const BrandPage = ({ categories, brand }) => {
   const [total, setTotal] = useState(0)
-
-  useEffect(() => {
-    if (!code) return
-
-    fetchBrand(code).then(({ data }) => {
-      setBrand(data)
-    })
-  }, [code])
 
   return (
     <Layout pageType="category" categories={categories}>
+      <Head>
+        <title>{brand.seo_title}</title>
+        <meta name="description" content={brand.seo_description} />
+        <meta name="keywords" content={brand.seo_keywrods} />
+      </Head>
+
       <div className="catalog-page-content">
         <Container>
           <div className="catalog-page-content__header">
@@ -50,6 +43,10 @@ const BrandPage = ({ categories }) => {
           <Catalog
             brand_id={brand.ID}
             totalSetter={setTotal}
+            params={{
+              sort: "price-desc",
+              update: true
+            }}
           />
         </div>
         }
@@ -70,10 +67,12 @@ const BrandPage = ({ categories }) => {
 
 export async function getServerSideProps({ params }) {
   const categories = await fetchCategories()
+  const brand = await fetchBrand(params.code)
 
   return {
     props: {
-      categories: categories.data
+      categories: categories.data,
+      brand: brand.data
     }
   }
 }
