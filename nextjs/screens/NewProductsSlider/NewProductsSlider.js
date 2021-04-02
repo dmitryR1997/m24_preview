@@ -8,7 +8,7 @@ import SliderProductCard from "@components/Cards/SliderProduct"
 import api from "@api/index"
 
 import "./NewProductsSlider.scss"
-import Banner from "@components/Cards/Banner/Banner";
+import Banner from "@components/Cards/Banner/Banner"
 
 const NewProductsSlider = ({ slides }) => {
   return (

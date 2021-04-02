@@ -143,9 +143,9 @@ const VideosPage = ({ filter, categories }) => {
           </Container>
         </div>
 
-        <div className="video-catalog-content__official-waranty">
-          <OfficialWaranty/>
-        </div>
+        {/*<div className="video-catalog-content__official-waranty">*/}
+        {/*  <OfficialWaranty/>*/}
+        {/*</div>*/}
 
         <div className="video-catalog-content__experts-help">
           <ExpertsHelp/>

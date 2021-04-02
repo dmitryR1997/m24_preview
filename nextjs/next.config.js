@@ -127,5 +127,5 @@ module.exports = withPlugins([
     },
   ],
   [withImages],
-  [withBundleAnalyzer]
+  // [withBundleAnalyzer]
 ], nextConfig)

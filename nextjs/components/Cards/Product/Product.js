@@ -5,7 +5,7 @@ import Link from "next/link"
 import Amount from "@components/Display/Amount"
 import Slider from "@components/Surfaces/Slider"
 
-import getProdutLink from "@utils/getProdutLink";
+import getProdutLink from "@utils/getProdutLink"
 
 import "./Product.scss"
 

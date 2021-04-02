@@ -22,16 +22,16 @@ const Footer = () => {
           <a href="https://www.facebook.com/massagery24/" target="_blank" className="footer__social-link">
             <FB/>
           </a>
-          <a href="https://vk.com/massagery24" target="_blank" className="footer__social-link">
+          <a href="https://vk.com/massagery24/" target="_blank" className="footer__social-link">
             <VK/>
           </a>
-          <a href="https://ok.ru/group/54165989097650" target="_blank" className="footer__social-link">
+          <a href="https://ok.ru/group/54165989097650/" target="_blank" className="footer__social-link">
             <OK/>
           </a>
           <a href="https://www.instagram.com/massagery24.ru/" target="_blank" className="footer__social-link">
             <Instagram/>
           </a>
-          <a href="https://www.youtube.com/channel/UCEc8g8X6nl0nsS32OWXn9kg" target="_blank" className="footer__social-link">
+          <a href="https://www.youtube.com/channel/UCEc8g8X6nl0nsS32OWXn9kg/" target="_blank" className="footer__social-link">
             <YouTube/>
           </a>
         </div>

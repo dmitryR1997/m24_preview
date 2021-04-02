@@ -13,14 +13,14 @@ import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
 
 import NewProductsSlider from "@screens/NewProductsSlider"
-import ProductsList from "@screens/ProductsList"
 
+const ProductsList = loadable(() => import("@screens/ProductsList"))
 const FiveReasons = loadable(() => import("@screens/FiveReasons"))
 const WeTeachYou = loadable(() => import("@screens/WeTeachYou"))
-import ExplameMassager from "@screens/ExplameMassager"
-import CatalogSlider from "@screens/CatalogSlider"
-import PreviewBrands from "@screens/PreviewBrands"
-import ExpertsHelp from "@screens/ExpertsHelp"
+const ExplameMassager = loadable(() => import("@screens/ExplameMassager"))
+const CatalogSlider = loadable(() => import("@screens/CatalogSlider"))
+const PreviewBrands = loadable(() => import("@screens/PreviewBrands"))
+const ExpertsHelp = loadable(() => import("@screens/ExpertsHelp"))
 
 // const FiveReasons = loadable(() =>  import("@screens/FiveReasons"))
 // const WeTeachYou = loadable(() =>  import("@screens/WeTeachYou"))
@@ -37,7 +37,6 @@ const HomePage = ({ text, slides, products, videos, categories, brands }) => {
       <Head>
         <title>Интернет магазин массажеров - Массажёры24.РФ: массажные кресла накидки подушки коврики столы кровати</title>
         <meta name="description" content="Компания Массажеры24.рф - федеральный интернет магазин массажного оборудования с собственной сетью представительств по всей России. Официальный дилер. Доставка в дом. "/>
-        <link rel="preload" as="image" href="https://dev.massagery24.ru/upload/iblock/445/44565e384096a366625095d6cc87a671.jpg" />
       </Head>
       <div className="home-page-content">
         <div className="home-page-content__slider">

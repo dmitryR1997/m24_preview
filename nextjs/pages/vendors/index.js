@@ -69,9 +69,9 @@ const BrandPage = ({ categories }) => {
           </div>
         </Container>
 
-        <div className="brands-page__official-waranty">
-          <OfficialWaranty/>
-        </div>
+        {/*<div className="brands-page__official-waranty">*/}
+        {/*  <OfficialWaranty/>*/}
+        {/*</div>*/}
 
         <div className="brands-page__realeted-products">
           <RealetedProducts params={{ section_id: 69, random: true }}/>

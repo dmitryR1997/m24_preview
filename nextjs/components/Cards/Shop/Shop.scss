@@ -37,6 +37,10 @@
         font-weight: 500;
         color: #4E4B66;
       }
+
+      &:last-child {
+        margin: 16px 0 0;
+      }
     }
   }
 
@@ -55,6 +59,10 @@
           }
         }
       }
+    }
+
+    &__content {
+      padding: 0;
     }
   }
 }

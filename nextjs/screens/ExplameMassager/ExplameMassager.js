@@ -25,9 +25,9 @@ const ExplameMassager = ({ showHeader }) => {
           preText="Видеообзор"
           title="Шоу-рум<br/>Румянцево"
           videoId="PAnVOr3qpVg"
+          backgroundImage={ImageSlide}
           styles={{
             backgroundColor: "#E7EAF0",
-            backgroundImage: `url(${ImageSlide})`,
             backgroundPosition: "right center",
             backgroundSize: "50% auto"
           }}

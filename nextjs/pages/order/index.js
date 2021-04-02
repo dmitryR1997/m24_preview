@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import { useRouter } from "next/router"
 import PropTypes from "prop-types"
+import { useRouter } from "next/router"
+import { useForm, Controller } from "react-hook-form"
 
 import { connect, useDispatch } from "react-redux"
 import { openModal } from "@actions/layout"
@@ -31,27 +32,18 @@ const initialForm = {
 }
 
 const OrderPage = ({ cartList, cartQuantity, categories }) => {
+  const { control, handleSubmit, errors } = useForm()
   const router = useRouter()
   const dispatch = useDispatch()
 
   if(cartList.length === 0 && !isServer) {
-    router.push("/")
+    // router.push("/")
   }
 
-  const [form, setForm] = useState(initialForm)
   const [loading, setLoading] = useState(false)
 
-  const onFormChange = (event) => {
-    setForm(prev => ({
-      ...prev,
-        [event.target.id]: event.target.value
-    }))
-  }
-
-  const formHandler = (e) => {
-    e.preventDefault()
-
-    setLoading(true)
+  const formHandler = (data) => {
+    const form = Object.assign(initialForm, data)
 
     addOrder({
       ...form,
@@ -59,9 +51,11 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
     }).then(({ data }) => {
       if (data.status) {
         setForm(initialForm)
+
         dispatch(clearCart())
         dispatch(openModal(
           <Message
+            classes="order-success"
             title="Ваша заявка успешно отправлена!"
             description="Менеджер свяжется с Вами в ближайшее время"
           />
@@ -71,7 +65,7 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
 
         addToCrm(data.id)
 
-        router.push("/")
+        // router.push("/")
       } else {
         dispatch(openModal(
           <Message
@@ -91,18 +85,28 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
             Оформление заказа
           </h1>
 
-          <form onSubmit={formHandler}>
+          <form onSubmit={handleSubmit(formHandler)}>
             <div className="order-page__form">
               <div className="order-page__form-title">
                 Ваши данные
               </div>
+
               <div className="order-page__form-group">
-                <Input label="Ваше имя"
-                       id="first_name"
-                       handler={onFormChange}
-                       value={form.first_name}
+                <Controller
+                  name="first_name"
+                  control={control}
+                  rules={{ required: true }}
+                  defaultValue=""
+                  render={({ onChange, value }) =>
+                    <Input  label="Ваше имя"
+                            id="first_name"
+                            handler={onChange}
+                            value={value}
+                            error={errors.first_name}
+                  />}
                 />
               </div>
+
               {/*<div className="order-page__form-group">*/}
               {/*  <Input label="Ваша фамилия"*/}
               {/*         id="last_name"*/}
@@ -118,63 +122,94 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
               {/*  />*/}
               {/*</div>*/}
               <div className="order-page__form-group">
-                <Input label="Номер телефона"
-                       id="phone"
-                       handler={onFormChange}
-                       value={form.phone}
-                       mask="+7 (999) 999-99-99"
+                <Controller
+                  name="phone"
+                  control={control}
+                  rules={{
+                    required: true,
+                    pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i
+                  }}
+                  defaultValue=""
+                  render={({ onChange, value }) =>
+                    <Input label="Номер телефона"
+                           id="phone"
+                           handler={onChange}
+                           value={value}
+                           mask="+7 (999) 999-99-99"
+                           error={errors.phone}
+                    />}
                 />
               </div>
 
               <div className="order-page__form-title">
                 Способы доставки
               </div>
-              <div className="order-page__form-group">
-                <Radio  label="Самовывоз"
-                        id="delivery"
-                        value={2}
-                        handler={onFormChange}
-                        checked={parseInt(form.delivery) === 2}
-                />
-              </div>
-              <div className="order-page__form-group">
-                <Radio  label="Доставка курьером"
-                        id="delivery"
-                        value={1}
-                        handler={onFormChange}
-                        checked={parseInt(form.delivery) === 1}
-                />
-              </div>
-              {parseInt(form.delivery) === 2 &&
-              <div className="order-page__form-group">
-                <Input label="Адрес"
-                       id="address"
-                       handler={onFormChange}
-                       value={form.address}
-                />
-              </div>
-              }
+              <Controller
+                name="delivery"
+                control={control}
+                defaultValue={2}
+                render={props =>
+                  <>
+                    <div className="order-page__form-group">
+                      <Radio  label="Самовывоз"
+                              id="delivery"
+                              value={2}
+                              handler={e => props.onChange(parseInt(e.target.value))}
+                              checked={props.value === 2}
+                      />
+                    </div>
+                    <div className="order-page__form-group">
+                      <Radio  label="Доставка курьером"
+                              id="delivery"
+                              value={1}
+                              handler={e => props.onChange(parseInt(e.target.value))}
+                              checked={props.value === 1}
+                      />
+                    </div>
+                  </>
+                  }
+              />
+
+              {/*{parseInt(form.delivery) === 2 &&*/}
+              {/*<div className="order-page__form-group">*/}
+              {/*  <Input label="Адрес"*/}
+              {/*         id="address"*/}
+              {/*         handler={onFormChange}*/}
+              {/*         value={form.address}*/}
+              {/*  />*/}
+              {/*</div>*/}
+              {/*}*/}
 
               <div className="order-page__form-title">
                 Способ оплаты
               </div>
-              <div className="order-page__form-group">
-                <Radio  label="Наличными курьеру"
-                        id="pay"
-                        value={1}
-                        handler={onFormChange}
-                        checked={parseInt(form.pay) === 1}
-                />
-              </div>
-              <div className="order-page__form-group">
-                <Radio  label="Курьеру банковской картой"
-                        id="pay"
-                        value={12}
-                        handler={onFormChange}
-                        checked={parseInt(form.pay) === 12}
-                />
-              </div>
+              <Controller
+                name="pay"
+                control={control}
+                defaultValue={1}
+                render={props =>
+                  <>
+                    <div className="order-page__form-group">
+                      <Radio  label="Наличными курьеру"
+                              id="pay"
+                              value={1}
+                              handler={e => props.onChange(parseInt(e.target.value))}
+                              checked={props.value === 1}
+                      />
+                    </div>
+                    <div className="order-page__form-group">
+                      <Radio  label="Курьеру банковской картой"
+                              id="pay"
+                              value={12}
+                              handler={e => props.onChange(parseInt(e.target.value))}
+                              checked={props.value === 12}
+                      />
+                    </div>
+                  </>
+                }
+              />
             </div>
+
             <div className="order-page__continue">
               <Button
                 label="Оформить"

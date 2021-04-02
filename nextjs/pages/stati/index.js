@@ -123,9 +123,9 @@ const ArticlesPage = ({ categories }) => {
           </Container>
         </div>
 
-        <div className="articles-page__official-waranty">
-          <OfficialWaranty/>
-        </div>
+        {/*<div className="articles-page__official-waranty">*/}
+        {/*  <OfficialWaranty/>*/}
+        {/*</div>*/}
 
         <div className="articles-page__realeted-products">
           <RealetedProducts params={{ section_id: 69, random: true }}/>

@@ -69,7 +69,7 @@ const StaticPage = ({ categories, pageContent, slug }) => {
 
         {slug === "credit_buy" &&
           <div className="static-page__catalog">
-            <Catalog params={{ "credit": true }} />
+            <Catalog params={{ "credit": true, "update": true }} />
           </div>
         }
 
@@ -79,9 +79,9 @@ const StaticPage = ({ categories, pageContent, slug }) => {
           </Container>
         </div>
 
-        <div className="static-page__official-waranty">
-          <OfficialWaranty/>
-        </div>
+        {/*<div className="static-page__official-waranty">*/}
+        {/*  <OfficialWaranty/>*/}
+        {/*</div>*/}
 
         <div className="static-page__realeted-products">
           <RealetedProducts params={{ section_id: 69, random: true }}/>

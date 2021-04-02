@@ -1,8 +1,10 @@
 import React, {useCallback, useEffect, useState} from "react"
 import Head from "next/head"
 import Link from "next/link"
-import { YMaps, Map, Clusterer, Placemark } from "react-yandex-maps"
 import { useDispatch } from "react-redux"
+
+import { useForm, Controller } from "react-hook-form"
+import { YMaps, Map, Clusterer, Placemark } from "react-yandex-maps"
 
 import { openModal} from "@actions/layout"
 import { fetchShops, getShopAddress } from "@api/shop"
@@ -18,7 +20,6 @@ import Input from "@components/Forms/Input"
 import Button from "@components/Forms/Button"
 
 import FiveReasons from "@screens/FiveReasons"
-import OfficialWaranty from "@screens/OfficialWaranty"
 import ExpertsHelp from "@screens/ExpertsHelp"
 
 import "@styles/pages/StaticPage.scss"
@@ -26,33 +27,19 @@ import "@styles/pages/Contacts.scss"
 
 
 const GetShopAddresModal = ({ activeShop }) => {
+  const { control, handleSubmit, errors } = useForm()
   const dispatch = useDispatch()
 
-  const [form, setForm] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const onFormChange = (event) => {
-    const id = event.target.id
-    let value = event.target.value
-
-    if(id === "phone") {
-      value = value.replace(/[^\d]/g, '').slice(1)
-    }
-
-
-    setForm(prev => ({
-      ...prev,
-      [id]: value
-    }))
-  }
-
-  const formHandler = (e) => {
-    e.preventDefault()
+  const formHandler = (data) => {
+    const form = data
 
     setLoading(true)
 
     getShopAddress({
       ...form,
+      phone: data.phone.replace(/[^\d]/g, '').slice(1),
       city: activeShop.city,
       shop_name: activeShop.title,
       adress: activeShop.address
@@ -70,19 +57,52 @@ const GetShopAddresModal = ({ activeShop }) => {
     })
   }
 
-
   return (
     <Message
       title="Получить адрес салона<br/>по sms"
       hideButton={true}
     >
-      <form className="get-address-form" onSubmit={formHandler}>
+      <form className="get-address-form" onSubmit={handleSubmit(formHandler)}>
         <div className="get-address-form__input">
-          <Input label="Ваше имя" id="name" handler={onFormChange} />
+          <Controller
+            name="name"
+            control={control}
+            rules={{ required: true }}
+            defaultValue=""
+            render={({ onChange, value }) =>
+              <Input
+                label="Ваше имя"
+                id="name"
+                handler={onChange}
+                value={value}
+                error={errors.name}
+              />
+            }
+          />
         </div>
+
         <div className="get-address-form__input">
-          <Input label="Ваш номер телефона" id="phone" mask="+7 (999) 999-99-99" handler={onFormChange} />
+          <Controller
+            name="phone"
+            control={control}
+            rules={{
+              required: true,
+              pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i
+            }}
+            defaultValue=""
+            render={({ onChange, value }) =>
+              <Input
+                label="Ваш номер телефона"
+                id="phone"
+                mask="+7 (999) 999-99-99"
+                handler={onChange}
+                value={value}
+                error={errors.phone}
+              />
+            }
+          />
         </div>
+
         <div className="get-address-form__button">
           <Button label="Получить адрес салона" isLoading={loading} />
         </div>
@@ -108,21 +128,23 @@ const ShopPage = ({ categories }) => {
     })
   }, [])
 
-  const placemarkHandler = (e, shop) => {
-    // const map = e.get("target").getMap()
-    //
-    // map.geoObjects.each(geoObject => {
-    //   const geoObjects = geoObject.getGeoObjects()
-    //
-    //   geoObjects.map((point) => {
-    //     console.l()
-    //     point.options.set('iconColor', "#B2D92E")
-    //   })
-    // })
-    //
-    // e.get('target').options.set('iconColor', "red")
+  const placemarkHandler = (e) => {
+    const target = e.get("target")
+    const map = target.getMap()
 
-    setActiveShop(shop)
+    map.geoObjects.each(geoObject => {
+      const geoObjects = geoObject.getGeoObjects()
+
+      geoObjects.map(point => {
+        point.options.set("preset", "islands#icon")
+        point.options.set("iconColor", "#B2D92E")
+      })
+    })
+
+    setTimeout(() => {
+      target.options.set("preset", "islands#dotIcon")
+      target.options.set("iconColor", "#006400")
+    }, 0)
   }
 
   return (
@@ -170,9 +192,9 @@ const ShopPage = ({ categories }) => {
                           key={i}
                           geometry={shops[key].geo}
                           options={{
-                            iconColor: "#B2D92E",
+                            iconColor: "#B2D92E"
                           }}
-                          onClick={(e) => placemarkHandler(e, shops[key])}
+                          onClick={(e) => { placemarkHandler(e); setActiveShop(shops[key])}}
                         />
                       ))}
                     </Clusterer>
@@ -196,21 +218,25 @@ const ShopPage = ({ categories }) => {
                       }
                     </div>
 
-                    <Button
-                      label="Получить адрес по смс"
-                      onClick={() =>
-                        dispatch(openModal(
-                          <GetShopAddresModal
-                            activeShop={activeShop}
-                          />
-                        ))}
-                    />
+                    <div className="contacts-page__get-address">
+                      <Button
+                        label="Получить адрес по SMS"
+                        onClick={() =>
+                          dispatch(openModal(
+                            <GetShopAddresModal
+                              activeShop={activeShop}
+                            />
+                          ))}
+                      />
+                    </div>
                   </>
                 }
               </Tab>
+
               <Tab id={2} label="Список">
                 {Object.keys(shops).map((key, i) => (
                   <ShopCard
+                    key={key}
                     image={shops[key].images[0]}
                     workTime={shops[key].work_time}
                     title={shops[key].title}
@@ -229,9 +255,9 @@ const ShopPage = ({ categories }) => {
           </Container>
         </div>
 
-        <div className="static-page__official-waranty">
-          <OfficialWaranty/>
-        </div>
+        {/*<div className="static-page__official-waranty">*/}
+        {/*  <OfficialWaranty/>*/}
+        {/*</div>*/}
 
         <div className="static-page__realeted-products">
           <RealetedProducts params={{ section_id: 69, random: true }}/>

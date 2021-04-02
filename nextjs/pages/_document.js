@@ -5,7 +5,7 @@ import DeferNextScript from "@utils/DeferNextScript"
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="ru">
         <Head/>
         <body>
           <Main />

@@ -1,7 +1,8 @@
 import React, {useCallback, useState} from "react"
+import PropTypes from "prop-types"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import PropTypes from "prop-types"
+import { useForm, Controller } from "react-hook-form"
 
 import { connect, useDispatch } from "react-redux"
 import { hideModal, openModal } from "@actions/layout"
@@ -35,21 +36,17 @@ const initialForm = {
 }
 
 const OneClickModal = ({ product, inCart }) => {
+  const { control, handleSubmit, errors } = useForm()
+
   const router = useRouter()
   const dispatch = useDispatch()
 
   const [form, setForm] = useState(initialForm)
   const [loading, setLoading] = useState(false)
 
-  const onFormChange = (event) => {
-    setForm(prev => ({
-      ...prev,
-      [event.target.id]: event.target.value
-    }))
-  }
 
-  const formHandler = (e) => {
-    e.preventDefault()
+  const formHandler = (data) => {
+    const form = Object.assign(initialForm, data)
 
     setLoading(true)
 
@@ -72,8 +69,6 @@ const OneClickModal = ({ product, inCart }) => {
   const addToCartHandler = useCallback(() => {
     dispatch(hideModal())
 
-    console.log(product)
-
     if(!inCart) {
       dispatch(addToCart({
         id: parseInt(product.id),
@@ -90,17 +85,42 @@ const OneClickModal = ({ product, inCart }) => {
       <ProductOneClick
         product={product}
       />
-      <form className="one-click-form" onSubmit={formHandler}>
+      <form className="one-click-form" onSubmit={handleSubmit(formHandler)}>
         <div className="one-click-form__input">
-          <Input label="Ваш номер телефона" id="TEL" mask="+7 (999) 999-99-99" handler={onFormChange} />
+          <Controller
+            name="TEL"
+            control={control}
+            rules={{
+              required: true,
+              pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i
+            }}
+            defaultValue=""
+            render={({ onChange, value }) =>
+              <Input
+                label="Ваш номер телефона"
+                id="TEL"
+                mask="+7 (999) 999-99-99"
+                handler={onChange}
+                value={value}
+                error={errors.TEL}
+              />
+            }
+          />
         </div>
         <div className="one-click-form__button">
           <Button label="Купить в один клик" isLoading={loading} />
         </div>
       </form>
+
       <div className="one-click-form__add-to-cart">
-        <Button label="В корзину" onClick={addToCartHandler} transparent={true}/>
+        <Button
+          classes="add-to-cart-button"
+          label="В корзину"
+          onClick={addToCartHandler}
+          transparent={true}
+        />
       </div>
+
       <div className="one-click-form__text">
         Оформляя заказ, вы даёте согласие на<br/>
         <Link href="/content/agree/">обработку персональных данных</Link>

@@ -82,6 +82,8 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
   }, [page])
 
   useEffect(() => {
+    console.log(params)
+
     if ((params && Object.keys(params).length <= 0) || (params && !params.update)) return
 
     setPage(1)

@@ -10,10 +10,10 @@ import "./Message.scss"
 
 import ModalClose from "../../../public/icons/modal-close.svg"
 
-const Message = ({ title, description, styles, hideModal, hideButton, children }) => {
+const Message = ({ classes, title, description, styles, hideModal, hideButton, children }) => {
   return (
     <div
-      className="message-card"
+      className={`message-card ${classes}`}
       style={{ ...styles }}
     >
       <div className="message-card__close" onClick={hideModal}>
@@ -53,6 +53,7 @@ const Message = ({ title, description, styles, hideModal, hideButton, children }
 }
 
 Message.propTypes = {
+  classes: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
   styles: PropTypes.object,

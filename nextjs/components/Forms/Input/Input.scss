@@ -23,8 +23,7 @@
     font-weight: 600;
     color: #14142B;
 
-    &:focus,
-    &:valid {
+    &:focus {
       ~ label {
         @extend %label-movement;
       }
@@ -43,5 +42,23 @@
     transform: translateY(-50%);
     transition: all 0.25s cubic-bezier(0.2, 0, 0.03, 1);
     pointer-events: none
+  }
+
+  &--error {
+    .input__control {
+      border: 1px solid #ce0625;
+    }
+
+    .input__label {
+      color: #ce0625;
+    }
+  }
+
+  &--has-text {
+    .input__control {
+      ~ label {
+        @extend %label-movement;
+      }
+    }
   }
 }

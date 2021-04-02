@@ -4,10 +4,10 @@ import classnames from "classnames"
 
 import "./Button.scss"
 
-const Button = ({ label, size, outline, transparent, inCart, isLoading, onClick }) => {
+const Button = ({ classes, label, size, outline, transparent, inCart, isLoading, onClick }) => {
   return (
     <button
-      className={classnames("button", {
+      className={classnames(`button ${classes}`, {
         "button--xs": size === "xs",
         "button--outline": outline,
         "button--transparent": transparent,
@@ -23,6 +23,7 @@ const Button = ({ label, size, outline, transparent, inCart, isLoading, onClick 
 }
 
 Button.propTypes = {
+  classes: PropTypes.string,
   label: PropTypes.any.isRequired,
   size: PropTypes.string,
   outline: PropTypes.bool,

@@ -34,7 +34,7 @@ const ProductPage = ({ categories, details }) => {
           <meta name="keywords" content={details.seo_keywords} />
         </Head>
 
-        <input type="hidden" className="gtm-product-id" value={details.id} />
+        <input type="hidden" className="gtm-product-id" value={details.old_id} />
         <input type="hidden" className="gtm-product-price" value={details.price} />
 
         <div className="single-product__header">
@@ -236,9 +236,9 @@ const ProductPage = ({ categories, details }) => {
           </Container>
         </div>
 
-        <div className="single-product__official-waranty">
-          <OfficialWaranty/>
-        </div>
+        {/*<div className="single-product__official-waranty">*/}
+        {/*  <OfficialWaranty/>*/}
+        {/*</div>*/}
 
         <div className="single-product__experts-help">
           <ExpertsHelp hideText/>

@@ -5,10 +5,12 @@ import Link from "next/link"
 import VideoPlayer from "@components/Surfaces/VideoPlayer"
 
 import "./Info.scss"
+import BackgroundLazyLoad from "@utils/BackgroundLazyLoad";
 
-const Info = ({ preText, title, videoId, link, styles }) => {
+const Info = ({ preText, title, videoId, link, styles, backgroundImage }) => {
   const content = (
-    <article
+    <BackgroundLazyLoad
+      data-image-src={backgroundImage}
       className="info-card"
       style={{ ...styles }}
     >
@@ -26,7 +28,7 @@ const Info = ({ preText, title, videoId, link, styles }) => {
         className="info-card__title"
         dangerouslySetInnerHTML={{ __html: title }}
       />
-    </article>
+    </BackgroundLazyLoad>
   )
 
   if(link) {

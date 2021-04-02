@@ -23,18 +23,18 @@ const Shop = ({ image, title, workTime, brands, styles }) => {
 
       <div className="shop__work-time">{workTime}</div>
 
-      {brands.length > 0 &&
+      {Object.keys(brands).length > 0 &&
         <Accordion>
-          <div id="brand" label="Представленные бренды" open={true}>
+          <div id="brand" label="Представленные бренды">
             <div className="shop__brands-list">
-              {brands.map((brand, key) => (
+              {Object.keys(brands).map((key, i) => (
                 <div key={key} className="shop__brands-list-item">
                   <div className="shop__brands-list-item-title">
-                    {brand.title} ({brand.country})
+                    {brands[key].title} ({brands[key].country})
                   </div>
 
                   <div className="shop__brands-list-item-description">
-                    {brand.description}
+                    {brands[key].description}
                   </div>
                 </div>
               ))}

@@ -2,17 +2,19 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import Container from "@components/Layout/Container"
+import BackgroundLazyLoad from "@utils/BackgroundLazyLoad"
 
-import { ReactComponent as CallIcon } from "../../public/icons/call.svg"
 import { ReactComponent as CommentIcon } from "../../public/icons/comment.svg"
 
 import "./ExpertsHelp.scss"
+
+import Background from "@images/expert.jpg"
 
 const ExpertsHelp = ({ hideText }) => {
   return (
     <div className="experts-help">
       <Container>
-        <div className="experts-help__expert">
+        <BackgroundLazyLoad className="experts-help__expert" data-image-src={Background}>
           <div className="experts-help__expert-description">
             Бесплатная консультация
           </div>
@@ -29,7 +31,7 @@ const ExpertsHelp = ({ hideText }) => {
               <CommentIcon/>
             </div>
           </div>
-        </div>
+        </BackgroundLazyLoad>
 
         {!hideText &&
           <>

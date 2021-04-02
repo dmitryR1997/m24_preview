@@ -3,6 +3,7 @@ import Link from "next/link"
 import classnames from "classnames"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import Cookies from "js-cookie"
+import { useForm, Controller  } from "react-hook-form"
 
 import { useDispatch } from "react-redux"
 import { openModal } from "@actions/layout"
@@ -24,26 +25,21 @@ import CloseIcon from "../../../public/icons/close.svg"
 import "./CallMe.scss"
 
 const CallMeModal = () => {
+  const { control, handleSubmit, errors } = useForm()
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
 
-  const [form, setForm] = useState({
+  const initialForm = {
     link: window.location.href,
     pos: 0,
     roistat_visit: Cookies.get("roistat_visit")
-  })
-
-  const onFormChange = (event) => {
-    setForm(prev => ({
-      ...prev,
-      [event.target.id]: event.target.value
-    }))
   }
 
-  const formHandler = (e) => {
-    e.preventDefault()
+  const formHandler = (data) => {
+    const form = Object.assign(initialForm, data)
 
     setLoading(true)
+
     callMe(form).then(({ data }) => {
       setLoading(false)
 
@@ -61,16 +57,51 @@ const CallMeModal = () => {
       title="Заказать звонок"
       hideButton
     >
-      <form className="call-me-form" onSubmit={formHandler}>
+      <form className="call-me-form" onSubmit={handleSubmit(formHandler)}>
         <div className="call-me-form__input">
-          <Input label="Ваше имя" id="name" handler={onFormChange} />
+          <Controller
+            name="name"
+            control={control}
+            rules={{ required: true }}
+            defaultValue=""
+            render={({ onChange, value }) =>
+              <Input
+                label="Ваше имя"
+                id="name"
+                handler={onChange}
+                value={value}
+                error={errors.name}
+              />
+            }
+          />
         </div>
+
         <div className="call-me-form__input">
-          <Input label="Ваш номер телефона" id="phone" mask="+7 (999) 999-99-99" handler={onFormChange} />
+          <Controller
+            name="phone"
+            control={control}
+            rules={{
+              required: true,
+              pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i
+            }}
+            defaultValue=""
+            render={({ onChange, value }) =>
+              <Input
+                label="Ваш номер телефона"
+                id="phone"
+                mask="+7 (999) 999-99-99"
+                handler={onChange}
+                value={value}
+                error={errors.phone}
+              />
+            }
+          />
         </div>
+
         <div className="call-me-form__button">
           <Button label="Отправить" isLoading={loading} />
         </div>
+
         <div className="call-me-form__text">
           Оформляя заказ, вы даёте согласие на<br/>
           <Link href="/content/agree/">обработку персональных данных</Link>
@@ -110,10 +141,14 @@ const CallMe = () => {
             <img width={24} height={24} src={icons[1]} alt="Chat image" />
           </div>
           <div className="call-me__list-item">
-            <img width={24} height={24} src={icons[2]} alt="Chat image" />
+            <a href="https://api.whatsapp.com/send?phone=79299408417" target="_blank">
+              <img width={24} height={24} src={icons[2]} alt="Chat image" />
+            </a>
           </div>
           <div className="call-me__list-item">
-            <img width={24} height={24} src={icons[3]} alt="Chat image" />
+            <a href="https://tele.click/Massagery24Bot" target="_blank">
+              <img width={24} height={24} src={icons[3]} alt="Chat image" />
+            </a>
           </div>
         </div>
 
