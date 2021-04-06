@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react"
 import Head from "next/head"
 import PropTypes from "prop-types"
-import { useRouter } from "next/router"
 import { connect } from "react-redux"
 
 import { setFilter, updateFilter } from "@actions/filter"
-import {fetchCategories, fetchCategory} from "@api/category"
+import { fetchCategories, fetchCategory } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"

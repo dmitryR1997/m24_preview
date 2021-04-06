@@ -6,7 +6,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component"
 
 import "./Banner.scss"
 
-const Banner = ({ type, title, description, image, view, link }) => {
+const Banner = ({ type, title, description, image, view, link, lazyLoadImage }) => {
   return (
     <Link href={link ? link : '/'}>
       <article
@@ -36,13 +36,28 @@ const Banner = ({ type, title, description, image, view, link }) => {
         </div>
         }
 
+
         <div className="banner__image">
-          <LazyLoadImage
+          <img
             src={image}
             width={290}
             height={402}
             alt="Banner image"
           />
+          {/*{lazyLoadImage ?*/}
+          {/*  <LazyLoadImage*/}
+          {/*    src={image}*/}
+          {/*    width={290}*/}
+          {/*    height={402}*/}
+          {/*    alt="Banner image"*/}
+          {/*  /> :*/}
+          {/*  <img*/}
+          {/*    src={image}*/}
+          {/*    width={290}*/}
+          {/*    height={402}*/}
+          {/*    alt="Banner image"*/}
+          {/*  />*/}
+          {/*}*/}
         </div>
       </article>
     </Link>
@@ -54,7 +69,8 @@ Banner.propTypes = {
   type: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
-  image: PropTypes.string
+  image: PropTypes.string,
+  lazyLoadImage: PropTypes.bool
 }
 
 export default Banner

@@ -37,7 +37,7 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
   const dispatch = useDispatch()
 
   if(cartList.length === 0 && !isServer) {
-    // router.push("/")
+    router.push("/")
   }
 
   const [loading, setLoading] = useState(false)
@@ -45,13 +45,13 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
   const formHandler = (data) => {
     const form = Object.assign(initialForm, data)
 
+    setLoading(true)
+
     addOrder({
       ...form,
       ids: cartList.map(item => item.id)
     }).then(({ data }) => {
       if (data.status) {
-        setForm(initialForm)
-
         dispatch(clearCart())
         dispatch(openModal(
           <Message
@@ -60,12 +60,9 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
             description="Менеджер свяжется с Вами в ближайшее время"
           />
         ))
-
         setLoading(false)
-
         addToCrm(data.id)
-
-        // router.push("/")
+        router.push("/")
       } else {
         dispatch(openModal(
           <Message
@@ -121,6 +118,7 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
               {/*         value={form.email}*/}
               {/*  />*/}
               {/*</div>*/}
+
               <div className="order-page__form-group">
                 <Controller
                   name="phone"
@@ -144,6 +142,7 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
               <div className="order-page__form-title">
                 Способы доставки
               </div>
+
               <Controller
                 name="delivery"
                 control={control}
@@ -183,6 +182,7 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
               <div className="order-page__form-title">
                 Способ оплаты
               </div>
+
               <Controller
                 name="pay"
                 control={control}

@@ -44,8 +44,6 @@ const GetShopAddresModal = ({ activeShop }) => {
       shop_name: activeShop.title,
       adress: activeShop.address
     }).then(({ data }) => {
-      setForm({})
-
       dispatch(openModal(
         <Message
           title="Ваша заявка успешно отправлена!"
@@ -235,13 +233,27 @@ const ShopPage = ({ categories }) => {
 
               <Tab id={2} label="Список">
                 {Object.keys(shops).map((key, i) => (
-                  <ShopCard
-                    key={key}
-                    image={shops[key].images[0]}
-                    workTime={shops[key].work_time}
-                    title={shops[key].title}
-                    brands={shops[key].brands}
-                  />
+                  <>
+                    <ShopCard
+                      key={key}
+                      image={shops[key].images[0]}
+                      workTime={shops[key].work_time}
+                      title={shops[key].title}
+                      brands={shops[key].brands}
+                    />
+                    <div className="contacts-page__get-address">
+                      <Button
+                        label="Получить адрес по SMS"
+                        size="xs"
+                        onClick={() =>
+                          dispatch(openModal(
+                            <GetShopAddresModal
+                              activeShop={shops[key]}
+                            />
+                          ))}
+                      />
+                    </div>
+                  </>
                 ))}
               </Tab>
             </Tabs>

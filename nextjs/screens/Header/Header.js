@@ -64,7 +64,7 @@ const Header = ({isOpenMainMenu, isOpenHeaderSearch, isProduct, categories}) => 
           "header--open-main-menu": isOpenMainMenu
         })}
       >
-        <Container>
+        <div className="container">
           <div className="header__wrapper">
             {isProduct &&
             <div className="header__arrow-back">
@@ -98,14 +98,12 @@ const Header = ({isOpenMainMenu, isOpenHeaderSearch, isProduct, categories}) => 
               </div>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
 
       {!isProduct &&
       <div id="header-fake" style={{ height: headerHeight }}/>
       }
-
-      <HeaderSearch/>
     </>
   )
 }

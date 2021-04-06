@@ -6,7 +6,7 @@ import { useForm, Controller } from "react-hook-form"
 
 import { connect, useDispatch } from "react-redux"
 import { hideModal, openModal } from "@actions/layout"
-import { oneClickBuy } from "@api/order"
+import { oneClickBuy, addPreOrder } from "@api/order"
 import { addToCart } from "@actions/cart"
 
 import Message from "@components/Cards/Message/Message"
@@ -41,7 +41,6 @@ const OneClickModal = ({ product, inCart }) => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const [form, setForm] = useState(initialForm)
   const [loading, setLoading] = useState(false)
 
 
@@ -54,7 +53,6 @@ const OneClickModal = ({ product, inCart }) => {
       ...form,
       ELEMENT_ID: parseInt(product.old_id)
     }).then(({ data }) => {
-      setForm(initialForm)
       dispatch(openModal(
         <Message
           title="Ваша заявка успешно отправлена!"
@@ -129,16 +127,98 @@ const OneClickModal = ({ product, inCart }) => {
   )
 }
 
+const PreOrderModal = ({ product }) => {
+  const { control, handleSubmit, errors } = useForm()
+
+  const router = useRouter()
+  const dispatch = useDispatch()
+
+  const [loading, setLoading] = useState(false)
+
+
+  const formHandler = (data) => {
+    const form = Object.assign({
+      name: "m24_mobile",
+      product: product.name,
+      product_id: product.old_id,
+      price: product.price,
+    }, data)
+
+    setLoading(true)
+
+    addPreOrder({
+      ...form,
+      ELEMENT_ID: parseInt(product.old_id)
+    }).then(({ data }) => {
+      dispatch(openModal(
+        <Message
+          title="Ваша заявка успешно отправлена!"
+          description="Менеджер свяжется с Вами в ближайшее время"
+        />
+      ))
+
+      setLoading(false)
+    })
+  }
+
+  return (
+    <Message hideButton={true}>
+      <ProductOneClick
+        product={product}
+      />
+      <form className="one-click-form" onSubmit={handleSubmit(formHandler)}>
+        <div className="one-click-form__input">
+          <Controller
+            name="tel"
+            control={control}
+            rules={{
+              required: true,
+              pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i
+            }}
+            defaultValue=""
+            render={({ onChange, value }) =>
+              <Input
+                label="Ваш номер телефона"
+                id="tel"
+                mask="+7 (999) 999-99-99"
+                handler={onChange}
+                value={value}
+                error={errors.tel}
+              />
+            }
+          />
+        </div>
+        <div className="one-click-form__button">
+          <Button label="Заказать товар" isLoading={loading} />
+        </div>
+      </form>
+
+      <div className="one-click-form__text">
+        Заказывая товар, вы даёте согласие на<br/>
+        <Link href="/content/agree/">обработку персональных данных</Link>
+      </div>
+    </Message>
+  )
+}
+
 const AddToCart = ({ product, text, cartList }) => {
   const dispatch = useDispatch()
 
   const openModalHandler = () => {
-    dispatch(openModal(
-      <OneClickModal
-        product={product}
-        inCart={cartList.some(item => item.id === parseInt(product.id))}
-      />
-    ))
+    if((product.quantity > 0) || (product.can_buy_zero === "Y")) {
+      dispatch(openModal(
+        <OneClickModal
+          product={product}
+          inCart={cartList.some(item => item.id === parseInt(product.id))}
+        />
+      ))
+    } else {
+      dispatch(openModal(
+        <PreOrderModal
+          product={product}
+        />
+      ))
+    }
   }
 
   return (

@@ -141,7 +141,7 @@ const CallMe = () => {
             <img width={24} height={24} src={icons[1]} alt="Chat image" />
           </div>
           <div className="call-me__list-item">
-            <a href="https://api.whatsapp.com/send?phone=79299408417" target="_blank">
+            <a href="https://api.whatsapp.com/send?phone=+79253026880" target="_blank">
               <img width={24} height={24} src={icons[2]} alt="Chat image" />
             </a>
           </div>

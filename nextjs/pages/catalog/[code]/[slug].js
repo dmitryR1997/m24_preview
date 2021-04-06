@@ -17,7 +17,6 @@ import { Tabs, Tab } from "@components/Surfaces/Tabs/Tabs"
 import ProductParamsList from "@components/Utils/ProductParamsList/ProductParamsList"
 import Alert from "@components/Display/Alert"
 
-import OfficialWaranty from "@screens/OfficialWaranty"
 import FiveReasons from "@screens/FiveReasons"
 import ExpertsHelp from "@screens/ExpertsHelp"
 import VideoReviews from "@screens/VideoReviews"
@@ -107,7 +106,7 @@ const ProductPage = ({ categories, details }) => {
               Наличие
             </div>
             <div className="single-product__info-item-value">
-              { details.quantity > 0 ? "На складе" : "Под заказ" }
+              { (details.quantity > 0) || (details.can_buy_zero === "Y") ? "На складе" : "Под заказ" }
             </div>
           </div>
           <div className="single-product__info-item">

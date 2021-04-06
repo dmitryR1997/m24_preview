@@ -16,8 +16,8 @@ const filterList = {
   DISCOUNT: "Скидки"
 }
 
-const ProductsList = ({ fetchedProducts }) => {
-  const [products, setProducts] = useState(fetchedProducts)
+const ProductsList = () => {
+  const [products, setProducts] = useState([])
   const [productsTotal, setProductsTotal] = useState(0)
   const [filter, setFilter] = useState("NEWPRODUCT")
   const [page, setPage] = useState(1)
@@ -50,7 +50,7 @@ const ProductsList = ({ fetchedProducts }) => {
 
   return (
     <div className="products-list">
-      <Container>
+      <div className="container">
         <div className="products-list__filter">
           {Object.keys(filterList).map((item, key) => (
             <div key={key}
@@ -96,7 +96,7 @@ const ProductsList = ({ fetchedProducts }) => {
             </div>
           </>
         }
-      </Container>
+      </div>
     </div>
   )
 }

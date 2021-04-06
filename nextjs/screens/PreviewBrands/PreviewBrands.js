@@ -10,7 +10,15 @@ import Button from "@components/Forms/Button"
 
 import "./PreviewBrands.scss"
 
-const PreviewBrands = ({ brands }) => {
+const PreviewBrands = () => {
+  const [brands, setBrands] = useState([])
+
+  useEffect(() => {
+    api.get("https://dev.massagery24.ru/api/brand/list.php").then((response) => {
+      setBrands(response.data)
+    })
+  }, [])
+
   return (
     <section className="preview-brands">
       <Container>

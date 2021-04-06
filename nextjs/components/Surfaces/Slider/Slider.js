@@ -3,12 +3,26 @@ import PropTypes from "prop-types"
 
 import "./Slider.scss"
 
-import SwiperCore, { Pagination } from "swiper"
+import SwiperCore, { Pagination, Lazy } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 
-SwiperCore.use([Pagination])
+SwiperCore.use([Pagination, Lazy])
 
 const Slider = ({ children, visibleHiddenSlides, pagination }) => {
+  const slides = []
+
+  children.forEach((item, key) => {
+    slides.push(
+      <SwiperSlide
+        key={key}
+      >
+        {item}
+      </SwiperSlide>
+    )
+  })
+
+  if(slides.length === 0) return null
+
   return (
     <Swiper
       className={`${visibleHiddenSlides ? "swiper-container--visible-hidden-slides" : ""} ${pagination ? "swiper-container--with-pagination" : ""}`}
@@ -21,13 +35,7 @@ const Slider = ({ children, visibleHiddenSlides, pagination }) => {
         }
       }
     >
-      {children.map((item, key) => (
-        <SwiperSlide
-          key={key}
-        >
-          {item}
-        </SwiperSlide>
-      ))}
+      {slides}
     </Swiper>
   )
 }

@@ -1,41 +1,47 @@
-import React, { useEffect, useState } from "react"
-import { Fade } from "react-awesome-reveal"
-
+import React from "react"
 import Slider from "@components/Surfaces/Slider"
 import Container from "@components/Layout/Container"
 import SliderProductCard from "@components/Cards/SliderProduct"
 
-import api from "@api/index"
-
-import "./NewProductsSlider.scss"
 import Banner from "@components/Cards/Banner/Banner"
 
+import "./NewProductsSlider.scss"
+
 const NewProductsSlider = ({ slides }) => {
+  const renderSlides = []
+
+  slides.forEach((slide, key) => {
+    renderSlides.push(
+      slide.view === "product" ?
+        <SliderProductCard
+          key={key}
+          product={product}
+        /> :
+        <Banner
+          key={key}
+          type={slide.type}
+          title={slide.title}
+          description={slide.title_second}
+          image={slide.image}
+          view={slide.view}
+          link={slide.link}
+          lazyLoadImage={key !== 0}
+        />
+    )
+  })
+
+  if(slides.length === 0) return null
+
   return (
     <section className="new-products-slider">
-      <Container>
+      <div className="container">
         <Slider
           visibleHiddenSlides
           pagination
         >
-          {slides.map((slide, key) => (
-            slide.view === "product" ?
-              <SliderProductCard
-                key={key}
-                product={product}
-              /> :
-              <Banner
-                key={key}
-                type={slide.type}
-                title={slide.title}
-                description={slide.title_second}
-                image={slide.image}
-                view={slide.view}
-                link={slide.link}
-              />
-          ))}
+          {renderSlides}
         </Slider>
-      </Container>
+      </div>
     </section>
   )
 }

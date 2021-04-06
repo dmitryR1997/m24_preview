@@ -1,16 +1,18 @@
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+import dynamic from "next/dynamic"
 
 import { connect } from "react-redux"
 
-import MainMenu from "@components/Utils/MainMenu"
-import Modal from "@components/Surfaces/Modal"
-import CallMe from "@components/Utils/CallMe/CallMe"
+const MainMenu = dynamic(() => import("@components/Utils/MainMenu"))
+const Modal = dynamic(() => import("@components/Surfaces/Modal"))
+const CallMe = dynamic(() => import("@components/Utils/CallMe/CallMe"))
+const HeaderSearch = dynamic(() => import("@components/Utils/HeaderSearch/HeaderSearch"))
 
-import BeforeHeader from "@screens/BeforeHeader"
-import Header from "@screens/Header"
-import AboutShop from "@screens/AboutShop"
-import Footer from "@screens/Footer"
+const BeforeHeader = dynamic(() => import("@screens/BeforeHeader"))
+const Header = dynamic(() => import("@screens/Header"))
+const AboutShop = dynamic(() => import("@screens/AboutShop"))
+const Footer = dynamic(() => import("@screens/Footer"))
 
 import "./Layout.scss"
 
@@ -66,6 +68,7 @@ const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu }) => 
       </div>
 
       <MainMenu categories={categories} />
+      <HeaderSearch/>
     </>
   )
 }

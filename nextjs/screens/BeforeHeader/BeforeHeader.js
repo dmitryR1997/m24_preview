@@ -7,7 +7,7 @@ import "./BeforeHeader.scss"
 const BeforeHeader = () => {
   return (
     <div className="before-header">
-      <Container>
+      <div className="container">
         <div className="before-header__wrapper">
           <div className="before-header__free-delivery">
             Бесплатная<br/>
@@ -22,7 +22,7 @@ const BeforeHeader = () => {
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   )
 }
