@@ -10,7 +10,7 @@
   border-radius: 70px;
   border: none;
 
-  padding: 19px 50px;
+  padding: 18px 50px;
 
   transition: all ease-in-out 0.2s;
 
@@ -51,5 +51,10 @@
     background-position: center center;
     background-repeat: no-repeat;
     color: transparent;
+  }
+
+  &--is-block {
+    display: block;
+    width: 100%;
   }
 }

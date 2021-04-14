@@ -3,12 +3,12 @@ import PropTypes from "prop-types"
 
 import "./Slider.scss"
 
-import SwiperCore, { Pagination, Lazy } from "swiper"
+import SwiperCore, {Pagination, Lazy, Controller} from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 
-SwiperCore.use([Pagination, Lazy])
+SwiperCore.use([Pagination, Lazy, Controller])
 
-const Slider = ({ children, visibleHiddenSlides, pagination }) => {
+const Slider = ({ children, visibleHiddenSlides, pagination, slidesPerView, controller, setController }) => {
   const slides = []
 
   children.forEach((item, key) => {
@@ -29,9 +29,11 @@ const Slider = ({ children, visibleHiddenSlides, pagination }) => {
       {...
         {
           observer: "true",
-          slidesPerView: "auto",
+          slidesPerView: slidesPerView ? slidesPerView : "auto",
           spaceBetween: 24,
-          pagination: pagination ? { clickable: true } : false
+          pagination: pagination ? { clickable: true } : false,
+          controller: controller ? { control: controller } : false,
+          onSwiper: setController ? setController : false
         }
       }
     >
@@ -42,7 +44,8 @@ const Slider = ({ children, visibleHiddenSlides, pagination }) => {
 
 Slider.propTypes = {
   pagination: PropTypes.bool,
-  visibleHiddenSlides: PropTypes.bool
+  visibleHiddenSlides: PropTypes.bool,
+  slidesPerView: PropTypes.number
 }
 
 export default Slider

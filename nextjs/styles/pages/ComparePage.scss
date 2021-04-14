@@ -1,0 +1,77 @@
+.compare-page {
+  margin: 40px 0 0;
+
+  &__list {
+    .swiper-slide {
+      position: static;
+      height: auto;
+    }
+
+    &-item {
+      display: flex;
+      height: 100%;
+    }
+  }
+
+
+  &__compare {
+    position: relative;
+    margin: 40px 0;
+
+    &-values {
+      &-item {
+        margin-bottom: 16px;
+
+        &-label {
+          position: relative;
+          opacity: 0;
+          width: 320px;
+          font-size: 10px;
+          line-height: 1.2;
+          margin-bottom: 16px;
+        }
+
+        &-value {
+          font-size: 15px;
+          font-weight: 600;
+          word-break: break-word;
+          line-height: 1.2;
+        }
+      }
+    }
+
+    &-titles {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      font-size: 10px;
+      line-height: 1.2;
+      color: rgba(20, 20, 43, 0.6);
+
+      &-item {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  &__explame-massager {
+    margin: 0 0 48px;
+  }
+
+  &__five-reasons {
+    margin: 0 0 48px;
+  }
+
+  &__official-waranty {
+    margin: 0 0 48px;
+  }
+
+  &__realeted-products {
+    margin: 0 0 48px;
+  }
+
+  &__experts-help {
+    margin: 0 0 48px;
+  }
+}

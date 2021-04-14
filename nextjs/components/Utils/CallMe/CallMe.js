@@ -29,27 +29,27 @@ const CallMeModal = () => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
 
-  const initialForm = {
-    link: window.location.href,
-    pos: 0,
-    roistat_visit: Cookies.get("roistat_visit")
-  }
-
   const formHandler = (data) => {
+    const initialForm = {
+      link: window.location.href,
+      pos: 0,
+      roistat_visit: Cookies.get("roistat_visit")
+    }
+
     const form = Object.assign(initialForm, data)
 
-    setLoading(true)
+    // setLoading(true)
 
     callMe(form).then(({ data }) => {
-      setLoading(false)
-
-      dispatch(openModal(
-        <Message
-          title="Ваша заявка успешно отправлена!"
-          description="Менеджер свяжется с Вами в ближайшее время"
-        />
-      ))
+      // setLoading(false)
     })
+
+    dispatch(openModal(
+      <Message
+        title="Ваша заявка успешно отправлена!"
+        description="Менеджер свяжется с Вами в ближайшее время"
+      />
+    ))
   }
 
   return  (

@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
   useEffect(()=> {
-    TagManager.initialize(tagManagerArgs)
+    if(process.env.NODE_ENV === "production") TagManager.initialize(tagManagerArgs)
 
     router.events.on("routeChangeComplete", () => {
       window.scrollTo({

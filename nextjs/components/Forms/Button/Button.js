@@ -4,15 +4,16 @@ import classnames from "classnames"
 
 import "./Button.scss"
 
-const Button = ({ classes, label, size, outline, transparent, inCart, isLoading, onClick }) => {
+const Button = ({ classes, label, size, outline, transparent, inCart, isLoading, isBlock, onClick }) => {
   return (
     <button
-      className={classnames(`button ${classes}`, {
+      className={classnames(`button ${classes ? classes : ''}`, {
         "button--xs": size === "xs",
         "button--outline": outline,
         "button--transparent": transparent,
         "button--in-cart": inCart,
-        "button--is-loading": isLoading
+        "button--is-loading": isLoading,
+        "button--is-block": isBlock
       })}
       onClick={onClick}
       type="submit"
@@ -30,6 +31,7 @@ Button.propTypes = {
   transparent: PropTypes.bool,
   inCart: PropTypes.bool,
   isLoading: PropTypes.bool,
+  isBlock: PropTypes.bool,
   onClick: PropTypes.func
 }
 

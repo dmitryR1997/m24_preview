@@ -11,10 +11,11 @@ let store
 
 const persistConfig = {
   keyPrefix: '',
-  key: 'app',
+  key: "app",
   storage,
   whitelist: [
-    'cart'
+    "cart",
+    "compare"
   ],
 }
 

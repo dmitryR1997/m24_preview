@@ -1,18 +1,19 @@
-import React, {useCallback, useEffect, useState} from "react"
+import React, {useEffect, useState} from "react"
+import Cookies from "js-cookie"
 import Head from "next/head"
 import Link from "next/link"
-import { useDispatch } from "react-redux"
+import {useDispatch} from "react-redux"
 
-import { useForm, Controller } from "react-hook-form"
-import { YMaps, Map, Clusterer, Placemark } from "react-yandex-maps"
+import {Controller, useForm} from "react-hook-form"
+import {Clusterer, Map, Placemark, YMaps} from "react-yandex-maps"
 
-import { openModal} from "@actions/layout"
-import { fetchShops, getShopAddress } from "@api/shop"
-import { fetchCategories } from "@api/category"
+import {openModal} from "@actions/layout"
+import {fetchShops, getShopAddress} from "@api/shop"
+import {fetchCategories} from "@api/category"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
-import { Tabs, Tab } from "@components/Surfaces/Tabs/Tabs"
+import {Tab, Tabs} from "@components/Surfaces/Tabs/Tabs"
 import ShopCard from "@components/Cards/Shop"
 import RealetedProducts from "@components/Utils/RealetedProducts"
 import Message from "@components/Cards/Message/Message"
@@ -33,26 +34,25 @@ const GetShopAddresModal = ({ activeShop }) => {
   const [loading, setLoading] = useState(false)
 
   const formHandler = (data) => {
-    const form = data
-
-    setLoading(true)
+    // setLoading(true)
 
     getShopAddress({
-      ...form,
+      ...(data),
       phone: data.phone.replace(/[^\d]/g, '').slice(1),
       city: activeShop.city,
       shop_name: activeShop.title,
-      adress: activeShop.address
+      adress: activeShop.address,
+      roistat_visit: Cookies.get("roistat_visit")
     }).then(({ data }) => {
-      dispatch(openModal(
-        <Message
-          title="Ваша заявка успешно отправлена!"
-          description="Менеджер свяжется с Вами в ближайшее время"
-        />
-      ))
-
-      setLoading(false)
+      // setLoading(false)
     })
+
+    dispatch(openModal(
+      <Message
+        title="Ваша заявка успешно отправлена!"
+        description="Менеджер свяжется с Вами в ближайшее время"
+      />
+    ))
   }
 
   return (
@@ -106,7 +106,7 @@ const GetShopAddresModal = ({ activeShop }) => {
         </div>
 
         <div className="get-address-form__text">
-          Оформляя заказ, вы даёте согласие на<br/>
+          Отправляя заявку, вы даёте согласие на<br/>
           <Link href="/content/agree/">обработку персональных данных</Link>
         </div>
       </form>

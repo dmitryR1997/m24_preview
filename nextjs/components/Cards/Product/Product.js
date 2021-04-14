@@ -1,6 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
+import classnames from "classnames"
+
+import { connect, useDispatch } from "react-redux"
+import { addToCompare } from "@actions/compare"
 
 import Amount from "@components/Display/Amount"
 import Slider from "@components/Surfaces/Slider"
@@ -13,9 +17,11 @@ import PlayIcon from "../../../public/icons/play-button.svg"
 import ComparisonIcon from "../../../public/icons/comparison.svg"
 import NoneVideoIcon from "../../../public/icons/info.svg"
 import VideoPlayer from "@components/Surfaces/VideoPlayer";
-import AddToCart from "@components/Utils/AddToCart/AddToCart";
+import AddToCart from "@components/Utils/AddToCart/AddToCart"
 
-const Product = ({ product }) => {
+const Product = ({ product, compareList }) => {
+  const dispatch = useDispatch()
+
   return (
     <article
       className="product-card"
@@ -89,7 +95,6 @@ const Product = ({ product }) => {
 
       <div className="product-card__nav">
         <div className="product-card__nav-item">
-          <div style={{ width: 32 }} />
           {product.video
             ? <>
                 <VideoPlayer videoId={product.video} icon={<PlayIcon/>} />
@@ -101,13 +106,14 @@ const Product = ({ product }) => {
         <div className="product-card__nav-item">
           <AddToCart
             product={product}
-            text="Купить"
+            text={(product.quantity > 0) || (product.can_buy_zero === "Y") ? "Купить" : "Предзаказ"}
           />
         </div>
 
-        <div className="product-card__nav-item">
-          <div style={{ width: 32 }} />
-          {/*<ComparisonIcon/>*/}
+        <div className={classnames("product-card__nav-item", { "product-card__nav-item--in-compare": compareList.some(item => item.id === parseInt(product.id)) })}
+             onClick={() => dispatch(addToCompare({ id: product.id }))}
+        >
+          <ComparisonIcon/>
         </div>
       </div>
     </article>
@@ -115,8 +121,14 @@ const Product = ({ product }) => {
 }
 
 Product.propTypes = {
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
+  compareList: PropTypes.array.isRequired
 }
 
+const mapStateToolProps = state => {
+  return {
+    compareList: state.compare.list
+  }
+}
 
-export default Product
+export default connect(mapStateToolProps)(Product)

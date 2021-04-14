@@ -1,5 +1,6 @@
-import React, {useCallback, useState} from "react"
+import React, { useCallback, useState } from "react"
 import PropTypes from "prop-types"
+import Cookies from "js-cookie"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useForm, Controller } from "react-hook-form"
@@ -47,21 +48,23 @@ const OneClickModal = ({ product, inCart }) => {
   const formHandler = (data) => {
     const form = Object.assign(initialForm, data)
 
-    setLoading(true)
+    // setLoading(true)
 
     oneClickBuy({
       ...form,
-      ELEMENT_ID: parseInt(product.old_id)
+      ELEMENT_ID: parseInt(product.old_id),
+      roistat_visit: Cookies.get("roistat_visit")
     }).then(({ data }) => {
-      dispatch(openModal(
-        <Message
-          title="Ваша заявка успешно отправлена!"
-          description="Менеджер свяжется с Вами в ближайшее время"
-        />
-      ))
-
-      setLoading(false)
+      // setLoading(false)
     })
+
+    dispatch(openModal(
+      <Message
+        classes="order-success"
+        title="Ваша заявка успешно отправлена!"
+        description="Менеджер свяжется с Вами в ближайшее время"
+      />
+    ))
   }
 
   const addToCartHandler = useCallback(() => {
@@ -71,7 +74,8 @@ const OneClickModal = ({ product, inCart }) => {
       dispatch(addToCart({
         id: parseInt(product.id),
         old_id: parseInt(product.old_id),
-        quantity: 1
+        quantity: 1,
+        roistat_visit: Cookies.get("roistat_visit")
       }))
     }
 
@@ -83,6 +87,7 @@ const OneClickModal = ({ product, inCart }) => {
       <ProductOneClick
         product={product}
       />
+
       <form className="one-click-form" onSubmit={handleSubmit(formHandler)}>
         <div className="one-click-form__input">
           <Controller
@@ -135,30 +140,31 @@ const PreOrderModal = ({ product }) => {
 
   const [loading, setLoading] = useState(false)
 
-
   const formHandler = (data) => {
     const form = Object.assign({
       name: "m24_mobile",
       product: product.name,
       product_id: product.old_id,
       price: product.price,
+      roistat_visit: Cookies.get("roistat_visit")
     }, data)
 
-    setLoading(true)
+    // setLoading(true)
 
     addPreOrder({
       ...form,
       ELEMENT_ID: parseInt(product.old_id)
     }).then(({ data }) => {
-      dispatch(openModal(
-        <Message
-          title="Ваша заявка успешно отправлена!"
-          description="Менеджер свяжется с Вами в ближайшее время"
-        />
-      ))
-
-      setLoading(false)
+      // setLoading(false)
     })
+
+    dispatch(openModal(
+      <Message
+        classes="preorder-success"
+        title="Ваша заявка успешно отправлена!"
+        description="Менеджер свяжется с Вами в ближайшее время"
+      />
+    ))
   }
 
   return (
@@ -189,7 +195,7 @@ const PreOrderModal = ({ product }) => {
           />
         </div>
         <div className="one-click-form__button">
-          <Button label="Заказать товар" isLoading={loading} />
+          <Button label="Предзаказ" isLoading={loading} />
         </div>
       </form>
 

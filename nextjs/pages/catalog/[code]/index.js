@@ -21,6 +21,7 @@ import ExplameMassager from "@screens/ExplameMassager"
 import filters from "@utils/filters"
 
 import "@styles/pages/catalog.scss"
+import CompareNav from "@components/Utils/CompareNav/CompareNav";
 
 const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categories }) => {
   const [total, setTotal] = useState(0)
@@ -45,7 +46,6 @@ const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categori
         <meta name="description" content={category.description} />
         <meta name="keywords" content={category.keywrods} />
       </Head>
-
       <div className="catalog-page-content">
         <input type="hidden" className="gtm-category-name" value={category.NAME} />
         <input type="hidden" className="gtm-category-id" value={category.ID} />
@@ -116,6 +116,8 @@ const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categori
           </Container>
         </div>
       </div>
+
+      <CompareNav/>
     </Layout>
   )
 }

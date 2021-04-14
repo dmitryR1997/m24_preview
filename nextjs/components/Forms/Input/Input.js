@@ -27,7 +27,7 @@ const Input = ({ id, label, value, handler, mask, error }) => {
     return (
       <div className={classnames("input", {
         "input--error": error,
-        "input--has-text": value.length
+        "input--has-text": value
       })}>
         <InputMask  mask={mask}
                     value={value}
@@ -43,7 +43,7 @@ const Input = ({ id, label, value, handler, mask, error }) => {
   return (
     <div className={classnames("input", {
       "input--error": error,
-      "input--has-text": value.length
+      "input--has-text": value
     })}>
       {control}
       <label className="input__label" htmlFor={id}>{label}</label>

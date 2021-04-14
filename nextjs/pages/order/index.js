@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
+import Cookies from "js-cookie"
 import { useRouter } from "next/router"
 import { useForm, Controller } from "react-hook-form"
 
@@ -8,7 +9,6 @@ import { openModal } from "@actions/layout"
 import { clearCart } from "@actions/cart"
 import { addOrder, addToCrm } from "@api/order"
 import { fetchCategories } from "@api/category"
-import { getCartQuantity } from "../../selectors/cart"
 
 import Layout from "@components/Layout/Layout"
 import Container from "@components/Layout/Container"
@@ -31,7 +31,7 @@ const initialForm = {
   pay: 1
 }
 
-const OrderPage = ({ cartList, cartQuantity, categories }) => {
+const OrderPage = ({ cartList, categories }) => {
   const { control, handleSubmit, errors } = useForm()
   const router = useRouter()
   const dispatch = useDispatch()
@@ -49,20 +49,23 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
 
     addOrder({
       ...form,
-      ids: cartList.map(item => item.id)
+      ids: cartList.map(item => item.id),
+      roistat_visit: Cookies.get("roistat_visit")
     }).then(({ data }) => {
       if (data.status) {
         dispatch(clearCart())
-        dispatch(openModal(
-          <Message
-            classes="order-success"
-            title="Ваша заявка успешно отправлена!"
-            description="Менеджер свяжется с Вами в ближайшее время"
-          />
-        ))
         setLoading(false)
-        addToCrm(data.id)
+        addToCrm(data.id, data.roistat_visit)
         router.push("/")
+        setTimeout(() => {
+          dispatch(openModal(
+            <Message
+              classes="order-success"
+              title="Ваша заявка успешно отправлена!"
+              description="Менеджер свяжется с Вами в ближайшее время"
+            />
+          ))
+        }, 0)
       } else {
         dispatch(openModal(
           <Message
@@ -103,21 +106,6 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
                   />}
                 />
               </div>
-
-              {/*<div className="order-page__form-group">*/}
-              {/*  <Input label="Ваша фамилия"*/}
-              {/*         id="last_name"*/}
-              {/*         handler={onFormChange}*/}
-              {/*         value={form.last_name}*/}
-              {/*  />*/}
-              {/*</div>*/}
-              {/*<div className="order-page__form-group">*/}
-              {/*  <Input label="Ваш email"*/}
-              {/*         id="email"*/}
-              {/*         handler={onFormChange}*/}
-              {/*         value={form.email}*/}
-              {/*  />*/}
-              {/*</div>*/}
 
               <div className="order-page__form-group">
                 <Controller
@@ -165,19 +153,29 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
                               checked={props.value === 1}
                       />
                     </div>
+
+                    {props.value === 1 &&
+                    <div className="order-page__form-group">
+                      <Controller
+                        name="address"
+                        control={control}
+                        rules={{
+                          required: true
+                        }}
+                        defaultValue=""
+                        render={({onChange, value}) =>
+                          <Input label="Адрес"
+                                 id="address"
+                                 handler={onChange}
+                                 value={value}
+                                 error={errors.address}
+                          />}
+                      />
+                    </div>
+                    }
                   </>
                   }
               />
-
-              {/*{parseInt(form.delivery) === 2 &&*/}
-              {/*<div className="order-page__form-group">*/}
-              {/*  <Input label="Адрес"*/}
-              {/*         id="address"*/}
-              {/*         handler={onFormChange}*/}
-              {/*         value={form.address}*/}
-              {/*  />*/}
-              {/*</div>*/}
-              {/*}*/}
 
               <div className="order-page__form-title">
                 Способ оплаты
@@ -214,6 +212,7 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
               <Button
                 label="Оформить"
                 isLoading={loading}
+                isBlock={true}
               />
             </div>
           </form>
@@ -224,14 +223,12 @@ const OrderPage = ({ cartList, cartQuantity, categories }) => {
 }
 
 OrderPage.propTypes = {
-  cartList: PropTypes.array.isRequired,
-  cartQuantity: PropTypes.number.isRequired
+  cartList: PropTypes.array.isRequired
 }
 
 const mapStateToolProps = state => {
   return {
-    cartList: state.cart.list,
-    cartQuantity: getCartQuantity(state)
+    cartList: state.cart.list
   }
 }
 

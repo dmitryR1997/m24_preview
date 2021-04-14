@@ -82,6 +82,14 @@
 
     &-item {
       cursor: pointer;
+
+      &--in-compare {
+        svg {
+          path {
+            fill: #B2D92E;
+          }
+        }
+      }
     }
   }
 
