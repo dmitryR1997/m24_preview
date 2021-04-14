@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
-import SwiperCore, { Controller } from 'swiper';
+import SwiperCore, { Controller } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react"
 
 import { connect } from "react-redux"
 import { fetchCompare, fetchProducts } from "@api/product"
@@ -12,11 +13,15 @@ import CatalogProduct from "@components/Cards/CatalogProduct"
 
 import "@styles/pages/ComparePage.scss"
 
+SwiperCore.use([Controller]);
+
 const CartPage = ({ compareListIds, categories }) => {
   const compareListRef = useRef()
   const [products, setProducts] = useState([])
   const [compareList, setCompareList] = useState([])
-  const [controlledSwiper, setControlledSwiper] = useState(null);
+
+  const [firstSwiper, setFirstSwiper] = useState(null)
+  const [secondSwiper, setSecondSwiper] = useState(null)
 
   useEffect(() => {
     fetchProducts({ ids: compareListIds.map(item => item.id) }).then(({ data }) => {
@@ -78,44 +83,52 @@ const CartPage = ({ compareListIds, categories }) => {
           </h1>
 
           <div className="compare-page__list">
-            <Slider
+            <Swiper
+              spaceBetween={24}
               slidesPerView={2}
-              controller={controlledSwiper}
+              onSwiper={setFirstSwiper}
+              controller={{ control: secondSwiper }}
             >
               {products.map((product, key) => {
                 return (
-                  <div key={key} className="compare-page__list-item">
-                    <CatalogProduct
-                      product={product}
-                      size="xs"
-                    />
-                  </div>
+                  <SwiperSlide key={key}>
+                    <div className="compare-page__list-item">
+                      <CatalogProduct
+                        product={product}
+                        size="xs"
+                      />
+                    </div>
+                  </SwiperSlide>
                 )
               })}
-            </Slider>
+            </Swiper>
 
             <div ref={compareListRef} className="compare-page__compare">
-              <Slider
+              <Swiper
+                spaceBetween={24}
                 slidesPerView={2}
-                setController={setControlledSwiper}
+                onSwiper={setSecondSwiper}
+                controller={{ control: firstSwiper }}
               >
                 {compareList.map((list, key) => {
                   return (
-                    <div key={key} className="compare-page__compare-values">
-                      {list["general"].map((item, inner) => (
-                        <div key={inner} className="compare-page__compare-values-item">
-                          <div className="compare-page__compare-values-item-label">
-                            {item.name}
+                    <SwiperSlide key={key}>
+                      <div className="compare-page__compare-values">
+                        {list["general"].map((item, inner) => (
+                          <div key={inner} className="compare-page__compare-values-item">
+                            <div className="compare-page__compare-values-item-label">
+                              {item.name}
+                            </div>
+                            <div className="compare-page__compare-values-item-value">
+                              {item.value ? item.value : "—"}
+                            </div>
                           </div>
-                          <div className="compare-page__compare-values-item-value">
-                            {item.value ? item.value : "—"}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    </SwiperSlide>
                   )
                 })}
-              </Slider>
+              </Swiper>
 
               {compareList[0] &&
               <div className="compare-page__compare-titles">
