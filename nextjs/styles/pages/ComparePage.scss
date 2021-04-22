@@ -7,6 +7,10 @@
   }
 
   &__list {
+    padding-bottom: 40px;
+
+    overflow: hidden;
+
     .swiper-slide {
       position: static;
       height: auto;
@@ -36,10 +40,9 @@
     }
   }
 
-
   &__compare {
     position: relative;
-    margin: 40px 0;
+    margin: 0 0 40px;
 
     &-values {
       &-item {
