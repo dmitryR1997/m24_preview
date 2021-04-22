@@ -39,7 +39,7 @@ const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu, isOve
   return (
     <>
       <div className={classnames("default-layout", {
-        "defaul-layout--overflow-initial": isOverflowInitial
+        "default-layout--is-overflow-initial": isOverflowInitial
       })}>
         {pageType &&
         <input className="gtm-page-type" type="hidden" value={pageType} />
