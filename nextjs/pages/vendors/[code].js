@@ -17,7 +17,7 @@ const BrandPage = ({ categories, brand }) => {
   const [total, setTotal] = useState(0)
 
   return (
-    <Layout pageType="category" categories={categories}>
+    <Layout categories={categories}>
       <Head>
         <title>{brand.seo_title}</title>
         <meta name="description" content={brand.seo_description} />
@@ -25,7 +25,7 @@ const BrandPage = ({ categories, brand }) => {
       </Head>
 
       <div className="catalog-page-content">
-        <Container>
+        <div className="container">
           <div className="catalog-page-content__header">
             {brand.NAME &&
             <div className="catalog-page-content__header-title">
@@ -36,7 +36,7 @@ const BrandPage = ({ categories, brand }) => {
             </div>
             }
           </div>
-        </Container>
+        </div>
 
         {brand.ID &&
         <div className="catalog-page-content__products">
@@ -52,9 +52,9 @@ const BrandPage = ({ categories, brand }) => {
         }
 
         <div className="catalog-page-content__explame-massager">
-          <Container>
+          <div className="container">
             <ExplameMassager/>
-          </Container>
+          </div>
         </div>
 
         <div className="catalog-page-content__experts-help">

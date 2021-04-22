@@ -23,7 +23,7 @@ const RealetedProducts = ({ params }) => {
 
   return (
     <div className="realeted-products">
-      <Container>
+      <div className="container">
         <div className="realeted-products__title">
           Возможно Вас заинтересует
         </div>
@@ -44,7 +44,7 @@ const RealetedProducts = ({ params }) => {
             })}
           </Slider>
         </div>
-      </Container>
+      </div>
     </div>
   )
 }

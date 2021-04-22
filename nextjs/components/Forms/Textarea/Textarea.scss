@@ -1,0 +1,64 @@
+%label-movement {
+  font-size: 10px;
+  top: 11px;
+  transform: translateY(0);
+  transition: all 0.125s cubic-bezier(0.2, 0, 0.03, 1);
+}
+
+.textarea {
+  position: relative;
+  padding: 27px 16px 10px 16px;
+  background-color: #EFF0F7;
+  border-radius: 16px;
+
+  &__control,
+  &__label {
+    font-size: 16px;
+    letter-spacing: 0.75px;
+    line-height: 1.4;
+  }
+
+  &__control {
+    resize: none;
+    padding: 0;
+    border: none;
+    width: 100%;
+    font-weight: 600;
+    color: #14142B;
+
+    &:focus {
+      ~ label {
+        @extend %label-movement;
+      }
+    }
+  }
+
+  &__label {
+    font-weight: 400;
+    color: #A0A3BD;
+
+    cursor: pointer;
+
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    transition: all 0.25s cubic-bezier(0.2, 0, 0.03, 1);
+    pointer-events: none
+  }
+
+  &--error {
+    border: 1px solid #ce0625;
+
+    .textarea__label {
+      color: #ce0625;
+    }
+  }
+
+  &--has-text {
+    .textarea__control {
+      ~ label {
+        @extend %label-movement;
+      }
+    }
+  }
+}

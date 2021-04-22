@@ -58,7 +58,7 @@ const HeaderSearch = ({ isOpenHeaderSearch, toggleHeaderSearch }) => {
       })}
     >
       <div className="header-search__header">
-        <Container>
+        <div className="container">
           <div className="header-search__header-inner">
             <div className="header-search__header-input">
               <input type="text"
@@ -73,10 +73,10 @@ const HeaderSearch = ({ isOpenHeaderSearch, toggleHeaderSearch }) => {
               <CloseIcon/>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
 
-      <Container>
+      <div className="container">
         <div className="header-search__list">
           {!loading && products.length === 0 && q.length > 0 &&
           <div className="header-search__list-empty">
@@ -106,7 +106,7 @@ const HeaderSearch = ({ isOpenHeaderSearch, toggleHeaderSearch }) => {
             </Link>
           ))}
         </div>
-      </Container>
+      </div>
     </div>
   )
 }

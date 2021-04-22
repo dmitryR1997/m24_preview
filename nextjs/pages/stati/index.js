@@ -73,7 +73,7 @@ const ArticlesPage = ({ categories }) => {
       </Head>
 
       <div className="articles-page">
-        <Container>
+        <div className="container">
           <div className="articles-page__header">
             <SectionHeader
               title="Обзоры и советы"
@@ -115,12 +115,12 @@ const ArticlesPage = ({ categories }) => {
               {/*</div>*/}
             </>
           }
-        </Container>
+        </div>
 
         <div className="articles-page__five-reasons">
-          <Container>
+          <div className="container">
             <FiveReasons/>
-          </Container>
+          </div>
         </div>
 
         {/*<div className="articles-page__official-waranty">*/}

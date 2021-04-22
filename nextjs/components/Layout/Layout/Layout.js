@@ -1,18 +1,17 @@
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
-import dynamic from "next/dynamic"
 
 import { connect } from "react-redux"
 
-const MainMenu = dynamic(() => import("@components/Utils/MainMenu"))
-const Modal = dynamic(() => import("@components/Surfaces/Modal"))
-const CallMe = dynamic(() => import("@components/Utils/CallMe/CallMe"))
-const HeaderSearch = dynamic(() => import("@components/Utils/HeaderSearch/HeaderSearch"))
+import BeforeHeader from "@screens/BeforeHeader"
+import Header from "@screens/Header/Header"
+import MainMenu from "@components/Utils/MainMenu/MainMenu"
+import Modal from "@components/Surfaces/Modal/Modal"
+import CallMe from "@components/Utils/CallMe"
+import HeaderSearch from "@components/Utils/HeaderSearch/HeaderSearch"
 
-const BeforeHeader = dynamic(() => import("@screens/BeforeHeader"))
-const Header = dynamic(() => import("@screens/Header"))
-const AboutShop = dynamic(() => import("@screens/AboutShop"))
-const Footer = dynamic(() => import("@screens/Footer"))
+import AboutShop from "@screens/AboutShop"
+import Footer from "@screens/Footer"
 
 import "./Layout.scss"
 

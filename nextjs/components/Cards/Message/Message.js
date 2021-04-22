@@ -64,4 +64,4 @@ const mapDispatchToProps = {
   hideModal
 }
 
-export default connect(null, mapDispatchToProps)(Message)
+export default  connect(null, mapDispatchToProps)(Message)

@@ -1,22 +1,20 @@
 import React from "react"
 import Head from "next/head"
-import dynamic from "next/dynamic"
 
 import api from "@api/index"
 import { fetchSeoHome } from "@api/seo"
 import { fetchCategories } from "@api/category"
 
-const Layout = dynamic(() =>  import("@components/Layout/Layout"))
-const Container = dynamic(() => import("@components/Layout/Container"))
+import Layout from "@components/Layout/Layout/Layout"
 
-const NewProductsSlider = dynamic(() =>  import("@screens/NewProductsSlider"))
-const ProductsList = dynamic(() => import("@screens/ProductsList"))
-const FiveReasons = dynamic(() => import("@screens/FiveReasons"))
-const WeTeachYou = dynamic(() => import("@screens/WeTeachYou"))
-const ExplameMassager = dynamic(() => import("@screens/ExplameMassager"))
-const CatalogSlider = dynamic(() => import("@screens/CatalogSlider"))
-const PreviewBrands = dynamic(() => import("@screens/PreviewBrands"))
-const ExpertsHelp = dynamic(() => import("@screens/ExpertsHelp"))
+import NewProductsSlider from "@screens/NewProductsSlider"
+import ProductsList from "@screens/ProductsList"
+import FiveReasons from "@screens/FiveReasons"
+import WeTeachYou from "@screens/WeTeachYou"
+import ExplameMassager from "@screens/ExplameMassager"
+import CatalogSlider from "@screens/CatalogSlider"
+import PreviewBrands from "@screens/PreviewBrands"
+import ExpertsHelp from "@screens/ExpertsHelp"
 
 import "@styles/pages/home.scss"
 
@@ -41,9 +39,9 @@ const HomePage = ({ text, slides, categories }) => {
         </div>
 
         <div className="home-page-content__five-reasons">
-          <Container>
+          <div className="container">
             <FiveReasons />
-          </Container>
+          </div>
         </div>
 
         <div className="home-page-content__we-teach-you">
@@ -51,9 +49,9 @@ const HomePage = ({ text, slides, categories }) => {
         </div>
 
         <div className="home-page-content__explame-massager">
-          <Container>
+          <div className="container">
             <ExplameMassager/>
-          </Container>
+          </div>
         </div>
 
         <div className="home-page-content__catalog-slider">

@@ -15,7 +15,7 @@ import "./Footer.scss"
 const Footer = () => {
   return (
     <div className="footer">
-      <Container>
+      <div className="container">
         <p className="footer__pre-text">Хотите оставаться в курсе новинок?</p>
 
         <div className="footer__social">
@@ -65,7 +65,7 @@ const Footer = () => {
         <div className="footer__warning">
           Обращаем ваше внимание на&nbsp;то, что данный интернет-сайт носит исключительно информационный характер и&nbsp;ни&nbsp;при каких условиях не&nbsp;является публичной офертой, определяемой положениями&nbsp;ч.&nbsp;2&nbsp;ст.&nbsp;437 Гражданского кодекса Российской Федерации.
         </div>
-      </Container>
+      </div>
     </div>
   )
 }

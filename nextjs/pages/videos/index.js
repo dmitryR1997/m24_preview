@@ -95,7 +95,7 @@ const VideosPage = ({ filter, categories }) => {
       <VideoFilter total={total} />
 
       <div className="video-catalog-content">
-        <Container>
+        <div className="container">
           <div className="video-catalog-content__header">
             <SectionHeader
               title="Видеообзоры"
@@ -135,12 +135,12 @@ const VideosPage = ({ filter, categories }) => {
               {/*</div>*/}
             </>
           }
-        </Container>
+        </div>
 
         <div className="video-catalog-content__five-reasons">
-          <Container>
+          <div className="container">
             <FiveReasons/>
-          </Container>
+          </div>
         </div>
 
         {/*<div className="video-catalog-content__official-waranty">*/}

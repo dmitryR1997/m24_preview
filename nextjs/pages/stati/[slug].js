@@ -48,13 +48,13 @@ const StaticPage = ({ categories, pageContent, slug }) => {
       </Head>
 
       <div className="static-page" ref={content}>
-        <Container>
+        <div className="container">
           <h1 className="static-page__title">
             {pageContent.NAME}
           </h1>
 
           <div className="static-page__content" dangerouslySetInnerHTML={{ __html: pageContent.DETAIL_TEXT }} />
-        </Container>
+        </div>
 
         {/*{slug === "oformit-rassrochku-na-sayte" &&*/}
         {/*  <div className="static-page__catalog">*/}
@@ -63,9 +63,9 @@ const StaticPage = ({ categories, pageContent, slug }) => {
         {/*}*/}
 
         <div className="static-page__five-reasons">
-          <Container>
+          <div className="container">
             <FiveReasons/>
-          </Container>
+          </div>
         </div>
 
         <div className="static-page__official-waranty">

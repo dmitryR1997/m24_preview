@@ -1,7 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document"
 
-import DeferNextScript from "@utils/DeferNextScript"
-
 export default class MyDocument extends Document {
   render() {
     return (
@@ -9,7 +7,7 @@ export default class MyDocument extends Document {
         <Head/>
         <body>
           <Main />
-          <DeferNextScript/>
+          <NextScript/>
         </body>
       </Html>
     )

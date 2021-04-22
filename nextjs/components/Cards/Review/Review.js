@@ -10,7 +10,7 @@ const Review = ({ review }) => {
         {review.date}
       </div>
       <div className="review-card__name">
-        {review.name}
+        {review.user_name}
       </div>
 
       <div className="review-card__content">
@@ -18,7 +18,7 @@ const Review = ({ review }) => {
           Достоинства
         </div>
         <div className="review-card__content-text">
-          {review.text}
+          {review.advantage}
         </div>
       </div>
 
@@ -27,7 +27,7 @@ const Review = ({ review }) => {
           Недостатки
         </div>
         <div className="review-card__content-text">
-          {review.text}
+          {review.disadvantage}
         </div>
       </div>
 
@@ -36,7 +36,7 @@ const Review = ({ review }) => {
           Общее впечатление
         </div>
         <div className="review-card__content-text">
-          {review.text}
+          {review.repute}
         </div>
       </div>
 

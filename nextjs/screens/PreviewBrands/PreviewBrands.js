@@ -21,7 +21,7 @@ const PreviewBrands = () => {
 
   return (
     <section className="preview-brands">
-      <Container>
+      <div className="container">
         <div className="preview-brands__header">
           <SectionHeader
             title="Бренды"
@@ -48,7 +48,7 @@ const PreviewBrands = () => {
             />
           </div>
         </Link>
-      </Container>
+      </div>
     </section>
   )
 }

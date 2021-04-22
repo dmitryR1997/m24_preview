@@ -37,7 +37,7 @@ const BrandPage = ({ categories }) => {
       </Head>
 
       <div className="brands-page">
-        <Container>
+        <div className="container">
           <div className="brands-page__header">
             <SectionHeader title="Бренды" description="44 компании" />
           </div>
@@ -67,7 +67,7 @@ const BrandPage = ({ categories }) => {
               return item
             })}
           </div>
-        </Container>
+        </div>
 
         {/*<div className="brands-page__official-waranty">*/}
         {/*  <OfficialWaranty/>*/}

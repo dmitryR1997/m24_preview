@@ -13,7 +13,7 @@ import Background from "@images/expert.jpg"
 const ExpertsHelp = ({ hideText }) => {
   return (
     <div className="experts-help">
-      <Container>
+      <div className="container">
         <BackgroundLazyLoad className="experts-help__expert" data-image-src={Background}>
           <div className="experts-help__expert-description">
             Бесплатная консультация
@@ -48,7 +48,7 @@ const ExpertsHelp = ({ hideText }) => {
             </div>
           </>
         }
-      </Container>
+      </div>
     </div>
   )
 }

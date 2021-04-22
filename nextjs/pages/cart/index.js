@@ -61,7 +61,7 @@ const CartPage = ({ cartList, cartQuantity, categories }) => {
   return (
     <Layout pageType="cart" categories={categories}>
       <div className="cart-page">
-        <Container>
+        <div className="container">
           <h1 className="cart-page__title">
             Корзина
           </h1>
@@ -119,7 +119,7 @@ const CartPage = ({ cartList, cartQuantity, categories }) => {
               <br/><br/>
             </>
           }
-        </Container>
+        </div>
       </div>
     </Layout>
   )

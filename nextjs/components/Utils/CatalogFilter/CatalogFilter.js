@@ -86,7 +86,7 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
       })}
     >
       <div className="catalog-filter__header">
-        <Container>
+        <div>
           <div className="catalog-filter__header-inner">
             <div className="catalog-filter__header-title">
               Фильтр
@@ -95,10 +95,10 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
               <CloseIcon/>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
 
-      <Container>
+      <div className="container">
         <div className="catalog-filter__fixed">
           <div className="catalog-filter__nav">
             <Button label={`Показать ${total} ${num_word(total, [" модель", " модели", " моделей"])}`}
@@ -221,7 +221,7 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
             </div>
           }
         </div>
-      </Container>
+      </div>
     </div>
   )
 }

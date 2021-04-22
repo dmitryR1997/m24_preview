@@ -1,6 +1,11 @@
 .compare-page {
   margin: 40px 0 0;
 
+  &__empty-list {
+    font-size: 20px;
+    margin: 40px 0;
+  }
+
   &__list {
     .swiper-slide {
       position: static;
@@ -8,8 +13,26 @@
     }
 
     &-item {
+      position: relative;
       display: flex;
       height: 100%;
+
+      &-close {
+        position: absolute;
+        background-color: #ffffff;
+        box-shadow: 0 10px 20px rgba(156, 156, 156, 0.15);
+        border-radius: 16px;
+        top: 0;
+        right: 0;
+        padding: 8px;
+        z-index: 4;
+
+        svg {
+          path {
+            stroke: #BDBDBD;
+          }
+        }
+      }
     }
   }
 
@@ -29,6 +52,21 @@
           font-size: 10px;
           line-height: 1.2;
           margin-bottom: 16px;
+
+          &--title {
+            background-color: #FEFEFE;
+            box-shadow: 0 10px 20px rgba(156, 156, 156, 0.15);
+
+            position: sticky;
+            top: 70px;
+
+            font-size: 20px;
+            font-weight: 600;
+            color: #14142B;
+
+            padding: 8px 0;
+            margin-bottom: 24px;
+          }
         }
 
         &-value {
@@ -45,12 +83,37 @@
       top: 0;
       left: 0;
 
+      width: 100%;
+
       font-size: 10px;
       line-height: 1.2;
       color: rgba(20, 20, 43, 0.6);
 
       &-item {
         margin-bottom: 16px;
+
+        &--title {
+          position: sticky;
+          top: 68px;
+          z-index: 98;
+
+          font-size: 20px;
+          font-weight: 600;
+          color: #14142B;
+
+          span {
+            padding: 8px 24px;
+            display: block;
+            margin: 0 -24px 24px;
+          }
+
+          &.is-pinned {
+            span {
+              background-color: #FEFEFE;
+              box-shadow: 0 10px 20px rgba(156, 156, 156, 0.15);
+            }
+          }
+        }
       }
     }
   }
@@ -74,4 +137,15 @@
   &__experts-help {
     margin: 0 0 48px;
   }
+}
+
+.js-sticky-element {
+  position: absolute;
+  top: -70px;
+  height: 1px;
+  width: 100%;
+}
+
+.default-layout {
+  overflow-x: initial;
 }

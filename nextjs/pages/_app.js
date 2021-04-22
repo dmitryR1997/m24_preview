@@ -1,10 +1,10 @@
 import React, { useEffect } from "react"
 import { useRouter } from "next/router"
 
-import { useStore, PersistGateServer } from '../store'
+import { useStore } from '../store'
 import { Provider } from "react-redux"
 import { persistStore } from 'redux-persist'
-import { PersistGate as PersistGateClient } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react'
 import { hideHeaderSearch, hideMainMenu, hideModal } from "@actions/layout"
 
 import { isServer } from "../env"
@@ -25,7 +25,6 @@ import "swiper/swiper.scss"
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)
   const persistor = persistStore(store)
-  const PersistGate = isServer ? PersistGateServer : PersistGateClient
 
   const router = useRouter()
 
@@ -46,11 +45,8 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      <PersistGate
-        loading={<Loader/>}
-        persistor={persistor}
-      >
-        <Component {...pageProps} />
+      <PersistGate loading={null} persistor={persistor}>
+        <Component {...pageProps}/>
       </PersistGate>
     </Provider>
   )

@@ -8,7 +8,6 @@ import { fetchProduct } from "@api/product"
 import { isServer } from "../../../env"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import Amount from "@components/Display/Amount"
 import Slider from "@components/Surfaces/Slider"
 import AddToCart from "@components/Utils/AddToCart"
@@ -16,6 +15,8 @@ import Accordion from "@components/Surfaces/Accordion"
 import { Tabs, Tab } from "@components/Surfaces/Tabs/Tabs"
 import ProductParamsList from "@components/Utils/ProductParamsList/ProductParamsList"
 import Alert from "@components/Display/Alert"
+import ReviewCard from "@components/Cards/Review"
+import Button from "@components/Forms/Button"
 
 import FiveReasons from "@screens/FiveReasons"
 import ExpertsHelp from "@screens/ExpertsHelp"
@@ -37,9 +38,7 @@ const ProductPage = ({ categories, details }) => {
         <input type="hidden" className="gtm-product-price" value={details.price} />
 
         <div className="single-product__header">
-          <Container
-            disablePadding
-          >
+          <div className="container container--no-padding">
             <div className="single-product__header-inner">
               <div className="single-product__header-category">
                 {details.category}
@@ -70,10 +69,10 @@ const ProductPage = ({ categories, details }) => {
                 </div>
               }
             </div>
-          </Container>
+          </div>
         </div>
 
-        <Container classes={["single-product__purchase"]}>
+        <div className="container single-product__purchase">
           <div className="single-product__purchase-left">
             {details.credit_line &&
               <div className="single-product__credit-price">
@@ -98,9 +97,9 @@ const ProductPage = ({ categories, details }) => {
           <div className="single-product__purchase-right">
             <AddToCart product={details} />
           </div>
-        </Container>
+        </div>
 
-        <Container classes={["single-product__info"]}>
+        <div className="container single-product__info">
           <div className="single-product__info-item">
             <div className="single-product__info-item-label">
               Наличие
@@ -127,9 +126,9 @@ const ProductPage = ({ categories, details }) => {
               { num_word(details.sale_count, [" штука", " штуки", " штук"]) }
             </div>
           </div>
-        </Container>
+        </div>
 
-        <Container classes={["single-product__video-reviews"]}>
+        <div className="container single-product__video-reviews">
           <VideoReviews
             gallery={details.gallery}
             params={{ product_id: details.id }}
@@ -137,9 +136,9 @@ const ProductPage = ({ categories, details }) => {
             hideTags={true}
             hideCatalogLink={true}
           />
-        </Container>
+        </div>
 
-        <Container>
+        <div className="container">
           <Tabs>
             <Tab id={1} label="Описание">
               {details.detail_text && details.detail_text.length > 0 && !isServer &&
@@ -199,40 +198,38 @@ const ProductPage = ({ categories, details }) => {
               </Accordion>
             </Tab>
 
-            {/*<Tab id={3} label="Отзывы">*/}
-            {/*  {details.reviews && details.reviews.length &&*/}
-            {/*  <div className="single-product__review-list">*/}
-            {/*    {details.reviews.map((review, key) => (*/}
-            {/*      <div*/}
-            {/*        key={key}*/}
-            {/*        className="single-product__review-list-item"*/}
-            {/*      >*/}
-            {/*        <ReviewCard review={review}/>*/}
-            {/*      </div>*/}
-            {/*    ))}*/}
-            {/*  </div>*/}
-            {/*  }*/}
+            <Tab id={3} label="Отзывы">
+              <div className="single-product__review-list">
+                {details.reviews.map((review, key) => (
+                  <div
+                    key={key}
+                    className="single-product__review-list-item"
+                  >
+                    <ReviewCard review={review}/>
+                  </div>
+                ))}
+              </div>
 
-            {/*  <div className="single-product__review-nav">*/}
-            {/*    <Button*/}
-            {/*      label="Показать ещё"*/}
-            {/*      size="xs"*/}
-            {/*      outline*/}
-            {/*    />*/}
-            {/*  </div>*/}
+              {/*<div className="single-product__review-nav">*/}
+              {/*  <Button*/}
+              {/*    label="Показать ещё"*/}
+              {/*    size="xs"*/}
+              {/*    outline*/}
+              {/*  />*/}
+              {/*</div>*/}
 
-            {/*  <div className="single-product__review-total">*/}
-            {/*    Всего 873 моделей*/}
-            {/*  </div>*/}
+              {/*<div className="single-product__review-total">*/}
+              {/*  Всего 873 моделей*/}
+              {/*</div>*/}
 
-            {/*</Tab>*/}
+            </Tab>
           </Tabs>
-        </Container>
+        </div>
 
         <div className="single-product__five-reasons">
-          <Container>
+          <div className="container">
             <FiveReasons/>
-          </Container>
+          </div>
         </div>
 
         {/*<div className="single-product__official-waranty">*/}

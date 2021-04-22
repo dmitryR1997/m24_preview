@@ -12,7 +12,7 @@ const AboutShop = ({ text, showText }) => {
   return (
     <section className="about-shop">
       {showText &&
-        <Container>
+        <div className="container">
           <div className="about-shop__text typography" dangerouslySetInnerHTML={{ __html: text }}/>
           {/*<div className="about-shop__header">*/}
           {/*  <SectionHeader*/}
@@ -26,10 +26,10 @@ const AboutShop = ({ text, showText }) => {
           {/*  на&nbsp;&laquo;нагруженные&raquo; участки тела позволяет достигать эффекта полного расслабления, придаёт сил,*/}
           {/*  бодрит и&nbsp;создаёт непередаваемое ощущение лёгкости и&nbsp;комфорта.*/}
           {/*</div>*/}
-        </Container>
+        </div>
       }
 
-      <Container disablePadding>
+      <div className="container container--no-padding">
         <Accordion>
           <div
             id="tab-1"
@@ -104,7 +104,7 @@ const AboutShop = ({ text, showText }) => {
             <p>Ежедневно с 9.00 до 21.00 по московскому времени.</p>
           </div>
         </Accordion>
-      </Container>
+      </div>
     </section>
   )
 }

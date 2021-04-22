@@ -1,0 +1,28 @@
+.add-review-page {
+  margin: 40px 0 0;
+
+  &__list {
+    &-item {
+      margin: 0 0 24px;
+    }
+  }
+
+  &__group-title {
+    margin: 32px 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(20, 20, 43, 0.5);
+  }
+
+  &__form-group {
+    margin: 16px 0;
+  }
+
+  &__form-stars {
+    margin: 32px 0;
+  }
+
+  &__form-button {
+    margin: 33px 0;
+  }
+}

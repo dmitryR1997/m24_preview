@@ -57,7 +57,7 @@ Input.propTypes = {
   value: PropTypes.any,
   handler: PropTypes.func,
   mask: PropTypes.string,
-  error: PropTypes.bool
+  error: PropTypes.any
 }
 
 export default Input

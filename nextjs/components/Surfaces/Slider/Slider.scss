@@ -46,3 +46,31 @@
   }
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  z-index: 4;
+
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px rgba(156, 156, 156, 0.15);
+  border-radius: 16px;
+
+  background-image: url("/icons/accordion-arrow-black.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  width: 40px;
+  height: 40px;
+}
+
+.swiper-button-prev {
+  left: -20px;
+  transform: rotate(-180deg);
+}
+
+.swiper-button-next {
+  right: -20px;
+}
+

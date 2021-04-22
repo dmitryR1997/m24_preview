@@ -1,0 +1,73 @@
+.review-with-product {
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__product-image {
+    flex: 0 0 110px;
+    margin-right: 16px;
+  }
+
+  &__details-list {
+    &-title {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    &-date {
+      margin: 6px 0 8px;
+      font-size: 10px;
+      line-height: 1.2;
+      color: rgba(20, 20, 43, 0.6);
+    }
+
+    &-author {
+      margin: 8px 0 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    &-rating {
+      width: 80px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  &__date {
+    margin: 0 0 8px;
+
+    font-size: 10px;
+    line-height: 1.2;
+    color: rgba(20, 20, 43, 0.6);
+  }
+
+  &__name {
+    margin: 0 0 16px;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  &__content {
+    font-family: 'SF UI Text', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4E4B66;
+
+    &-title {
+      margin: 16px 0 4px;
+
+      font-size: 10px;
+      line-height: 1.2;
+      color: rgba(20, 20, 43, 0.6);
+    }
+  }
+}

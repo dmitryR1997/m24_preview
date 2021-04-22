@@ -30,7 +30,8 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
       ...params,
       "section_id": section_id,
       "include_sections": true,
-      "nav-products": `page-${page}`
+      "nav-products": `page-${page}`,
+      "with-video": true
     }
 
     if(brand_id) {
@@ -92,7 +93,7 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
 
   return (
     <div className="catalog">
-      <Container>
+      <div className="container">
         {loading &&
         <>
           <Loader/>
@@ -149,7 +150,7 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
           }
         </>
         }
-      </Container>
+      </div>
     </div>
   )
 }

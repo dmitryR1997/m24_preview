@@ -24,7 +24,7 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, categories }) => {
       }}
     >
       <div className="main-menu__inner">
-        <Container disablePadding>
+        <div className="container container--no-padding">
           <Accordion>
             <div
               id="tab-1"
@@ -78,16 +78,16 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, categories }) => {
                     </a>
                   </Link>
                 </li>
-                {/*<li*/}
-                {/*  className="main-menu__list-item">*/}
-                {/*  <Link*/}
-                {/*    href="/"*/}
-                {/*  >*/}
-                {/*    <a href="/" className="main-menu__list-link">*/}
-                {/*      Отзывы*/}
-                {/*    </a>*/}
-                {/*  </Link>*/}
-                {/*</li>*/}
+                <li
+                  className="main-menu__list-item">
+                  <Link
+                    href="/reviews/all/"
+                  >
+                    <a href="/reviews/all/" className="main-menu__list-link">
+                      Отзывы
+                    </a>
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -189,15 +189,15 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, categories }) => {
               </ul>
             </div>
           </Accordion>
-        </Container>
+        </div>
 
-        <Container>
+        <div className="container">
           <div className="main-menu__footer">
             <p>Наши консультанты с радостью ответят на ваши вопросы по контактному телефону</p>
 
             <a href="tel:88005503269" className="roistat_phone">8 800 550-32-69</a>
           </div>
-        </Container>
+        </div>
       </div>
     </div>
   )

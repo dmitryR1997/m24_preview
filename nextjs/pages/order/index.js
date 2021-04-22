@@ -80,7 +80,7 @@ const OrderPage = ({ cartList, categories }) => {
   return (
     <Layout categories={categories}>
       <div className="order-page">
-        <Container>
+        <div className="container">
           <h1 className="order-page__title">
             Оформление заказа
           </h1>
@@ -216,7 +216,7 @@ const OrderPage = ({ cartList, categories }) => {
               />
             </div>
           </form>
-        </Container>
+        </div>
       </div>
     </Layout>
   )

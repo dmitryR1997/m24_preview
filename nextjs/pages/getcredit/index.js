@@ -80,7 +80,7 @@ const GetcreditPage = ({ categories }) => {
   return (
     <Layout categories={categories}>
       <div className="getcredit-page">
-        <Container>
+        <div className="container">
           <h1 className="getcredit-page__title">
             Заявка на рассрочку
           </h1>
@@ -234,7 +234,7 @@ const GetcreditPage = ({ categories }) => {
               />
             </div>
           </form>
-        </Container>
+        </div>
       </div>
     </Layout>
   )

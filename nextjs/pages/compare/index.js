@@ -1,24 +1,29 @@
 import React, { useState, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
-import SwiperCore, { Controller } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react"
+import SwiperCore, { Controller, Pagination, Navigation } from "swiper"
 
-import { connect } from "react-redux"
+import { connect, useDispatch } from "react-redux"
 import { fetchCompare, fetchProducts } from "@api/product"
 import { fetchCategories } from "@api/category"
+import { removeFromCompare } from "@actions/compare"
 
 import Layout from "@components/Layout/Layout"
-import Slider from "@components/Surfaces/Slider"
 import CatalogProduct from "@components/Cards/CatalogProduct"
 
 import "@styles/pages/ComparePage.scss"
 
-SwiperCore.use([Controller]);
+import CloseIcon from "../../public/icons/close.svg"
+import {load} from "dotenv";
+
+SwiperCore.use([Pagination, Controller, Navigation])
 
 const CartPage = ({ compareListIds, categories }) => {
+  const dispatch = useDispatch()
   const compareListRef = useRef()
   const [products, setProducts] = useState([])
   const [compareList, setCompareList] = useState([])
+  const [loaded, setLoaded] = useState(false)
 
   const [firstSwiper, setFirstSwiper] = useState(null)
   const [secondSwiper, setSecondSwiper] = useState(null)
@@ -30,6 +35,7 @@ const CartPage = ({ compareListIds, categories }) => {
 
     fetchCompare({ ids: compareListIds.map(item => item.id) }).then(({ data }) => {
       setCompareList(data)
+      setLoaded(true)
     })
   }, [])
 
@@ -65,14 +71,39 @@ const CartPage = ({ compareListIds, categories }) => {
       })
     })
 
-    const titles = compareListRef.current.querySelectorAll(".compare-page__compare-titles")
+    const titles = compareListRef.current.querySelectorAll(".compare-page__compare-titles-item")
 
-    titles.forEach((list, key) => {
-      list.childNodes.forEach((li, inner) => {
-        li.style.height = `${rowHeight[inner]}px`;
-      })
+    titles.forEach((li, inner) => {
+      li.style.height = `${rowHeight[inner]}px`;
     })
+
+
+    const stickyElements = document.querySelectorAll(".js-sticky-element")
+
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        e.target.parentElement.classList.toggle("is-pinned", e.intersectionRatio < 1)
+      },
+      {threshold: [1]}
+    )
+
+    if(stickyElements) {
+      stickyElements.forEach(el => observer.observe(el))
+    }
   }, [compareList])
+
+  useEffect(() => {
+    const oldIds = products.map(product => product.id)
+    const currentIds = compareListIds.map(id => id.id)
+
+    const difference = oldIds.filter(id => !currentIds.includes(id))
+
+    const transformProducts = products.filter(product => !difference.includes(product.id))
+    const transformCompareList = compareList.filter(list => !difference.includes(list.product_id))
+
+    setProducts(transformProducts)
+    setCompareList(transformCompareList)
+  }, [compareListIds])
 
   return (
     <Layout categories={categories}>
@@ -82,17 +113,30 @@ const CartPage = ({ compareListIds, categories }) => {
             Сравнение
           </h1>
 
+          {!loaded && products.length === 0 &&
+          <div className="compare-page__empty-list">
+            Добавьте товары для сравнения
+          </div>
+          }
+
           <div className="compare-page__list">
+
             <Swiper
+              className="swiper-container--visible-hidden-slides swiper-container--with-pagination"
               spaceBetween={24}
               slidesPerView={2}
               onSwiper={setFirstSwiper}
               controller={{ control: secondSwiper }}
+              pagination={{ clickable: true }}
+              navigation
             >
               {products.map((product, key) => {
                 return (
                   <SwiperSlide key={key}>
                     <div className="compare-page__list-item">
+                      <div className="compare-page__list-item-close" onClick={() => dispatch(removeFromCompare(product.id))}>
+                        <CloseIcon/>
+                      </div>
                       <CatalogProduct
                         product={product}
                         size="xs"
@@ -103,17 +147,24 @@ const CartPage = ({ compareListIds, categories }) => {
               })}
             </Swiper>
 
+            {products.length > 0 &&
             <div ref={compareListRef} className="compare-page__compare">
               <Swiper
                 spaceBetween={24}
                 slidesPerView={2}
                 onSwiper={setSecondSwiper}
-                controller={{ control: firstSwiper }}
+                controller={{control: firstSwiper}}
               >
                 {compareList.map((list, key) => {
                   return (
                     <SwiperSlide key={key}>
                       <div className="compare-page__compare-values">
+                        <div className="compare-page__compare-values-item">
+                          <div
+                            className="compare-page__compare-values-item-label compare-page__compare-values-item-label--title">
+                            Общие параметры
+                          </div>
+                        </div>
                         {list["general"].map((item, inner) => (
                           <div key={inner} className="compare-page__compare-values-item">
                             <div className="compare-page__compare-values-item-label">
@@ -124,6 +175,28 @@ const CartPage = ({ compareListIds, categories }) => {
                             </div>
                           </div>
                         ))}
+
+                        {list["lists"].map((item, key) => (
+                          <React.Fragment key={key}>
+                            <div className="compare-page__compare-values-item">
+                              <div
+                                className="compare-page__compare-values-item-label compare-page__compare-values-item-label--title">
+                                {item.name}
+                              </div>
+                            </div>
+
+                            {Object.keys(item.value).map((inner) => (
+                              <div key={inner} className="compare-page__compare-values-item">
+                                <div className="compare-page__compare-values-item-label">
+                                  {inner}
+                                </div>
+                                <div className="compare-page__compare-values-item-value">
+                                  {item.value[inner] ? "Да" : "Нет"}
+                                </div>
+                              </div>
+                            ))}
+                          </React.Fragment>
+                        ))}
                       </div>
                     </SwiperSlide>
                   )
@@ -132,14 +205,36 @@ const CartPage = ({ compareListIds, categories }) => {
 
               {compareList[0] &&
               <div className="compare-page__compare-titles">
-                {compareList[0]["general"].map((item, inner) => (
-                  <div key={inner} className="compare-page__compare-titles-item">
-                    {item.name}
+                <div className="sticky">
+                  <div className="compare-page__compare-titles-item compare-page__compare-titles-item--title">
+                    <div className="js-sticky-element"/>
+                    <span>Общие параметры</span>
+                  </div>
+
+                  {compareList[0]["general"].map((item, inner) => (
+                    <div key={inner} className="compare-page__compare-titles-item">
+                      {item.name}
+                    </div>
+                  ))}
+                </div>
+
+                {compareList[0]["lists"].map((item, inner) => (
+                  <div key={inner} className="sticky">
+                    <div className="compare-page__compare-titles-item compare-page__compare-titles-item--title">
+                      <div className="js-sticky-element"/>
+                      <span>{item.name}</span>
+                    </div>
+                    {Object.keys(item.value).map((inner) => (
+                      <div key={inner} className="compare-page__compare-titles-item">
+                        {inner}
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
               }
             </div>
+            }
           </div>
         </div>
       </div>

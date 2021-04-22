@@ -1,0 +1,41 @@
+.reviews-page {
+  margin: 40px 0 0;
+
+  &__add {
+    position: fixed;
+    z-index: 99;
+    left: 20px;
+    bottom: 20px;
+
+    cursor: pointer;
+    background-color: #8F688E;
+    box-shadow: 0 10px 30px rgba(143, 104, 142, 0.4);
+    border-radius: 40px;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+
+    path {
+      stroke: #ffffff;
+    }
+  }
+
+  &__title {
+    margin: 0 0 40px;
+  }
+
+  &__filter {
+
+  }
+
+  &__none-text {
+    margin: 40px 0;
+  }
+
+  &__list {
+    &-item {
+      margin: 32px 0;
+    }
+  }
+}

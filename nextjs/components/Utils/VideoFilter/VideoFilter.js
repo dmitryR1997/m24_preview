@@ -67,7 +67,7 @@ const VideoFilter = ({ filter, setVideoFilter, updateVideoFilter, isOpenVideoFil
       })}
     >
       <div className="video-filter__header">
-        <Container>
+        <div className="container">
           <div className="video-filter__header-inner">
             <div className="video-filter__header-title">
               Фильтр
@@ -76,10 +76,10 @@ const VideoFilter = ({ filter, setVideoFilter, updateVideoFilter, isOpenVideoFil
               <CloseIcon/>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
 
-      <Container>
+      <div className="container">
         <div className="video-filter__list">
           <Accordion>
             <div
@@ -251,7 +251,7 @@ const VideoFilter = ({ filter, setVideoFilter, updateVideoFilter, isOpenVideoFil
                   onClick={() => setVideoFilter({ "reset": true })}
           />
         </div>
-      </Container>
+      </div>
     </div>
   )
 }

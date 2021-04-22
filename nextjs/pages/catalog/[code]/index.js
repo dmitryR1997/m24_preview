@@ -56,7 +56,7 @@ const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categori
           filters={filters[code]}
         />
 
-        <Container>
+        <div className="container">
           <div className="catalog-page-content__header">
             <div className="catalog-page-content__header-title">
               <SectionHeader
@@ -87,7 +87,7 @@ const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categori
               </select>
             </div>
           </div>
-        </Container>
+        </div>
 
         <div className="catalog-page-content__products">
           <Catalog
@@ -98,9 +98,9 @@ const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categori
         </div>
 
         <div className="catalog-page-content__explame-massager">
-          <Container>
+          <div className="container">
             <ExplameMassager/>
-          </Container>
+          </div>
         </div>
 
         <div className="catalog-page-content__experts-help">
@@ -108,12 +108,12 @@ const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categori
         </div>
 
         <div className="catalog-page-content__video-reviews">
-          <Container>
+          <div className="container">
             <VideoReviews
               params={{ home_page: true }}
               hideTags={true}
             />
-          </Container>
+          </div>
         </div>
       </div>
 

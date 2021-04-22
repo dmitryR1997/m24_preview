@@ -154,7 +154,7 @@ const ShopPage = ({ categories }) => {
       </Head>
 
       <div className="static-page contacts-page">
-        <Container>
+        <div className="container">
           <h1 className="static-page__title">
             Магазины
           </h1>
@@ -259,12 +259,12 @@ const ShopPage = ({ categories }) => {
             </Tabs>
           </div>
 
-        </Container>
+        </div>
 
         <div className="static-page__five-reasons">
-          <Container>
+          <div className="container">
             <FiveReasons/>
-          </Container>
+          </div>
         </div>
 
         {/*<div className="static-page__official-waranty">*/}

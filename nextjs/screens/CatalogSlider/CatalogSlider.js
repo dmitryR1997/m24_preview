@@ -16,7 +16,7 @@ const CatalogSlider = ({ categories }) => {
 
   return (
     <section className="catalog-slider">
-      <Container>
+      <div className="container">
         <div className="catalog-slider__header">
           <SectionHeader
             title="Огромный ассортимент"
@@ -43,7 +43,7 @@ const CatalogSlider = ({ categories }) => {
             />)
           })}
         </Slider>
-      </Container>
+      </div>
     </section>
   )
 }

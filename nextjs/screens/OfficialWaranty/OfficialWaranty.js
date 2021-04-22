@@ -7,7 +7,7 @@ import "./OfficialWaranty.scss"
 
 const OfficialWaranty = () => {
   return (
-    <Container>
+    <div className="container">
       <Link href="/content/warranty-and-service">
         <section className="official-waranty">
           <div className="official-waranty__title">
@@ -22,7 +22,7 @@ const OfficialWaranty = () => {
           </div>
         </section>
       </Link>
-    </Container>
+    </div>
   )
 }
 

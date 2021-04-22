@@ -38,7 +38,7 @@ const WeTeachYou = () => {
 
   return (
     <section className="we-teach-you">
-      <Container>
+      <div className="container">
         <div className="we-teach-you__header">
           <SectionHeader
             title="Видеообзоры"
@@ -62,7 +62,7 @@ const WeTeachYou = () => {
         <div className="we-teach-you__slider">
           <VideoReviews params={{ home_page: true }} hideHeader={true} hideTags={true} />
         </div>
-      </Container>
+      </div>
     </section>
   )
 }
