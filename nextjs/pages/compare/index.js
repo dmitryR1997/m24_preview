@@ -14,7 +14,6 @@ import CatalogProduct from "@components/Cards/CatalogProduct"
 import "@styles/pages/ComparePage.scss"
 
 import CloseIcon from "../../public/icons/close.svg"
-import {load} from "dotenv";
 
 SwiperCore.use([Pagination, Controller, Navigation])
 
@@ -106,18 +105,18 @@ const CartPage = ({ compareListIds, categories }) => {
   }, [compareListIds])
 
   return (
-    <Layout categories={categories}>
+    <Layout categories={categories} isOverflowInitial={true}>
       <div className="compare-page">
         <div className="container">
           <h1 className="compare-page__title">
             Сравнение
           </h1>
 
-          {!loaded && products.length === 0 &&
-          <div className="compare-page__empty-list">
-            Добавьте товары для сравнения
-          </div>
-          }
+          {/*{!loaded && products.length === 0 &&*/}
+          {/*<div className="compare-page__empty-list">*/}
+          {/*  Добавьте товары для сравнения*/}
+          {/*</div>*/}
+          {/*}*/}
 
           <div className="compare-page__list">
 
@@ -147,7 +146,6 @@ const CartPage = ({ compareListIds, categories }) => {
               })}
             </Swiper>
 
-            {products.length > 0 &&
             <div ref={compareListRef} className="compare-page__compare">
               <Swiper
                 spaceBetween={24}
@@ -234,7 +232,6 @@ const CartPage = ({ compareListIds, categories }) => {
               </div>
               }
             </div>
-            }
           </div>
         </div>
       </div>

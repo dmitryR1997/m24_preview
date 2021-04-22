@@ -8,4 +8,8 @@
   &__content {
     flex: 1;
   }
+
+  &--is-overflow {
+    overflow-x: initial;
+  }
 }

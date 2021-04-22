@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+import classnames from "classnames"
 
 import { connect } from "react-redux"
 
@@ -15,7 +16,7 @@ import Footer from "@screens/Footer"
 
 import "./Layout.scss"
 
-const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu }) => {
+const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu, isOverflowInitial }) => {
   const isHome = pageType === "home"
   const isCatalog = pageType === "category"
   const isProduct = pageType === "product"
@@ -37,7 +38,9 @@ const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu }) => 
 
   return (
     <>
-      <div className="default-layout">
+      <div className={classnames("default-layout", {
+        "defaul-layout--overflow-initial": isOverflowInitial
+      })}>
         {pageType &&
         <input className="gtm-page-type" type="hidden" value={pageType} />
         }
@@ -74,6 +77,7 @@ const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu }) => 
 
 Layout.propTypes = {
   isOpenMainMenu: PropTypes.bool.isRequired,
+  isOverflowInitial: PropTypes.bool,
   pageType: PropTypes.string,
   seoText: PropTypes.string
 }

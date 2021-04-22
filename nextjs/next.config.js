@@ -11,22 +11,13 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true"
 })
 
-const isServer = typeof window === "undefined"
-
 const nextConfig = {
-  htmlAttrs: {lang: "ru-Ru"},
+  htmlAttrs: { lang: "ru-Ru" },
   trailingSlash: true,
   // poweredByHeader: false,
   generateEtags: true,
   // compress: false,
-  webpack(config, options) {
-    if (isServer) {
-      config.node = {
-        fs: "empty"
-      }
-    }
-
-
+  webpack (config, options) {
     // config.module.rules.push({
     //   test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
     //   use: {
