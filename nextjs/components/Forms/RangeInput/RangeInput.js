@@ -46,7 +46,7 @@ const RangeInput = ({ min, max, setter }) => {
           </div>
         )}
         renderThumb={({ props, isDragged }) => (
-          <div {...props} className="range-label" />
+          <div {...props} className="range-input__thumb" />
         )}
       />
 
