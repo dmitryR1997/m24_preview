@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from 'next/router'
 
@@ -16,14 +16,20 @@ import PlusIcon from "../../public/icons/plus.svg"
 const ReviewsPage = ({ categories, reviews, code }) => {
   const router = useRouter()
 
+  const [activeCategory, setActiveCategory] = useState()
+
   const onChangeHandler = (e) => {
+    setActiveCategory(e.label.toLowerCase())
+
     router.push({
       pathname: '/reviews/[code]',
       query: { code: e.value }
     })
   }
 
+
   const options = categories.map(category => { return { label: category.NAME, value: category.CODE } })
+  options.unshift({ label: "Все категории", value: "all" })
 
   return (
     <Layout categories={categories}>
@@ -36,7 +42,7 @@ const ReviewsPage = ({ categories, reviews, code }) => {
 
         <div className="container">
           <h1 className="reviews-page__title">
-            Отзывы
+            {activeCategory ? `Отзывы на ${activeCategory}` : `Отзывы`}
           </h1>
 
           <div className="reviews-page__filter">

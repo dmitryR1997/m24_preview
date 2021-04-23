@@ -8,7 +8,6 @@ import { fetchCategories } from "@api/category"
 import { getCartQuantity } from "../../selectors/cart"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import ProductCart from "@components/Cards/ProductCart/ProductCart"
 import Amount from "@components/Display/Amount"
 import Button from "@components/Forms/Button"
@@ -24,7 +23,6 @@ const CartPage = ({ cartList, cartQuantity, categories }) => {
       setProducts(data.data)
     })
   }, [])
-
 
   const getDetailsProduct = (id) => {
     return products.find(product => product.id === id)
@@ -59,7 +57,7 @@ const CartPage = ({ cartList, cartQuantity, categories }) => {
   }
 
   return (
-    <Layout pageType="cart" categories={categories}>
+    <Layout pageType="cart" categories={categories} hideAboutShop={true}>
       <div className="cart-page">
         <div className="container">
           <h1 className="cart-page__title">

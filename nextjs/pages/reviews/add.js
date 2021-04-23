@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react"
-import PropTypes from "prop-types"
-import Cookies from "js-cookie"
 import { useRouter } from "next/router"
 import { useForm, Controller } from "react-hook-form"
 
 import { connect, useDispatch } from "react-redux"
+import { addReview } from "@api/review"
 import { fetchProducts } from "@api/product"
 import { fetchCategories } from "@api/category"
+import { openModal } from "@actions/layout"
 
 import Layout from "@components/Layout/Layout"
 import Input from "@components/Forms/Input"
@@ -14,12 +14,10 @@ import Button from "@components/Forms/Button"
 import CustomSelect from "@components/Forms/CustomSelect"
 import Textarea from "@components/Forms/Textarea"
 import Stars from "@components/Forms/Stars"
+import Loader from "@components/Layout/Loader"
+import Message from "@components/Cards/Message"
 
 import "@styles/pages/AddReviewPage.scss"
-import Loader from "@components/Layout/Loader";
-import {addReview} from "@api/review";
-import {openModal} from "@actions/layout";
-import Message from "@components/Cards/Message/Message";
 
 const AddReviewPage = ({ categories }) => {
   const router = useRouter()
@@ -32,23 +30,24 @@ const AddReviewPage = ({ categories }) => {
   const [products, setProducts] = useState([])
   const [category, setCategory] = useState({})
 
+  const toReviews = () => {
+    router.push("/reviews/all")
+  }
+
   const formHandler = (data) => {
     setLoading(true)
 
     addReview(data).then(({ data }) => {
       setLoading(false)
 
-      router.push("/reviews/all")
-
-      setTimeout(() => {
-        dispatch(openModal(
-          <Message
-            classes="send-review-success"
-            title="Ваш отзыв успешно отправлен!"
-            description="После модерации, отзыв будет опубликован на сайте"
-          />
-        ))
-      }, 0)
+      dispatch(openModal(
+        <Message
+          classes="send-review-success"
+          title="Ваш отзыв успешно отправлен!"
+          description="После модерации, отзыв будет опубликован на сайте"
+          onClose={toReviews}
+        />
+      ))
     })
   }
 
@@ -71,7 +70,7 @@ const AddReviewPage = ({ categories }) => {
   }, [category])
 
   return (
-    <Layout categories={categories}>
+    <Layout categories={categories} hideAboutShop={true}>
       <div className="add-review-page">
         <div className="container">
           <h1 className="add-review-page__title">

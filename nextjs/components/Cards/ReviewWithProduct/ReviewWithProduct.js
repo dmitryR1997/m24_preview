@@ -1,34 +1,42 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Link from "next/link"
 
 import Stars from "@components/Forms/Stars"
+import getProductLink from "@utils/getProdutLink"
 
 import "./ReviewWithProduct.scss"
 
 const ReviewWithProduct = ({ review }) => {
   return (
     <article className="review-with-product">
-      <div className="review-with-product__header">
-        {review.object_image &&
-        <div className="review-with-product__product-image">
-          <img src={review.object_image}/>
+      <Link href={getProductLink({
+        code: review.product_code,
+        category_code: review.section_code
+      })}>
+        <div className="review-with-product__header">
+          {review.object_image &&
+          <div className="review-with-product__product-image">
+            <img src={review.object_image}/>
+          </div>
+          }
+          <div className="review-with-product__details-list">
+            <div className="review-with-product__details-list-title">
+              {review.product}
+            </div>
+            <div className="review-with-product__details-list-date">
+              {review.date}
+            </div>
+            <div className="review-with-product__details-list-author">
+              {review.user_name}
+            </div>
+            <div className="review-with-product__details-list-rating">
+              <Stars value={review.rating} />
+            </div>
+          </div>
         </div>
-        }
-        <div className="review-with-product__details-list">
-          <div className="review-with-product__details-list-title">
-            {review.product}
-          </div>
-          <div className="review-with-product__details-list-date">
-            {review.date}
-          </div>
-          <div className="review-with-product__details-list-author">
-            {review.user_name}
-          </div>
-          <div className="review-with-product__details-list-rating">
-            <Stars value={review.rating} />
-          </div>
-        </div>
-      </div>
+      </Link>
+
       <div className="review-with-product__content">
         <div className="review-with-product__content-title">
           Достоинства

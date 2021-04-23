@@ -117,14 +117,15 @@ const CallMe = () => {
   const [icon, setIcon] = useState(0)
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       setIcon(prev => {
         if (prev > 2) return 0
 
         return prev + 1
       })
     }, 5000)
-  }, [])
+    return () => clearInterval(interval)
+  }, []);
 
   return (
     <>

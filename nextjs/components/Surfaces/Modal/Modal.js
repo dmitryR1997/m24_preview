@@ -22,10 +22,18 @@ const styles = {
 }
 
 const ModalComponent = ({ modalContent, isOpenModal, hideModal }) => {
+  const onRequestCloseHandler = () => {
+    hideModal()
+
+    if(typeof modalContent.props.onClose === "function") {
+      modalContent.props.onClose()
+    }
+  }
+
   return (
     <Modal
       isOpen={isOpenModal}
-      onRequestClose={hideModal}
+      onRequestClose={onRequestCloseHandler}
       style={styles}
       ariaHideApp={false}
     >

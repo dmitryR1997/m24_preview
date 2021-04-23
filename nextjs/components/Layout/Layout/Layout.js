@@ -16,7 +16,7 @@ import Footer from "@screens/Footer"
 
 import "./Layout.scss"
 
-const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu, isOverflowInitial }) => {
+const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu, isOverflowInitial, hideAboutShop }) => {
   const isHome = pageType === "home"
   const isCatalog = pageType === "category"
   const isProduct = pageType === "product"
@@ -58,17 +58,16 @@ const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu, isOve
         </div>
 
         <div className="default-layout__bottom">
-          {!isCart &&
+          {!hideAboutShop &&
           <AboutShop showText={!isProduct} text={seoText}/>
           }
 
           <Footer />
         </div>
-
-        <Modal/>
-        <CallMe/>
       </div>
 
+      <Modal/>
+      <CallMe/>
       <MainMenu categories={categories} />
       <HeaderSearch/>
     </>
@@ -78,6 +77,7 @@ const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu, isOve
 Layout.propTypes = {
   isOpenMainMenu: PropTypes.bool.isRequired,
   isOverflowInitial: PropTypes.bool,
+  hideAboutShop: PropTypes.bool,
   pageType: PropTypes.string,
   seoText: PropTypes.string
 }

@@ -29,6 +29,8 @@ const CartPage = ({ compareListIds, categories }) => {
   const [secondSwiper, setSecondSwiper] = useState(null)
 
   useEffect(() => {
+    if(compareListIds.length === 0) return
+
     fetchProducts({ ids: compareListIds.map(item => item.id) }).then(({ data }) => {
       setProducts(data.data)
     })
@@ -112,132 +114,136 @@ const CartPage = ({ compareListIds, categories }) => {
           <h1 className="compare-page__title">
             Сравнение
           </h1>
-        </div>
 
-          {/*{!loaded && products.length === 0 &&*/}
-          {/*<div className="compare-page__empty-list">*/}
-          {/*  Добавьте товары для сравнения*/}
-          {/*</div>*/}
-          {/*}*/}
-
-        <div className="compare-page__list">
-          <div className="container">
-            <Swiper
-              className="swiper-container--visible-hidden-slides swiper-container--with-pagination"
-              spaceBetween={24}
-              slidesPerView={2}
-              onSwiper={setFirstSwiper}
-              controller={{ control: secondSwiper }}
-              pagination={{ clickable: true }}
-              navigation
-            >
-              {products.map((product, key) => {
-                return (
-                  <SwiperSlide key={key}>
-                    <div className="compare-page__list-item">
-                      <div className="compare-page__list-item-close" onClick={() => dispatch(removeFromCompare(product.id))}>
-                        <CloseIcon/>
-                      </div>
-                      <CatalogProduct
-                        product={product}
-                        size="xs"
-                      />
-                    </div>
-                  </SwiperSlide>
-                )
-              })}
-            </Swiper>
+          {compareListIds.length === 0 &&
+          <div className="compare-page__empty-list">
+            Ваш список сравнений пуст
           </div>
+          }
         </div>
 
-        <div className="container">
-          <div ref={compareListRef} className="compare-page__compare">
-            <Swiper
-              spaceBetween={24}
-              slidesPerView={2}
-              onSwiper={setSecondSwiper}
-              controller={{control: firstSwiper}}
-            >
-              {compareList.map((list, key) => {
-                return (
-                  <SwiperSlide key={key}>
-                    <div className="compare-page__compare-values">
-                      <div className="compare-page__compare-values-item">
-                        <div
-                          className="compare-page__compare-values-item-label compare-page__compare-values-item-label--title">
-                          Общие параметры
-                        </div>
-                      </div>
-                      {list["general"].map((item, inner) => (
-                        <div key={inner} className="compare-page__compare-values-item">
-                          <div className="compare-page__compare-values-item-label">
-                            {item.name}
+        {compareListIds.length > 0 &&
+          <>
+            <div className="compare-page__list">
+              <div className="container">
+                <Swiper
+                  className="swiper-container--visible-hidden-slides swiper-container--with-pagination"
+                  spaceBetween={24}
+                  slidesPerView={2}
+                  onSwiper={setFirstSwiper}
+                  controller={{ control: secondSwiper }}
+                  pagination={{ clickable: true }}
+                  navigation
+                >
+                  {products.map((product, key) => {
+                    return (
+                      <SwiperSlide key={key}>
+                        <div className="compare-page__list-item">
+                          <div className="compare-page__list-item-close" onClick={() => dispatch(removeFromCompare(product.id))}>
+                            <CloseIcon/>
                           </div>
-                          <div className="compare-page__compare-values-item-value">
-                            {item.value ? item.value : "—"}
-                          </div>
+                          <CatalogProduct
+                            product={product}
+                            size="xs"
+                          />
                         </div>
-                      ))}
+                      </SwiperSlide>
+                    )
+                  })}
+                </Swiper>
+              </div>
+            </div>
 
-                      {list["lists"].map((item, key) => (
-                        <React.Fragment key={key}>
+            <div className="container">
+              <div ref={compareListRef} className="compare-page__compare">
+                <Swiper
+                  spaceBetween={24}
+                  slidesPerView={2}
+                  onSwiper={setSecondSwiper}
+                  controller={{control: firstSwiper}}
+                >
+                  {compareList.map((list, key) => {
+                    return (
+                      <SwiperSlide key={key}>
+                        <div className="compare-page__compare-values">
                           <div className="compare-page__compare-values-item">
                             <div
                               className="compare-page__compare-values-item-label compare-page__compare-values-item-label--title">
-                              {item.name}
+                              Общие параметры
                             </div>
                           </div>
-
-                          {Object.keys(item.value).map((inner) => (
+                          {list["general"].map((item, inner) => (
                             <div key={inner} className="compare-page__compare-values-item">
                               <div className="compare-page__compare-values-item-label">
-                                {inner}
+                                {item.name}
                               </div>
                               <div className="compare-page__compare-values-item-value">
-                                {item.value[inner] ? "Да" : "Нет"}
+                                {item.value ? item.value : "—"}
                               </div>
                             </div>
                           ))}
-                        </React.Fragment>
-                      ))}
+
+                          {list["lists"].map((item, key) => (
+                            <React.Fragment key={key}>
+                              <div className="compare-page__compare-values-item">
+                                <div
+                                  className="compare-page__compare-values-item-label compare-page__compare-values-item-label--title">
+                                  {item.name}
+                                </div>
+                              </div>
+
+                              {Object.keys(item.value).map((value, inner) => (
+                                <div key={inner} className="compare-page__compare-values-item">
+                                  <div className="compare-page__compare-values-item-label">
+                                    {item.value[inner].label}
+                                  </div>
+                                  <div className="compare-page__compare-values-item-value">
+                                    {item.value[inner].value ? "Да" : "Нет"}
+                                  </div>
+                                </div>
+                              ))}
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      </SwiperSlide>
+                    )
+                  })}
+                </Swiper>
+
+                {compareList[0] &&
+                <div className="compare-page__compare-titles">
+                  <div className="sticky">
+                    <div className="compare-page__compare-titles-item compare-page__compare-titles-item--title">
+                      <div className="js-sticky-element"/>
+                      <span>Общие параметры</span>
                     </div>
-                  </SwiperSlide>
-                )
-              })}
-            </Swiper>
 
-            {compareList[0] &&
-            <div className="compare-page__compare-titles">
-              <div className="sticky">
-                <div className="compare-page__compare-titles-item compare-page__compare-titles-item--title">
-                  <div className="js-sticky-element"/>
-                  <span>Общие параметры</span>
-                </div>
-
-                {compareList[0]["general"].map((item, inner) => (
-                  <div key={inner} className="compare-page__compare-titles-item">
-                    {item.name}
+                    {compareList[0]["general"].map((item, inner) => (
+                      <div key={inner} className="compare-page__compare-titles-item">
+                        {item.name}
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
 
-              {compareList[0]["lists"].map((item, inner) => (
-                <div key={inner} className="sticky">
-                  <div className="compare-page__compare-titles-item compare-page__compare-titles-item--title">
-                    <div className="js-sticky-element"/>
-                    <span>{item.name}</span>
-                  </div>
-                  {Object.keys(item.value).map((inner) => (
-                    <div key={inner} className="compare-page__compare-titles-item">
-                      {inner}
+                  {compareList[0]["lists"].map((item, key) => (
+                    <div key={key} className="sticky">
+                      <div className="compare-page__compare-titles-item compare-page__compare-titles-item--title">
+                        <div className="js-sticky-element"/>
+                        <span>{item.name}</span>
+                      </div>
+                      {Object.keys(item.value).map((value, inner) => (
+                        <div key={inner} className="compare-page__compare-titles-item">
+                          {item.value[inner].label}
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>
-              ))}
+                }
+              </div>
             </div>
-            }
-          </div>
-        </div>
+          </>
+        }
       </div>
     </Layout>
   )

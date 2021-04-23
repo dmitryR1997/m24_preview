@@ -10,13 +10,19 @@ import "./Message.scss"
 
 import ModalClose from "../../../public/icons/modal-close.svg"
 
-const Message = ({ classes, title, description, styles, hideModal, hideButton, children }) => {
+const Message = ({ classes, title, description, styles, hideModal, hideButton, children, onClose }) => {
+  const hideModalHandler = () => {
+    hideModal()
+
+    if (onClose) onClose()
+  }
+
   return (
     <div
       className={`message-card ${classes}`}
       style={{ ...styles }}
     >
-      <div className="message-card__close" onClick={hideModal}>
+      <div className="message-card__close" onClick={hideModalHandler}>
         <ModalClose/>
       </div>
 
@@ -44,7 +50,7 @@ const Message = ({ classes, title, description, styles, hideModal, hideButton, c
       <div className="message-card__button">
         <Button
           label="Хорошо"
-          onClick={hideModal}
+          onClick={hideModalHandler}
         />
       </div>
       }
@@ -57,7 +63,8 @@ Message.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   styles: PropTypes.object,
-  hideModal: PropTypes.func.isRequired
+  hideModal: PropTypes.func.isRequired,
+  onClose: PropTypes.func
 }
 
 const mapDispatchToProps = {
