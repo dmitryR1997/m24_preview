@@ -147,7 +147,8 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       category: category.data,
-      categories: categories.data
+      categories: categories.data,
+      code: params.code
     }
   }
 }
