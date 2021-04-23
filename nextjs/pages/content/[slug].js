@@ -1,21 +1,16 @@
-import React, {useEffect, useState, useRef} from "react"
-import { useRouter } from "next/router"
+import React, {useEffect, useRef} from "react"
+import Head from "next/head"
 
-import { fetchStatic } from "@api/static";
+import { fetchStatic } from "@api/static"
+import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import Catalog from "@components/Utils/Catalog"
 import RealetedProducts from "@components/Utils/RealetedProducts";
 
 import ExpertsHelp from "@screens/ExpertsHelp"
-import FiveReasons from "@screens/FiveReasons";
-import OfficialWaranty from "@screens/OfficialWaranty";
-
-import "@styles/pages/StaticPage.scss"
-import ExplameMassager from "@screens/ExplameMassager";
-import {fetchCategories} from "@api/category";
-import Head from "next/dist/next-server/lib/head";
+import FiveReasons from "@screens/FiveReasons"
+import ExplameMassager from "@screens/ExplameMassager"
 
 const StaticPage = ({ categories, pageContent, slug }) => {
   const content = useRef()

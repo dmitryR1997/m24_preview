@@ -1,11 +1,10 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Head from "next/head"
 
 import { fetchCategories } from "@api/category"
 import { fetchArticles } from "@api/article"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import Article from "@components/Cards/Article/Article";
 import SectionHeader from "@components/Display/SectionHeader"
 import RealetedProducts from "@components/Utils/RealetedProducts"
@@ -13,9 +12,6 @@ import Button from "@components/Forms/Button"
 
 import ExpertsHelp from "@screens/ExpertsHelp"
 import FiveReasons from "@screens/FiveReasons"
-import OfficialWaranty from "@screens/OfficialWaranty"
-
-import "@styles/pages/Articles.scss"
 
 const PER_PAGE = 4
 

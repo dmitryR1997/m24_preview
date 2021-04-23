@@ -16,8 +16,6 @@ import CatalogSlider from "@screens/CatalogSlider"
 import PreviewBrands from "@screens/PreviewBrands"
 import ExpertsHelp from "@screens/ExpertsHelp"
 
-import "@styles/pages/home.scss"
-
 const HomePage = ({ text, slides, categories }) => {
   return (
     <Layout pageType="home" categories={categories} seoText={text}>

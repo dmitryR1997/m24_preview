@@ -16,13 +16,10 @@ import { Tabs, Tab } from "@components/Surfaces/Tabs/Tabs"
 import ProductParamsList from "@components/Utils/ProductParamsList/ProductParamsList"
 import Alert from "@components/Display/Alert"
 import ReviewCard from "@components/Cards/Review"
-import Button from "@components/Forms/Button"
 
 import FiveReasons from "@screens/FiveReasons"
 import ExpertsHelp from "@screens/ExpertsHelp"
 import VideoReviews from "@screens/VideoReviews"
-
-import "@styles/pages/product.scss"
 
 const ProductPage = ({ categories, details }) => {
   return (

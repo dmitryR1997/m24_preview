@@ -11,9 +11,6 @@ import { removeFromCompare } from "@actions/compare"
 import Layout from "@components/Layout/Layout"
 import CatalogProduct from "@components/Cards/CatalogProduct"
 
-import "@styles/pages/ComparePage.scss"
-import "@components/Surfaces/Slider/Slider.scss"
-
 import CloseIcon from "../../public/icons/close.svg"
 
 SwiperCore.use([Pagination, Controller, Navigation])

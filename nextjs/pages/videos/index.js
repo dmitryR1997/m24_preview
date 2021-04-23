@@ -7,17 +7,13 @@ import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
 import CatalogFilterToggle from "@components/Utils/CatalogFilterToggle"
-import Container from "@components/Layout/Container"
+import VideoFilter from "@components/Utils/VideoFilter/VideoFilter"
 import SectionHeader from "@components/Display/SectionHeader"
 import VideoReviewCard from "@components/Cards/VideoReview"
 import Button from "@components/Forms/Button"
 
 import ExpertsHelp from "@screens/ExpertsHelp"
-import FiveReasons from "@screens/FiveReasons";
-import OfficialWaranty from "@screens/OfficialWaranty";
-
-import "@styles/pages/VideoReviews.scss"
-import VideoFilter from "@components/Utils/VideoFilter/VideoFilter";
+import FiveReasons from "@screens/FiveReasons"
 
 const PER_PAGE = 7
 

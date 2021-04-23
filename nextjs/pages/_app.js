@@ -7,20 +7,34 @@ import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 import { hideHeaderSearch, hideMainMenu, hideModal } from "@actions/layout"
 
-import { isServer } from "../env"
-
 import TagManager from "react-gtm-module"
 const tagManagerArgs = {
   gtmId: "GTM-NKKVLD4"
 }
 
-import Loader from "@components/Layout/Loader"
-
 // General styles
-import "../styles/general.scss"
+import "@styles/general.scss"
 
 // Plugins styles
 import "swiper/swiper.scss"
+
+// Pages styles
+import "@styles/pages/AddReview.scss"
+import "@styles/pages/Articles.scss"
+import "@styles/pages/Brands.scss"
+import "@styles/pages/Cart.scss"
+import "@styles/pages/Catalog.scss"
+import "@styles/pages/Compare.scss"
+import "@styles/pages/Contacts.scss"
+import "@styles/pages/Getcredit.scss"
+import "@styles/pages/Home.scss"
+import "@styles/pages/None.scss"
+import "@styles/pages/Order.scss"
+import "@styles/pages/Product.scss"
+import "@styles/pages/Reviews.scss"
+import "@styles/pages/Static.scss"
+import "@styles/pages/VideoReviews.scss"
+
 
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)

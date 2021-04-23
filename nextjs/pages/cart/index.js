@@ -13,8 +13,6 @@ import Amount from "@components/Display/Amount"
 import Button from "@components/Forms/Button"
 
 
-import "@styles/pages/CartPage.scss"
-
 const CartPage = ({ cartList, cartQuantity, categories }) => {
   const [products, setProducts] = useState([])
 

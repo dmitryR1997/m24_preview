@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
 import Cookies from "js-cookie"
 import { useRouter } from "next/router"
 import { useForm, Controller } from "react-hook-form"
@@ -11,19 +10,13 @@ import { addOrder, addToCrm } from "@api/order"
 import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import Message from "@components/Cards/Message"
 import Input from "@components/Forms/Input"
-import Radio from "@components/Forms/Radio"
 import Button from "@components/Forms/Button"
+import Checkbox from "@components/Forms/Checkbox/Checkbox"
+import SingleRangeInput from "@components/Forms/SingleRangeInput"
 
-import { isServer } from '../../env'
-
-import "@styles/pages/GetcreditPage.scss"
-import Checkbox from "@components/Forms/Checkbox/Checkbox";
-import RangeInput from "@components/Forms/RangeInput";
-import SingleRangeInput from "@components/Forms/SingleRangeInput";
-import num_word from "@utils/NumWord";
+import num_word from "@utils/NumWord"
 
 const initialForm = {
   first_name: "",

@@ -9,8 +9,6 @@ import Layout from "@components/Layout/Layout"
 import ReviewWithProduct from "@components/Cards/ReviewWithProduct"
 import CustomSelect from "@components/Forms/CustomSelect"
 
-import "@styles/pages/ReviewsPage.scss"
-
 import PlusIcon from "../../public/icons/plus.svg"
 
 const ReviewsPage = ({ categories, reviews, code }) => {
