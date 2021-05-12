@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import { fetchProducts } from "@api/product"
 
-import Container from "@components/Layout/Container"
 import Slider from "@components/Surfaces/Slider";
 import CatalogProduct from "@components/Cards/CatalogProduct";
 

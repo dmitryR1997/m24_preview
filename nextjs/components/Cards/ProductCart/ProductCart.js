@@ -1,9 +1,8 @@
-import React from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
 import { connect, useDispatch } from "react-redux"
-import { addToCart, changeQuantity, removeFromCart } from "@actions/cart"
+import { changeQuantity, removeFromCart } from "@actions/cart"
 
 import Amount from "@components/Display/Amount"
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback, useRef} from "react"
+import { useEffect, useState, useCallback, useRef } from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -7,17 +7,14 @@ import classnames from "classnames"
 import {connect} from "react-redux"
 import { setHeaderOffsetBottom } from "@actions/layout"
 
-import Container from "@components/Layout/Container"
 import MainMenuBurger from "@components/Utils/MainMenuBurger"
 import MiniCart from "@components/Utils/MiniCart"
 import HeaderSearchToggle from "@components/Utils/HeaderSearchToggle"
-import MainMenu from "@components/Utils/MainMenu"
 
 import SiteLogo from "../../public/icons/site-logo.svg"
 import ArrowBack from "../../public/icons/arrow-back.svg"
 
 import "./Header.scss"
-import HeaderSearch from "@components/Utils/HeaderSearch/HeaderSearch";
 
 const Header = ({isOpenMainMenu, isOpenHeaderSearch, isProduct, categories}) => {
   const header = useRef()

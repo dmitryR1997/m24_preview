@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import classnames from "classnames"
 
@@ -7,7 +7,6 @@ import { fetchCategories } from "@api/category"
 import { toggleVideoFilter } from "@actions/layout"
 import { setVideoFilter, updateVideoFilter } from "@actions/filter"
 
-import Container from "@components/Layout/Container"
 import Accordion from "@components/Surfaces/Accordion"
 import Checkbox from "@components/Forms/Checkbox/Checkbox"
 import Button from "@components/Forms/Button"

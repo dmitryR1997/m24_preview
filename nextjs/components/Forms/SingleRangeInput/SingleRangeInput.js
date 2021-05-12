@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import { Range } from "react-range"
+import { useController } from "react-hook-form"
 
 import "@components/Forms/RangeInput/RangeInput.scss"
 
 const STEP = 1
 
-const SingleRangeInput = ({ min, max, setter, label, valueLabel, value }) => {
-  const [range, setRange] = useState([value])
+const SingleRangeInput = ({ min, max, label, valueLabel, control, name, value }) => {
+  const {
+    field: { ref, ...inputProps }
+  } = useController({
+    name,
+    control,
+    rules: { required: true },
+    defaultValue: value,
+  })
+
+  const [range, setRange] = useState([inputProps.value])
 
   const getTrackPos = () => {
     const current = range[0] / max * 100
@@ -18,8 +28,12 @@ const SingleRangeInput = ({ min, max, setter, label, valueLabel, value }) => {
   }
 
   useEffect(() => {
-    setter(range[0])
+    inputProps.onChange(range)
   }, [range])
+
+  // useEffect(() => {
+  //   setter(range[0])
+  // }, [range])
 
   return (
     <Range
@@ -56,7 +70,7 @@ const SingleRangeInput = ({ min, max, setter, label, valueLabel, value }) => {
 SingleRangeInput.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
-  setter: PropTypes.func.isRequired,
+  control: PropTypes.object.isRequired,
   label: PropTypes.string,
   valueLabel: PropTypes.string,
   value: PropTypes.number

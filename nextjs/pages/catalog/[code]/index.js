@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Head from "next/head"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
@@ -7,12 +7,11 @@ import { setFilter, updateFilter } from "@actions/filter"
 import { fetchCategories, fetchCategory } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import CatalogFilterToggle from "@components/Utils/CatalogFilterToggle"
 import SectionHeader from "@components/Display/SectionHeader"
 import CatalogFilter from "@components/Utils/CatalogFilter"
 import Catalog from "@components/Utils/Catalog"
-import Loader from "@components/Layout/Loader"
+import CompareNav from "@components/Utils/CompareNav/CompareNav"
 
 import VideoReviews from "@screens/VideoReviews"
 import ExpertsHelp from "@screens/ExpertsHelp"
@@ -21,7 +20,6 @@ import ExplameMassager from "@screens/ExplameMassager"
 import filters from "@utils/filters"
 
 import "@styles/pages/catalog.scss"
-import CompareNav from "@components/Utils/CompareNav/CompareNav";
 
 const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categories }) => {
   const [total, setTotal] = useState(0)

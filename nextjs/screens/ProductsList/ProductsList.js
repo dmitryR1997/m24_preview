@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import classnames from "classnames"
 
 import { fetchProducts } from "@api/product"
 import showTotal from "@utils/showTotal"
 
-import Container from "@components/Layout/Container"
 import CatalogProduct from "@components/Cards/CatalogProduct"
 import Button from "@components/Forms/Button"
 

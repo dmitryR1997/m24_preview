@@ -1,8 +1,8 @@
-import React from "react"
 import PropTypes from "prop-types"
 
+import Accordion from "@components/Surfaces/Accordion"
+
 import "./Shop.scss"
-import Accordion from "@components/Surfaces/Accordion";
 
 const Shop = ({ image, title, workTime, brands, styles }) => {
   return (

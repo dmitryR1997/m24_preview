@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import PropTypes from "prop-types"
 import Cookies from "js-cookie"
 import { useRouter } from "next/router"
@@ -11,7 +11,6 @@ import { addOrder, addToCrm } from "@api/order"
 import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import Message from "@components/Cards/Message"
 import Input from "@components/Forms/Input"
 import Radio from "@components/Forms/Radio"

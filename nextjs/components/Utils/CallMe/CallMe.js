@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import classnames from "classnames"
 import { LazyLoadImage } from "react-lazy-load-image-component"

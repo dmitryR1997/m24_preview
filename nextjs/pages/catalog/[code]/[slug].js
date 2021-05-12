@@ -1,6 +1,5 @@
-import React from "react"
 import Head from "next/head"
-import num_word from "@utils/NumWord"
+import Link from "next/link"
 
 import { fetchCategories } from "@api/category"
 import { fetchProduct } from "@api/product"
@@ -16,11 +15,12 @@ import { Tabs, Tab } from "@components/Surfaces/Tabs/Tabs"
 import ProductParamsList from "@components/Utils/ProductParamsList/ProductParamsList"
 import Alert from "@components/Display/Alert"
 import ReviewCard from "@components/Cards/Review"
-import Button from "@components/Forms/Button"
 
 import FiveReasons from "@screens/FiveReasons"
 import ExpertsHelp from "@screens/ExpertsHelp"
 import VideoReviews from "@screens/VideoReviews"
+
+import num_word from "@utils/NumWord"
 
 import "@styles/pages/product.scss"
 
@@ -75,12 +75,14 @@ const ProductPage = ({ categories, details }) => {
         <div className="container single-product__purchase">
           <div className="single-product__purchase-left">
             {details.credit_line &&
-              <div className="single-product__credit-price">
-                <Amount
-                  amount={parseInt((details.price / 12).toFixed(0))}
-                  text=" / мес. в рассрочку"
-                />
-              </div>
+              <Link href={`/getcredit/${details.code}`}>
+                <div className="single-product__credit-price">
+                  <Amount
+                    amount={parseInt((details.price / 12).toFixed(0))}
+                    text=" / мес. в рассрочку"
+                  />
+                </div>
+              </Link>
             }
 
             {details.discount_price > 0 &&
@@ -108,6 +110,7 @@ const ProductPage = ({ categories, details }) => {
               { (details.quantity > 0) || (details.can_buy_zero === "Y") ? "На складе" : "Под заказ" }
             </div>
           </div>
+
           <div className="single-product__info-item">
             <div className="single-product__info-item-label">
               Доставка
@@ -116,6 +119,7 @@ const ProductPage = ({ categories, details }) => {
               { details.quantity > 0 ? "1-2 дня" : "-" }
             </div>
           </div>
+
           <div className="single-product__info-item">
             <div className="single-product__info-item-label">
               Продано
@@ -141,7 +145,7 @@ const ProductPage = ({ categories, details }) => {
         <div className="container">
           <Tabs>
             <Tab id={1} label="Описание">
-              {details.detail_text && details.detail_text.length > 0 && !isServer &&
+              {details.detail_text && details.detail_text.length > 0 && details.detail_text[0] !== "" && !isServer &&
                 <div className="single-product__description typography">
                   <Accordion>
                     {details.detail_text.map((p, key) => {
@@ -167,7 +171,9 @@ const ProductPage = ({ categories, details }) => {
             </Tab>
 
             <Tab id={2} label="Характеристики">
+              {details.properties &&
               <ProductParamsList params={details.properties}/>
+              }
 
               <div className="single-product__tab-alert">
                 <Alert
@@ -177,24 +183,24 @@ const ProductPage = ({ categories, details }) => {
               </div>
 
               <Accordion>
-                <div
-                  id="tab-1"
-                  label="Виды массажа"
-                  open={true}
-                >
-                  {details.types_massage &&
+                {Object.keys(details.features).map((feature, key) => (
+                  <div
+                    id={`tab-${key}`}
+                    label={details.features[feature].name}
+                    open={true}
+                  >
                     <div className="single-product__advant-list">
-                      {details.types_massage.map((type, key) => (
-                        <div key={key} className="single-product__advant-list-item">
+                      {details.features[feature].elements.map((element, inner) => (
+                        <div key={inner} className="single-product__advant-list-item">
                           <div className="single-product__advant-list-item-icon">
-                            <img src={`/icons/types_massage/${type.icon}.png`} alt="Icon"/>
+                            <img src={`/icons/types_massage/${element.icon}.png`} alt="Icon"/>
                           </div>
-                          {type.title}
+                          {element.title}
                         </div>
                       ))}
                     </div>
-                  }
-                </div>
+                  </div>
+                ))}
               </Accordion>
             </Tab>
 

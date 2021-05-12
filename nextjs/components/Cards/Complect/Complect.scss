@@ -1,0 +1,106 @@
+.complect-card {
+  &__title {
+    margin: 0 0 16px;
+
+    font-size: 24px;
+    font-weight: 700;
+    color: #14142B;
+    text-align: center;
+  }
+
+  &__discount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 0 16px;
+
+    font-size: 12px;
+    font-weight: 600;
+    color: #14142B;
+    text-align: center;
+  }
+
+  &__product-list {
+    display: flex;
+  }
+
+  &__product-item {
+    width: 50%;
+  }
+
+  &__old-price {
+    margin: 16px 0 0;
+
+    font-size: 12px;
+    font-weight: 500;
+    color: #B2D92E;
+    text-align: center;
+
+    .amount {
+      &__line {
+        background-color: #B2D92E;
+      }
+    }
+  }
+
+  &__price {
+    margin: 16px 0 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #14142B;
+    text-align: center;
+  }
+
+  &__show-text {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    color: #8F688E;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__text {
+    margin: 32px 0 0;
+    font-size: 14px;
+    color: #4E4B66;
+
+    &-title {
+      margin: 0 0 7px;
+
+      font-size: 10px;
+      line-height: 1.2;
+      color: rgba(20, 20, 43, 0.6);
+    }
+
+    &-area {
+      margin: 0 0 16px;
+    }
+
+    &-alert {
+      margin: 44px 0 0;
+    }
+  }
+
+  .amount {
+    display: inline-block;
+  }
+
+  .catalog-product-card {
+    &:after {
+      display: none;
+    }
+  }
+
+  .button {
+    display: block;
+    margin: 24px auto 32px;
+    width: 202px;
+  }
+}

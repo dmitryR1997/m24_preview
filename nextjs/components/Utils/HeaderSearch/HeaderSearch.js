@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from "react"
+import { useState, useCallback, useEffect, useRef } from "react"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import classnames from "classnames"

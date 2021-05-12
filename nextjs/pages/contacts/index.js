@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import Head from "next/head"
 import Link from "next/link"
-import {useDispatch} from "react-redux"
-
-import {Controller, useForm} from "react-hook-form"
-import {Clusterer, Map, Placemark, YMaps} from "react-yandex-maps"
+import { useDispatch } from "react-redux"
+import { Controller, useForm } from "react-hook-form"
+import { Clusterer, Map, Placemark, YMaps } from "react-yandex-maps"
 
 import {openModal} from "@actions/layout"
 import {fetchShops, getShopAddress} from "@api/shop"
 import {fetchCategories} from "@api/category"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import {Tab, Tabs} from "@components/Surfaces/Tabs/Tabs"
 import ShopCard from "@components/Cards/Shop"
 import RealetedProducts from "@components/Utils/RealetedProducts"

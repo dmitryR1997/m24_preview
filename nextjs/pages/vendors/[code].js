@@ -1,9 +1,10 @@
-import React, { useState } from "react"
+import { useState } from "react"
+import Head from "next/head"
+
 import { fetchBrand } from "@api/brand"
 import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import SectionHeader from "@components/Display/SectionHeader"
 import Catalog from "@components/Utils/Catalog"
 
@@ -11,7 +12,6 @@ import ExpertsHelp from "@screens/ExpertsHelp"
 import ExplameMassager from "@screens/ExplameMassager"
 
 import "@styles/pages/catalog.scss"
-import Head from "next/dist/next-server/lib/head";
 
 const BrandPage = ({ categories, brand }) => {
   const [total, setTotal] = useState(0)

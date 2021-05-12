@@ -16,10 +16,13 @@ const cart = (state = initialState, action) => {
     case ADD_TO_CART:
       index = state.list.findIndex(item => item.id === action.payload.id)
 
+
       if (index !== -1) {
+        state.list[index].quantity = state.list[index].quantity + 1
+
         return {
           ...state,
-          list: state.list.filter(item => item.id !== action.payload.id)
+          list: state.list
         }
       }
 

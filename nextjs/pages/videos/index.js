@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState, useCallback} from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import Head from "next/head"
 
 import { connect } from "react-redux"
@@ -7,17 +7,15 @@ import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
 import CatalogFilterToggle from "@components/Utils/CatalogFilterToggle"
-import Container from "@components/Layout/Container"
 import SectionHeader from "@components/Display/SectionHeader"
 import VideoReviewCard from "@components/Cards/VideoReview"
 import Button from "@components/Forms/Button"
+import VideoFilter from "@components/Utils/VideoFilter/VideoFilter"
 
 import ExpertsHelp from "@screens/ExpertsHelp"
-import FiveReasons from "@screens/FiveReasons";
-import OfficialWaranty from "@screens/OfficialWaranty";
+import FiveReasons from "@screens/FiveReasons"
 
 import "@styles/pages/VideoReviews.scss"
-import VideoFilter from "@components/Utils/VideoFilter/VideoFilter";
 
 const PER_PAGE = 7
 

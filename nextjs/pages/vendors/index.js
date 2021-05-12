@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import Head from "next/head"
 
-import {fetchBrands} from "@api/brand"
+import { fetchBrands } from "@api/brand"
+import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
 import SectionHeader from "@components/Display/SectionHeader"
 import BrandCard from "@components/Cards/Brand"
 import RealetedProducts from "@components/Utils/RealetedProducts"
 
 import ExpertsHelp from "@screens/ExpertsHelp"
 import FiveReasons from "@screens/FiveReasons"
-import OfficialWaranty from "@screens/OfficialWaranty"
 
 import "@styles/pages/Brands.scss"
-import {fetchCategories} from "@api/category";
-import Head from "next/dist/next-server/lib/head";
 
 const BrandPage = ({ categories }) => {
   const [brands, setBrands] = useState([])

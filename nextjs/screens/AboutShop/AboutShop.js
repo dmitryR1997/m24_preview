@@ -1,10 +1,7 @@
-import React from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
-import Container from "@components/Layout/Container"
 import Accordion from "@components/Surfaces/Accordion"
-import SectionHeader from "@components/Display/SectionHeader"
 
 import "./AboutShop.scss"
 

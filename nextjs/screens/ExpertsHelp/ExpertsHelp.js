@@ -1,7 +1,5 @@
-import React from "react"
 import PropTypes from "prop-types"
 
-import Container from "@components/Layout/Container"
 import BackgroundLazyLoad from "@utils/BackgroundLazyLoad"
 
 import { ReactComponent as CommentIcon } from "../../public/icons/comment.svg"

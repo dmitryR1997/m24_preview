@@ -1,8 +1,5 @@
-import React from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
-
-import { LazyLoadImage } from "react-lazy-load-image-component"
 
 import "./Banner.scss"
 
