@@ -13,8 +13,6 @@ import Button from "@components/Forms/Button"
 import ExpertsHelp from "@screens/ExpertsHelp"
 import FiveReasons from "@screens/FiveReasons"
 
-import "@styles/pages/Articles.scss"
-
 const PER_PAGE = 4
 
 const ArticlesPage = ({ categories }) => {

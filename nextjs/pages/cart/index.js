@@ -13,8 +13,6 @@ import ProductCart from "@components/Cards/ProductCart/ProductCart"
 import Amount from "@components/Display/Amount"
 import Button from "@components/Forms/Button"
 
-import "@styles/pages/CartPage.scss"
-
 const CartPage = ({cartList, cartQuantity, categories}) => {
   const [cartPrice, setCartPrice] = useState({})
   const [products, setProducts] = useState([])

@@ -19,8 +19,6 @@ import ExplameMassager from "@screens/ExplameMassager"
 
 import filters from "@utils/filters"
 
-import "@styles/pages/catalog.scss"
-
 const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categories }) => {
   const [total, setTotal] = useState(0)
 

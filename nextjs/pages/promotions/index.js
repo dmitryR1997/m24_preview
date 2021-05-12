@@ -17,8 +17,6 @@ import OfficialWaranty from "@screens/OfficialWaranty"
 
 import num_word from "@utils/NumWord"
 
-import "@styles/pages/PromotionsPage.scss"
-
 const PromotionsPage = ({ categories }) => {
   const [complects, setComplects] = useState([])
   const [products, setProducts] = useState([])

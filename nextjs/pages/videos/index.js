@@ -15,7 +15,6 @@ import VideoFilter from "@components/Utils/VideoFilter/VideoFilter"
 import ExpertsHelp from "@screens/ExpertsHelp"
 import FiveReasons from "@screens/FiveReasons"
 
-import "@styles/pages/VideoReviews.scss"
 
 const PER_PAGE = 7
 

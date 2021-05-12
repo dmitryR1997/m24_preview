@@ -2,8 +2,6 @@ import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout/Layout"
 
-import "@styles/pages/NonePage.scss"
-
 const NonePage = ({ categories }) => {
   return (
     <Layout categories={categories}>

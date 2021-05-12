@@ -11,8 +11,6 @@ import Catalog from "@components/Utils/Catalog"
 import ExpertsHelp from "@screens/ExpertsHelp"
 import ExplameMassager from "@screens/ExplameMassager"
 
-import "@styles/pages/catalog.scss"
-
 const BrandPage = ({ categories, brand }) => {
   const [total, setTotal] = useState(0)
 

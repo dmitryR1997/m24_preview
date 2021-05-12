@@ -34,7 +34,7 @@ import "@styles/pages/Product.scss"
 import "@styles/pages/Reviews.scss"
 import "@styles/pages/Static.scss"
 import "@styles/pages/VideoReviews.scss"
-
+import "@styles/pages/Promotions.scss"
 
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)

@@ -21,10 +21,6 @@ import Button from "@components/Forms/Button"
 import FiveReasons from "@screens/FiveReasons"
 import ExpertsHelp from "@screens/ExpertsHelp"
 
-import "@styles/pages/StaticPage.scss"
-import "@styles/pages/Contacts.scss"
-
-
 const GetShopAddresModal = ({ activeShop }) => {
   const { control, handleSubmit, errors } = useForm()
   const dispatch = useDispatch()

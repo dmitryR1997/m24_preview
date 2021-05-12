@@ -17,8 +17,6 @@ import Stars from "@components/Forms/Stars"
 import Loader from "@components/Layout/Loader"
 import Message from "@components/Cards/Message"
 
-import "@styles/pages/AddReviewPage.scss"
-
 const AddReviewPage = ({ categories }) => {
   const router = useRouter()
   const dispatch = useDispatch()

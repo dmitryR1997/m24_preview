@@ -16,7 +16,6 @@ import Amount from "@components/Display/Amount"
 
 import num_word from "@utils/NumWord"
 
-import "@styles/pages/GetcreditPage.scss"
 import Cookies from "js-cookie";
 import {openModal} from "@actions/layout";
 import Message from "@components/Cards/Message/Message";

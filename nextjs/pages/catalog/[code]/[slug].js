@@ -22,8 +22,6 @@ import VideoReviews from "@screens/VideoReviews"
 
 import num_word from "@utils/NumWord"
 
-import "@styles/pages/product.scss"
-
 const ProductPage = ({ categories, details }) => {
   return (
     <Layout pageType="product" categories={categories}>

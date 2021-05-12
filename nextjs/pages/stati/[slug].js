@@ -11,7 +11,6 @@ import ExpertsHelp from "@screens/ExpertsHelp"
 import FiveReasons from "@screens/FiveReasons";
 import OfficialWaranty from "@screens/OfficialWaranty";
 
-import "@styles/pages/StaticPage.scss"
 
 const StaticPage = ({ categories, pageContent, slug }) => {
   const content = useRef()
