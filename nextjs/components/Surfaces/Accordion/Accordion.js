@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import AccordionSection from "@components/Surfaces/AccordionSection"
 
 import "./Accordion.scss"

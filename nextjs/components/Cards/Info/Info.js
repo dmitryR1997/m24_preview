@@ -1,11 +1,10 @@
-import React from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
 import VideoPlayer from "@components/Surfaces/VideoPlayer"
+import BackgroundLazyLoad from "@utils/BackgroundLazyLoad"
 
 import "./Info.scss"
-import BackgroundLazyLoad from "@utils/BackgroundLazyLoad";
 
 const Info = ({ preText, title, videoId, link, styles, backgroundImage }) => {
   const content = (

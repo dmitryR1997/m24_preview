@@ -1,6 +1,28 @@
 .getcredit-page {
   margin: 40px 0 0;
 
+  &__result {
+    display: flex;
+
+    &-item {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #14142B;
+      letter-spacing: 0.75px;
+      width: 50%;
+
+      span {
+        display: block;
+        font-size: 14px;
+        font-weight: 400;
+        color: #4E4B66;
+        line-height: 1.5;
+        margin: 0 0 8px;
+      }
+    }
+  }
+
   &__list {
     &-item {
       margin: 0 0 24px;

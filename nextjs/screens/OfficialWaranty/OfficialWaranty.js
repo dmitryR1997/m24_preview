@@ -1,7 +1,4 @@
-import React from "react"
 import Link from "next/link"
-
-import Container from "@components/Layout/Container"
 
 import "./OfficialWaranty.scss"
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef, useCallback } from "react"
 
 import { fetchProducts } from "@api/product"
 
-import Container from "@components/Layout/Container"
 import Loader from "@components/Layout/Loader"
 import ProductCard from "@components/Cards/Product"
 import Button from "@components/Forms/Button"
@@ -83,8 +82,6 @@ const Catalog = ({ section_id, brand_id, params, totalSetter }) => {
   }, [page])
 
   useEffect(() => {
-    console.log(params)
-
     if ((params && Object.keys(params).length <= 0) || (params && !params.update)) return
 
     setPage(1)

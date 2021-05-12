@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react"
+import {useEffect, useRef } from "react"
 import Head from "next/head"
 
 import { fetchStatic } from "@api/static"
@@ -9,8 +9,10 @@ import Catalog from "@components/Utils/Catalog"
 import RealetedProducts from "@components/Utils/RealetedProducts";
 
 import ExpertsHelp from "@screens/ExpertsHelp"
-import FiveReasons from "@screens/FiveReasons"
+import FiveReasons from "@screens/FiveReasons";
 import ExplameMassager from "@screens/ExplameMassager"
+
+import "@styles/pages/StaticPage.scss"
 
 const StaticPage = ({ categories, pageContent, slug }) => {
   const content = useRef()

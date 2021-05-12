@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
 import { Swiper, SwiperSlide } from "swiper/react"
 import SwiperCore, { Controller, Pagination, Navigation } from "swiper"

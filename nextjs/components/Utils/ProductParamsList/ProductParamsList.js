@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import PropTypes from "prop-types"
 
 import "./ProductParamsList.scss"
@@ -15,8 +15,6 @@ const ProductParamsList = ({ params }) => {
       setCount(params.length)
     }
   }
-
-  console.log(params)
 
   return (
     <div className="product-params">

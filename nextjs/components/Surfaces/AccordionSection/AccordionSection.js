@@ -1,4 +1,3 @@
-import React from "react"
 import PropTypes from "prop-types"
 
 import Arrow from "../../../public/icons/accordion-arrow.svg"

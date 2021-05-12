@@ -1,6 +1,4 @@
-import React from "react"
 import Slider from "@components/Surfaces/Slider"
-import Container from "@components/Layout/Container"
 import SliderProductCard from "@components/Cards/SliderProduct"
 
 import Banner from "@components/Cards/Banner/Banner"

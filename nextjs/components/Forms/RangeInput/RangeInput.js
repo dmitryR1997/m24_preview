@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import { Range } from "react-range"
 
@@ -46,7 +46,7 @@ const RangeInput = ({ min, max, setter }) => {
           </div>
         )}
         renderThumb={({ props, isDragged }) => (
-          <div {...props} className="range-label" />
+          <div {...props} className="range-input__thumb" />
         )}
       />
 

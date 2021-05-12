@@ -1,5 +1,3 @@
-import React from "react"
-
 import Slider from "@components/Surfaces/Slider"
 import InfoCard from "@components/Cards/Info"
 import SectionHeader from "@components/Display/SectionHeader"

@@ -1,7 +1,6 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import VisibilitySensor from "react-visibility-sensor"
 
-import Container from "@components/Layout/Container"
 import SectionHeader from "@components/Display/SectionHeader"
 import ProgressCircle from "@components/Display/ProgressCircle"
 

@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 import classnames from "classnames"
 
-import { connect, useDispatch } from "react-redux"
-import { hideMainMenu } from "@actions/layout"
-import { fetchCategories } from "@api/category"
+import { connect } from "react-redux"
 
 import Accordion from "@components/Surfaces/Accordion"
-import Container from "@components/Layout/Container"
 
 import "./MainMenu.scss"
 

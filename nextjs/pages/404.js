@@ -1,5 +1,3 @@
-import React from "react"
-
 import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout/Layout"

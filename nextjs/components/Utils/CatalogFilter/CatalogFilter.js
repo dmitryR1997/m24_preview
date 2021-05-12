@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback } from "react"
 import PropTypes from "prop-types"
 import classnames from "classnames"
 import debounce from "lodash.debounce"
@@ -9,7 +9,6 @@ import { setFilter, updateFilter } from "@actions/filter"
 
 import { fetchFilters } from "@api/category"
 
-import Container from "@components/Layout/Container"
 import Accordion from "@components/Surfaces/Accordion"
 import RangeInput from "@components/Forms/RangeInput"
 import Checkbox from "@components/Forms/Checkbox/Checkbox"
@@ -86,7 +85,7 @@ const CatalogFilter = ({ filter, isOpenCatalogFilter, toggleCatalogFilter, setFi
       })}
     >
       <div className="catalog-filter__header">
-        <div>
+        <div className="container">
           <div className="catalog-filter__header-inner">
             <div className="catalog-filter__header-title">
               Фильтр

@@ -1,4 +1,3 @@
-import React from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 import { LazyLoadImage } from "react-lazy-load-image-component"
@@ -59,11 +58,13 @@ const CatalogProduct = ({ product, size }) => {
           </div>
         }
 
+        {product.price &&
         <div className="catalog-product-card__current-price">
           <Amount
             amount={product.discount_price > 0 ? product.discount_price : product.price}
           />
         </div>
+        }
       </div>
     </article>
   )

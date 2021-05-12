@@ -1,26 +1,35 @@
-import React, { useState, useEffect } from "react"
+import {useState, useEffect} from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
-import { connect } from "react-redux"
-import { fetchProducts } from "@api/product"
-import { fetchCategories } from "@api/category"
-import { getCartQuantity } from "../../selectors/cart"
+import {connect} from "react-redux"
+import {fetchProducts} from "@api/product"
+import {fetchCategories} from "@api/category"
+import {fetchCartPrice} from "@api/cart"
+import {getCartQuantity} from "../../selectors/cart"
 
 import Layout from "@components/Layout/Layout"
 import ProductCart from "@components/Cards/ProductCart/ProductCart"
 import Amount from "@components/Display/Amount"
 import Button from "@components/Forms/Button"
 
+import "@styles/pages/CartPage.scss"
 
-const CartPage = ({ cartList, cartQuantity, categories }) => {
+const CartPage = ({cartList, cartQuantity, categories}) => {
+  const [cartPrice, setCartPrice] = useState({})
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    fetchProducts({ ids: cartList.map(item => item.id) }).then(({ data }) => {
+    fetchProducts({ids: cartList.map(item => item.id)}).then(({data}) => {
       setProducts(data.data)
     })
   }, [])
+
+  useEffect(() => {
+    fetchCartPrice(cartList).then(({data}) => {
+      setCartPrice(data)
+    })
+  }, [cartList])
 
   const getDetailsProduct = (id) => {
     return products.find(product => product.id === id)
@@ -83,22 +92,29 @@ const CartPage = ({ cartList, cartQuantity, categories }) => {
                   <div className="cart-page__total-cell">{cartQuantity}</div>
                 </div>
 
+                {cartPrice.discount_price &&
                 <div className="cart-page__total-row">
                   <div className="cart-page__total-cell">Цена</div>
-                  <div className="cart-page__total-cell"><Amount amount={cartTotal() + cartDiscount()} /></div>
+                  <div className="cart-page__total-cell"><Amount amount={cartPrice.discount_price}/></div>
                 </div>
+                }
 
+                {cartPrice.discount_price &&
                 <div className="cart-page__total-row">
                   <div className="cart-page__total-cell">Скидка</div>
-                  <div className="cart-page__total-cell"><Amount amount={cartDiscount()} /></div>
+                  <div className="cart-page__total-cell"><Amount amount={cartPrice.price - cartPrice.discount_price}/>
+                  </div>
                 </div>
+                }
 
+                {cartPrice.price &&
                 <div className="cart-page__total-row">
                   <div className="cart-page__total-cell">Итого</div>
                   <div className="cart-page__total-cell">
-                    <Amount amount={cartTotal()} />
+                    <Amount amount={cartPrice.price}/>
                   </div>
                 </div>
+                }
               </div>
 
               <div className="cart-page__continue">
@@ -133,7 +149,7 @@ const mapStateToolProps = state => {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({params}) {
   const categories = await fetchCategories()
 
   return {

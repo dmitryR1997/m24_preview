@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import { useCallback, useState } from "react"
 import PropTypes from "prop-types"
 import Cookies from "js-cookie"
 import Link from "next/link"
@@ -120,9 +120,21 @@ const OneClickModal = ({ product, inCart }) => {
           classes="add-to-cart-button"
           label="В корзину"
           onClick={addToCartHandler}
-          transparent={true}
+          outline
         />
       </div>
+
+      {product.credit_line &&
+      <div className="one-click-form__get-credit">
+        <Link href={`/getcredit/${product.code}`}>
+          <Button
+            classes="get-credit-button"
+            label="В рассрочку"
+            transparent
+          />
+        </Link>
+      </div>
+      }
 
       <div className="one-click-form__text">
         Оформляя заказ, вы даёте согласие на<br/>
@@ -152,8 +164,7 @@ const PreOrderModal = ({ product }) => {
     // setLoading(true)
 
     addPreOrder({
-      ...form,
-      ELEMENT_ID: parseInt(product.old_id)
+      ...form
     }).then(({ data }) => {
       // setLoading(false)
     })

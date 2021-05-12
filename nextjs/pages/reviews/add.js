@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import {useEffect, useState} from "react"
 import { useRouter } from "next/router"
 import { useForm, Controller } from "react-hook-form"
 
@@ -17,6 +17,7 @@ import Stars from "@components/Forms/Stars"
 import Loader from "@components/Layout/Loader"
 import Message from "@components/Cards/Message"
 
+import "@styles/pages/AddReviewPage.scss"
 
 const AddReviewPage = ({ categories }) => {
   const router = useRouter()

@@ -9,14 +9,15 @@ const cache = setupCache({
   }
 })
 
-const apiUrl = "https://dev.massagery24.ru/api/"
+const apiMode = prod ? "api" : "api-dev"
+const apiUrl = `https://dev.massagery24.ru/${apiMode}/`
 
 const api = axios.create({
   baseURL: apiUrl,
   withCredentials: prod,
-  adapter: cache.adapter
+  adapter: prod ? cache.adapter : false
 })
 
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials = prod
 
 export default api

@@ -1,16 +1,16 @@
-import React from 'react'
-import { useMemo } from 'react'
-import { createStore, applyMiddleware, combineReducers } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import thunkMiddleware from 'redux-thunk'
-import { persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import React, { useMemo } from "react"
+import { createStore, applyMiddleware } from "redux"
+import { composeWithDevTools } from "redux-devtools-extension"
+import thunkMiddleware from "redux-thunk"
+import { persistReducer } from "redux-persist"
+import storage from "redux-persist/lib/storage"
+
 import reducers from "@reducers/root"
 
 let store
 
 const persistConfig = {
-  keyPrefix: '',
+  keyPrefix: "",
   key: "app",
   storage,
   whitelist: [
@@ -46,7 +46,7 @@ export const initializeStore = (preloadedState) => {
     store = undefined
   }
 
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return _store
   }
 

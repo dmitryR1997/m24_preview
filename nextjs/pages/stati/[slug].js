@@ -1,13 +1,11 @@
-import React, {useEffect, useRef} from "react"
+import { useEffect, useRef } from "react"
 import Head from "next/head"
 
 import { fetchArticle } from "@api/article"
 import { fetchCategories } from "@api/category"
 
 import Layout from "@components/Layout/Layout"
-import Container from "@components/Layout/Container"
-import Catalog from "@components/Utils/Catalog"
-import RealetedProducts from "@components/Utils/RealetedProducts";
+import RealetedProducts from "@components/Utils/RealetedProducts"
 
 import ExpertsHelp from "@screens/ExpertsHelp"
 import FiveReasons from "@screens/FiveReasons";

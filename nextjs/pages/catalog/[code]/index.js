@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Head from "next/head"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
@@ -18,6 +18,8 @@ import ExpertsHelp from "@screens/ExpertsHelp"
 import ExplameMassager from "@screens/ExplameMassager"
 
 import filters from "@utils/filters"
+
+import "@styles/pages/catalog.scss"
 
 const CatalogPage = ({ code, category, filter, updateFilter, setFilter, categories }) => {
   const [total, setTotal] = useState(0)
@@ -143,7 +145,8 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       category: category.data,
-      categories: categories.data
+      categories: categories.data,
+      code: params.code
     }
   }
 }

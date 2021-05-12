@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Head from "next/head"
 
@@ -12,6 +12,8 @@ import RealetedProducts from "@components/Utils/RealetedProducts"
 
 import ExpertsHelp from "@screens/ExpertsHelp"
 import FiveReasons from "@screens/FiveReasons"
+
+import "@styles/pages/Brands.scss"
 
 const BrandPage = ({ categories }) => {
   const [brands, setBrands] = useState([])
