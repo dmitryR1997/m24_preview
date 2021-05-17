@@ -35,9 +35,8 @@ const AccordionSection = ({ children, isOpen, label, onClick, isLink }) => {
       >
         <div
           className={`${sectionClass}__label-text`}
-        >
-          {label}
-        </div>
+          dangerouslySetInnerHTML={{ __html: label }}
+        />
         <div
           className={`${sectionClass}__label-icon`}
         >

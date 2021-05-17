@@ -5,9 +5,7 @@ import { useController } from "react-hook-form"
 
 import "@components/Forms/RangeInput/RangeInput.scss"
 
-const STEP = 1
-
-const SingleRangeInput = ({ min, max, label, valueLabel, control, name, value }) => {
+const SingleRangeInput = ({ min, max, label, valueLabel, control, name, value, step }) => {
   const {
     field: { ref, ...inputProps }
   } = useController({
@@ -38,7 +36,7 @@ const SingleRangeInput = ({ min, max, label, valueLabel, control, name, value })
   return (
     <Range
       values={range}
-      step={STEP}
+      step={step}
       min={min}
       max={max}
       onChange={values => setRange(values)}

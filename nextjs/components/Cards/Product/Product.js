@@ -21,8 +21,6 @@ import NoneVideoIcon from "../../../public/icons/info.svg"
 const Product = ({product, compareList}) => {
   const dispatch = useDispatch()
 
-  console.log(product.labels)
-
   return (
     <article
       className="product-card"

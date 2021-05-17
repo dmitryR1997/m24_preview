@@ -1,12 +1,15 @@
 import PropTypes from "prop-types"
+import classnames from "classnames"
 
 import CheckboxIcon from "../../../public/icons/checkbox.svg"
 
 import "./Checkbox.scss"
 
-const Checkbox = ({ id, name, label, value, image, checked, onClick }) => {
+const Checkbox = ({ id, name, label, image, checked, onClick, error }) => {
   return (
-    <label className="form-check" htmlFor={id}>
+    <label className={classnames("form-check", {
+      "form-check--error": error
+    })} htmlFor={id}>
       {image
         ? <div className="form-check__label"><img src={image} alt={label} /></div>
         : <div className="form-check__label">{label}</div>

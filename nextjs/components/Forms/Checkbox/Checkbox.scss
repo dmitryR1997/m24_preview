@@ -56,4 +56,10 @@
   img {
     max-width: 70px;
   }
+
+  &--error {
+    #{ $self }__label {
+      color: #d21f3b;
+    }
+  }
 }

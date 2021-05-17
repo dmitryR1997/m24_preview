@@ -19,6 +19,7 @@ import num_word from "@utils/NumWord"
 import Cookies from "js-cookie";
 import {openModal} from "@actions/layout";
 import Message from "@components/Cards/Message/Message";
+import Link from "next/link";
 
 
 const GetcreditPage = ({categories}) => {
@@ -102,16 +103,19 @@ const GetcreditPage = ({categories}) => {
             Заявка на рассрочку
           </h1>
 
-          {creditPrice &&
+          {watchFields.start_sum &&
             <div className="getcredit-page__result">
               <div className="getcredit-page__result-item">
                 <span>Сумма рассрочки</span>
-                <Amount amount={creditPrice}/>
+                <Amount
+                  amount={creditPrice}
+                />
               </div>
               <div className="getcredit-page__result-item">
                 <span>Ежемес. платеж</span>
                 <Amount
-                  amount={((creditPrice - (creditPrice / 100 * watchFields.start_sum[0])) / watchFields.credit_term[0]).toFixed(0)}/>
+                  amount={((creditPrice - watchFields.start_sum[0]) / watchFields.credit_term[0])}
+                />
               </div>
             </div>
           }
@@ -121,6 +125,7 @@ const GetcreditPage = ({categories}) => {
               <SingleRangeInput min={1}
                                 max={24}
                                 name="credit_term"
+                                step={1}
                                 control={control}
                                 value={12}
                                 label="Срок рассрочки"
@@ -128,16 +133,19 @@ const GetcreditPage = ({categories}) => {
               />
             </div>
 
+            {creditPrice &&
             <div className="getcredit-page__form-range">
-              <SingleRangeInput min={1}
-                                max={100}
-                                value={50}
+              <SingleRangeInput min={1000}
+                                max={creditPrice}
+                                value={1000}
+                                step={1000}
                                 label="Первоначальный платеж"
-                                valueLabel="%"
+                                valueLabel=" ₽"
                                 control={control}
                                 name="start_sum"
               />
             </div>
+            }
 
             <div className="getcredit-page__form-group">
               <Controller
@@ -188,6 +196,7 @@ const GetcreditPage = ({categories}) => {
               <Controller
                 name="email"
                 control={control}
+                rules={{required: true}}
                 defaultValue=""
                 render={({onChange, value}) =>
                   <Input label="Ваш email"
@@ -233,28 +242,15 @@ const GetcreditPage = ({categories}) => {
             </div>
 
             <Controller
-              name="agree-age"
+              name="agree_age"
               control={control}
-              defaultValue={2}
+              rules={{required: true}}
               render={props =>
                 <div className="getcredit-page__form-check">
                   <Checkbox label="Мне исполнилось 18 лет"
-                            id="agree-age"
-                            handler={e => props.onChange(parseInt(e.target.value))}
-                  />
-                </div>
-              }
-            />
-
-            <Controller
-              name="agree-policy"
-              control={control}
-              defaultValue={2}
-              render={props =>
-                <div className="getcredit-page__form-check">
-                  <Checkbox label="Я даю согласие на обработку моих персональных данных"
-                            id="agree-policy"
-                            handler={e => props.onChange(parseInt(e.target.value))}
+                            id="agree_age"
+                            onClick={e => props.onChange(e.target.checked)}
+                            error={errors.agree_age}
                   />
                 </div>
               }
@@ -266,6 +262,11 @@ const GetcreditPage = ({categories}) => {
                 isLoading={loading}
                 isBlock={true}
               />
+            </div>
+
+            <div className="getcredit-page__text">
+              Отправляя заявку на рассрочку, вы даёте согласие на<br/>
+              <Link href="/content/agree/">обработку персональных данных</Link>
             </div>
           </form>
         </div>

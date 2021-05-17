@@ -1,9 +1,9 @@
-import { useRef, useEffect, useState } from "react"
+import {useRef, useEffect, useState} from "react"
 import PropTypes from "prop-types"
 
 import "./Amount.scss"
 
-const Amount = ({ amount, old, text }) => {
+const Amount = ({amount, old, text}) => {
   const [styleDeg, setStyleDeg] = useState(false)
   const amountBlock = useRef(null)
 
@@ -26,15 +26,15 @@ const Amount = ({ amount, old, text }) => {
 
   return (
     <div className="amount" ref={amountBlock}>
-      { amount.toLocaleString("ru") } ₽{text && text}
+      {amount.toLocaleString("ru", {minimumFractionDigits: 0, maximumFractionDigits: 0})} ₽{text && text}
 
       {old && styleDeg &&
-        <div
-          className="amount__line"
-          style={{
-            transform: `rotate(-${styleDeg}deg)`
-          }}
-        />
+      <div
+        className="amount__line"
+        style={{
+          transform: `rotate(-${styleDeg}deg)`
+        }}
+      />
       }
     </div>
   )

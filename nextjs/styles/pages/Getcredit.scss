@@ -80,6 +80,18 @@
     text-align: center;
   }
 
+  &__text {
+    margin: 32px 0 42px;
+    font-size: 10px;
+    line-height: 1.2;
+    color: #4F4F4F;
+    text-align: center;
+
+    a {
+      border-bottom: 1px dashed;
+    }
+  }
+
   &__explame-massager {
     margin: 0 0 48px;
   }
