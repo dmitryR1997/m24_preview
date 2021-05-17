@@ -44,10 +44,11 @@ const MainMenu = ({ isOpenMainMenu, headerOffsetBottom, categories }) => {
               }
             </div>
 
-            <Link
+            <div
               id="tab-2"
               isLink={true}
-              label=<Link href="/promotions">>Акции</Link>
+              href="/promotions"
+              label="Акции"
             />
 
             <div

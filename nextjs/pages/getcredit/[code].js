@@ -37,10 +37,24 @@ const GetcreditPage = ({categories}) => {
   }
 
   const formHandler = (data) => {
+    let fullName = ""
+
+    if(data.first_name) {
+      fullName += data.first_name
+    }
+
+    if(data.middle_name) {
+      fullName += ` ${data.middle_name}`
+    }
+
+    if(data.last_name) {
+      fullName += ` ${data.last_name}`
+    }
+
     const form = {
       credit_line: {
         client: {
-          fullname: `${data.first_name} ${data.middle_name} ${data.last_name}`,
+          fullname: fullName,
           phone: data.phone,
           email: data.email,
           adress: data.address

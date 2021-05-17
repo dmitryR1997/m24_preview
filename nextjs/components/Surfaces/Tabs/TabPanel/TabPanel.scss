@@ -1,45 +1,7 @@
-.accordion-item {
-  $self: &;
+.tab-panel {
+  display: none;
 
-  padding: 0 24px;
-
-  &--is-open {
-    #{ $self }__inner {
-      max-height: 10000px;
-      transition: max-height ease-in-out 1s;
-    }
-
-    #{ $self }__label {
-      &-icon {
-        transform: rotate(90deg);
-      }
-    }
-  }
-
-  &__label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 24px 0;
-
-    cursor: pointer;
-
-    &-icon {
-      transition: transform ease-in-out 0.2s;
-      transform: rotate(0deg);
-
-      padding: 0 8px;
-    }
-  }
-
-  &__inner {
-    max-height: 0;
-    overflow: hidden;
-    transition: none;
-  }
-
-  &__content {
-    padding: 0 0 24px;
+  &--active {
+    display: block;
   }
 }

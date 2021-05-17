@@ -1,4 +1,5 @@
 import PropTypes from "prop-types"
+import Link from "next/link"
 
 import Arrow from "../../../public/icons/accordion-arrow.svg"
 
@@ -6,7 +7,7 @@ import "./AccordionSection.scss"
 
 const sectionClass = "accordion-item"
 
-const AccordionSection = ({ children, isOpen, label, onClick, isLink }) => {
+const AccordionSection = ({ children, isOpen, label, onClick, isLink, href }) => {
   if (isLink) {
     return (
       <div
@@ -18,7 +19,9 @@ const AccordionSection = ({ children, isOpen, label, onClick, isLink }) => {
           <div
             className={`${sectionClass}__label-text`}
           >
-            <div dangerouslySetInnerHTML={{ __html: label }} />
+            <Link href={href}>
+              <div dangerouslySetInnerHTML={{ __html: label }} />
+            </Link>
           </div>
         </div>
       </div>

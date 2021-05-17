@@ -28,7 +28,7 @@ export const Tabs = ({ children }) => {
     const id = child.props.id
     const isSelected = selectedTab === id
 
-    if (!isSelected) return
+    // if (!isSelected) return
 
     return (
       <TabPanel id={id} selected={isSelected}>

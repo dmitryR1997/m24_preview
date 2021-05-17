@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
+import React, {useState, useEffect, useRef} from "react"
 import { connect } from "react-redux"
+import Head from "next/head"
 
 import { fetchCategories } from "@api/category"
 import { fetchProducts } from "@api/product"
@@ -10,6 +11,7 @@ import RealetedProducts from "@components/Utils/RealetedProducts"
 import SectionHeader from "@components/Display/SectionHeader"
 import Complect from "@components/Cards/Complect"
 import Product from "@components/Cards/Product/Product"
+import Button from "@components/Forms/Button"
 
 import ExpertsHelp from "@screens/ExpertsHelp"
 import FiveReasons from "@screens/FiveReasons"
@@ -18,9 +20,14 @@ import OfficialWaranty from "@screens/OfficialWaranty"
 import num_word from "@utils/NumWord"
 
 const PromotionsPage = ({ categories }) => {
+  const loader = useRef(null)
+
   const [complects, setComplects] = useState([])
   const [products, setProducts] = useState([])
-  const [total, setTotal] = useState(0)
+  const [productTotal, setProductTotal] = useState(0)
+  const [complectTotal, setComplectTotal] = useState(0)
+  const [page, setPage] = useState(1)
+  const [isRendered, setIsRendered] = useState(false)
 
   useEffect(() => {
     fetchProducts({
@@ -28,46 +35,81 @@ const PromotionsPage = ({ categories }) => {
       page_size: 100
     }).then(({ data }) => {
       setComplects(data.data)
-      setTotal(prev => prev + data.total)
+      setComplectTotal(data.total)
     })
 
+    setIsRendered(true)
+  }, [])
+
+  const handleObserver = (entities) => {
+    const target = entities[0]
+
+    if (target.isIntersecting) {
+      setPage((page) => page + 1)
+    }
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      root: null,
+      threshold: 1.0
+    })
+
+    if (loader.current) {
+      observer.observe(loader.current)
+    }
+  }, [isRendered])
+
+  useEffect(() => {
     fetchProducts({
       "type": "DISCOUNT",
-      page_size: 10
+      "nav-products": `page-${page}`,
     }).then(({ data }) => {
-      console.log(data)
-      setProducts(data.data)
-      setTotal(prev => prev + data.total)
+      setProducts(prev => [...prev, ...data.data])
+      setProductTotal(data.total)
     })
 
-  }, [])
+  }, [page])
 
   return (
     <Layout categories={categories}>
+      <Head>
+        <title>Акции и скидки</title>
+      </Head>
+
       <div className="promotions-page">
         <div className="container">
           <div className="promotions-page__header">
             <SectionHeader
               title="Акции"
-              description={`${total} ${num_word(total, ["акция", "акции", "акций"])}`}
+              description={`${productTotal + complectTotal} ${num_word(productTotal + complectTotal, ["акция", "акции", "акций"])}`}
             />
           </div>
 
           <Tabs>
-            <Tab id={1} label="Комплекты">
+            <Tab id={1} label="Товары">
+              <div className="promotions-page__product-list">
+                {products.map((product, key) => (
+                  <div key={key} className="promotions-page__product-item">
+                    <Product product={product} />
+                  </div>
+                ))}
+              </div>
+              <div className="promotions-page__load-more" ref={loader}>
+                <Button
+                  onClick={() => setPage(page + 1)}
+                  label="Показать ещё"
+                  size="xs"
+                  outline
+                />
+              </div>
+            </Tab>
+
+            <Tab id={2} label="Комплекты">
               <div className="promotions-page__complect-list">
                 {complects.map((complect, key) => (
                   <div key={key} className="promotions-page__complect-item">
                     <Complect product={complect} />
-                  </div>
-                ))}
-              </div>
-            </Tab>
-            <Tab id={2} label="Товары">
-              <div className="promotions-page__product-list">
-                {products.map((product, key) => (
-                  <div className="promotions-page__product-item">
-                    <Product key={key} product={product} />
                   </div>
                 ))}
               </div>
