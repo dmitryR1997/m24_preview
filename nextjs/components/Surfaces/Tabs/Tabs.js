@@ -14,8 +14,10 @@ export const Tabs = ({ children }) => {
   }
 
   const buttons = React.Children.map(children, child => {
-    const { id } = child.props
+    const { id, disabled } = child.props
     const isSelected = selectedTab === id
+
+    if(disabled) return
 
     return (
       <TabButton id={id} selected={isSelected} onClick={() => handleSelectTab(id)}>
@@ -25,10 +27,10 @@ export const Tabs = ({ children }) => {
   })
 
   const panels = React.Children.map(children, child => {
-    const id = child.props.id
+    const { id, disabled } = child.props
     const isSelected = selectedTab === id
 
-    if (!isSelected) return
+    if (!isSelected || disabled) return
 
     return (
       <TabPanel id={id} selected={isSelected}>

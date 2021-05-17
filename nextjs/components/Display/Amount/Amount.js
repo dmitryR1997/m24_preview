@@ -16,8 +16,6 @@ const Amount = ({amount, old, text}) => {
     const sin = height / d
     const deg = Math.asin(sin) * (180 / Math.PI)
 
-    console.log(height)
-
     if(!isNaN(deg)) setStyleDeg(deg)
   }
 

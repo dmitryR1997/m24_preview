@@ -71,6 +71,7 @@ const PromotionsPage = ({categories}) => {
 
   }, [page])
 
+
   return (
     <Layout categories={categories}>
       <Head>
@@ -86,8 +87,37 @@ const PromotionsPage = ({categories}) => {
             />
           </div>
 
-          <Tabs>
-            <Tab id={1} label="Товары">
+          {complects.length > 0 ?
+            <Tabs>
+              <Tab id={1} label="Товары">
+                <div className="promotions-page__product-list">
+                  {products.map((product, key) => (
+                    <div key={key} className="promotions-page__product-item">
+                      <Product product={product}/>
+                    </div>
+                  ))}
+                </div>
+                <div className="promotions-page__load-more" ref={loader}>
+                  <Button
+                    onClick={() => setPage(page + 1)}
+                    label="Показать ещё"
+                    size="xs"
+                    outline
+                  />
+                </div>
+              </Tab>
+              <Tab id={2} label="Комплекты" disabled={complects.length === 0}>
+                <div className="promotions-page__complect-list">
+                  {complects.map((complect, key) => (
+                    <div key={key} className="promotions-page__complect-item">
+                      <Complect product={complect}/>
+                    </div>
+                  ))}
+                </div>
+              </Tab>
+            </Tabs>
+            :
+            <>
               <div className="promotions-page__product-list">
                 {products.map((product, key) => (
                   <div key={key} className="promotions-page__product-item">
@@ -103,18 +133,8 @@ const PromotionsPage = ({categories}) => {
                   outline
                 />
               </div>
-            </Tab>
-
-            <Tab id={2} label="Комплекты">
-              <div className="promotions-page__complect-list">
-                {complects.map((complect, key) => (
-                  <div key={key} className="promotions-page__complect-item">
-                    <Complect product={complect}/>
-                  </div>
-                ))}
-              </div>
-            </Tab>
-          </Tabs>
+            </>
+          }
 
           <div className="promotions-page__five-reasons">
             <FiveReasons/>
