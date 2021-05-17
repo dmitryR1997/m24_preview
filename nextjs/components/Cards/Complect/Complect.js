@@ -56,17 +56,20 @@ const Complect = ({product}) => {
       </div>
 
       <div className="complect-card__old-price">
+        {product.price &&
         <Amount
-          amount={product.price}
-          old
-          text={false}
+          amount={80000}
+          old={true}
         />
+        }
       </div>
 
       <div className="complect-card__price">
+        {product.minimal_price &&
         <Amount
           amount={product.minimal_price}
         />
+        }
       </div>
 
       <div className="complect-card__add-to-card">

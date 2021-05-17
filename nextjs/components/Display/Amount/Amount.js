@@ -11,11 +11,14 @@ const Amount = ({amount, old, text}) => {
     const width = amountBlock.current.clientWidth
     const height = amountBlock.current.clientHeight
 
+
     const d = Math.sqrt(height * height + width * width)
     const sin = height / d
     const deg = Math.asin(sin) * (180 / Math.PI)
 
-    setStyleDeg(deg)
+    console.log(height)
+
+    if(!isNaN(deg)) setStyleDeg(deg)
   }
 
   useEffect(() => {
@@ -26,10 +29,7 @@ const Amount = ({amount, old, text}) => {
 
   return (
     <div className="amount" ref={amountBlock}>
-      {amount.toLocaleString("ru", { minimumFractionDigits: 0, maximumFractionDigits: 0 })} ₽
-
-      {text && text}
-
+      {amount.toLocaleString("ru", { minimumFractionDigits: 0, maximumFractionDigits: 0 })} ₽{text && text}
       {old && styleDeg &&
       <div
         className="amount__line"

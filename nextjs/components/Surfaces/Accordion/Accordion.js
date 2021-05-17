@@ -45,7 +45,7 @@ const Accordion = ({children}) => {
             isOpen={!!openSections[item.props.id]}
             isLink={!item.props.children}
             label={item.props.label}
-            href={item.props.href}
+            href={item.props?.href}
           >
             {item}
           </AccordionSection>)
@@ -54,7 +54,7 @@ const Accordion = ({children}) => {
           isOpen={!!openSections[children.props.id]}
           isLink={!children.props.children}
           label={children.props.label}
-          href={item.props.href}
+          href={children.props?.href}
         >
           {children}
         </AccordionSection>
