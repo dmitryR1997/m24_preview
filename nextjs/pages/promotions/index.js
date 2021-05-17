@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useRef} from "react"
-import { connect } from "react-redux"
+import {connect} from "react-redux"
 import Head from "next/head"
 
-import { fetchCategories } from "@api/category"
-import { fetchProducts } from "@api/product"
+import {fetchCategories} from "@api/category"
+import {fetchProducts} from "@api/product"
 
 import Layout from "@components/Layout/Layout"
-import { Tab, Tabs } from "@components/Surfaces/Tabs/Tabs"
+import {Tab, Tabs} from "@components/Surfaces/Tabs/Tabs"
 import RealetedProducts from "@components/Utils/RealetedProducts"
 import SectionHeader from "@components/Display/SectionHeader"
 import Complect from "@components/Cards/Complect"
@@ -19,7 +19,7 @@ import OfficialWaranty from "@screens/OfficialWaranty"
 
 import num_word from "@utils/NumWord"
 
-const PromotionsPage = ({ categories }) => {
+const PromotionsPage = ({categories}) => {
   const loader = useRef(null)
 
   const [complects, setComplects] = useState([])
@@ -33,7 +33,7 @@ const PromotionsPage = ({ categories }) => {
     fetchProducts({
       "product_type": 2,
       page_size: 100
-    }).then(({ data }) => {
+    }).then(({data}) => {
       setComplects(data.data)
       setComplectTotal(data.total)
     })
@@ -64,7 +64,7 @@ const PromotionsPage = ({ categories }) => {
     fetchProducts({
       "type": "DISCOUNT",
       "nav-products": `page-${page}`,
-    }).then(({ data }) => {
+    }).then(({data}) => {
       setProducts(prev => [...prev, ...data.data])
       setProductTotal(data.total)
     })
@@ -91,7 +91,7 @@ const PromotionsPage = ({ categories }) => {
               <div className="promotions-page__product-list">
                 {products.map((product, key) => (
                   <div key={key} className="promotions-page__product-item">
-                    <Product product={product} />
+                    <Product product={product}/>
                   </div>
                 ))}
               </div>
@@ -109,7 +109,7 @@ const PromotionsPage = ({ categories }) => {
               <div className="promotions-page__complect-list">
                 {complects.map((complect, key) => (
                   <div key={key} className="promotions-page__complect-item">
-                    <Complect product={complect} />
+                    <Complect product={complect}/>
                   </div>
                 ))}
               </div>
@@ -126,26 +126,24 @@ const PromotionsPage = ({ categories }) => {
         </div>
 
         <div className="promotions-page__realeted-products">
-          <RealetedProducts params={{ section_id: 69, random: true }}/>
+          <RealetedProducts params={{section_id: 69, random: true}}/>
         </div>
 
         <div className="promotions-page__experts-help">
-          <ExpertsHelp hideText />
+          <ExpertsHelp hideText/>
         </div>
       </div>
     </Layout>
   )
 }
 
-PromotionsPage.propTypes = {
-}
+PromotionsPage.propTypes = {}
 
 const mapStateToolProps = state => {
-  return {
-  }
+  return {}
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({params}) {
   const categories = await fetchCategories()
 
   return {

@@ -26,7 +26,9 @@ const Amount = ({amount, old, text}) => {
 
   return (
     <div className="amount" ref={amountBlock}>
-      {amount.toLocaleString("ru", {minimumFractionDigits: 0, maximumFractionDigits: 0})} ₽{text && text}
+      {amount.toLocaleString("ru", { minimumFractionDigits: 0, maximumFractionDigits: 0 })} ₽
+
+      {text && text}
 
       {old && styleDeg &&
       <div
