@@ -4,11 +4,13 @@ import getMobileDetect from "@utils/mobileDetect"
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     let desktopUrl = false
+    let isDesktop = false
 
-    if(ctx.req && ctx.req.headers && ctx.req.headers["user-agent"]) {
+    if(ctx.req.headers["user-agent"]) {
       const detect = getMobileDetect(ctx.req.headers["user-agent"])
 
       if (detect.isDesktop()) {
+        isDesktop = true
         const path = ctx.asPath.split("/")
 
         if (path[1] === "catalog" || path[1] === "vendors" || path[1] === "stati" || path[1] === "content") {
@@ -32,7 +34,8 @@ export default class MyDocument extends Document {
 
     return {
       ...initialProps,
-      url: desktopUrl
+      url: desktopUrl,
+      isDesktop: isDesktop
     }
   }
 
@@ -41,8 +44,9 @@ export default class MyDocument extends Document {
       <Html lang="ru">
         <Head/>
         <body>
-        {this.props.url}
-        Test
+        {this.props.isDesktop &&
+          <p>Desktop</p>
+        }
         <Main/>
         <NextScript/>
         </body>
