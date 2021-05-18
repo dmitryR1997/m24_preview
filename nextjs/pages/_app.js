@@ -1,6 +1,5 @@
-import {useEffect} from "react"
 import {useRouter} from "next/router"
-import useMobileDetect from "@utils/mobileDetect"
+import React, {useEffect} from "react"
 
 import {useStore} from '../store'
 import {Provider} from "react-redux"
@@ -40,26 +39,6 @@ import "@styles/pages/Promotions.scss"
 
 
 function MyApp({Component, pageProps}) {
-  const currentDevice = useMobileDetect()
-
-  if(currentDevice.isDesktop() && process.env.NODE_ENV === "production") {
-    const path = window.location.pathname.split("/")
-
-    let resultUrl = ""
-
-    if(path[1] === "catalog" || path[1] === "vendors" || path[1] === "stati" || path[1] === "content") {
-      resultUrl = `https://massagery24.ru${window.location.pathname}`
-    } else if(path[1] === "contacts") {
-      resultUrl = `https://massagery24.ru/content/contacts/`
-    } else if(path[1] === "promotions") {
-      resultUrl = `https://massagery24.ru/actions/set/`
-    } else if(path[1] === "") {
-      resultUrl = `https://massagery24.ru/`
-    }
-
-    window.location.href = resultUrl
-  }
-
   const store = useStore(pageProps.initialReduxState)
   const persistor = persistStore(store)
 
