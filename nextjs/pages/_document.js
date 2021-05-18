@@ -20,9 +20,9 @@ export default class MyDocument extends Document {
             desktopUrl = `https://massagery24.ru/actions/set/`
           } else if (path[1] === "") {
             desktopUrl = `https://massagery24.ru/`
-          } else {
-            desktopUrl = `https://massagery24.ru/`
           }
+        } else {
+          desktopUrl = `https://massagery24.ru/`
         }
 
         if (desktopUrl) {
