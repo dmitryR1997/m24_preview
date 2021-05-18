@@ -1,13 +1,15 @@
-import { useEffect } from "react"
-import { useRouter } from "next/router"
+import {useEffect} from "react"
+import {useRouter} from "next/router"
+import useMobileDetect from "@utils/mobileDetect"
 
-import { useStore } from '../store'
-import { Provider } from "react-redux"
-import { persistStore } from 'redux-persist'
-import { PersistGate } from 'redux-persist/integration/react'
-import { hideHeaderSearch, hideMainMenu, hideModal } from "@actions/layout"
+import {useStore} from '../store'
+import {Provider} from "react-redux"
+import {persistStore} from 'redux-persist'
+import {PersistGate} from 'redux-persist/integration/react'
+import {hideHeaderSearch, hideMainMenu, hideModal} from "@actions/layout"
 
 import TagManager from "react-gtm-module"
+
 const tagManagerArgs = {
   gtmId: "GTM-NKKVLD4"
 }
@@ -36,14 +38,35 @@ import "@styles/pages/Static.scss"
 import "@styles/pages/VideoReviews.scss"
 import "@styles/pages/Promotions.scss"
 
-function MyApp({ Component, pageProps }) {
+
+function MyApp({Component, pageProps}) {
+  const currentDevice = useMobileDetect()
+
+  if(currentDevice.isDesktop() && process.env.NODE_ENV === "production") {
+    const path = window.location.pathname.split("/")
+
+    let resultUrl = ""
+
+    if(path[1] === "catalog" || path[1] === "vendors" || path[1] === "stati" || path[1] === "content") {
+      resultUrl = `https://massagery24.ru${window.location.pathname}`
+    } else if(path[1] === "contacts") {
+      resultUrl = `https://massagery24.ru/content/contacts/`
+    } else if(path[1] === "promotions") {
+      resultUrl = `https://massagery24.ru/actions/set/`
+    } else if(path[1] === "") {
+      resultUrl = `https://massagery24.ru/`
+    }
+
+    window.location.href = resultUrl
+  }
+
   const store = useStore(pageProps.initialReduxState)
   const persistor = persistStore(store)
 
   const router = useRouter()
 
-  useEffect(()=> {
-    if(process.env.NODE_ENV === "production") TagManager.initialize(tagManagerArgs)
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") TagManager.initialize(tagManagerArgs)
 
     router.events.on("routeChangeComplete", () => {
       window.scrollTo({
@@ -55,7 +78,7 @@ function MyApp({ Component, pageProps }) {
       store.dispatch(hideHeaderSearch())
       store.dispatch(hideModal())
     })
-  },[])
+  }, [])
 
   return (
     <Provider store={store}>
