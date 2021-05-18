@@ -30,11 +30,14 @@ export default class MyDocument extends Document {
     const initialProps = await Document.getInitialProps(ctx)
 
     return {
-      ...initialProps
+      ...initialProps,
+      url: ctx.asPath.split("/")
     }
   }
 
   render() {
+    console.log(this.props.url)
+
     return (
       <Html lang="ru">
         <Head/>
