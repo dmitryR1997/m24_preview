@@ -42,6 +42,7 @@ export default class MyDocument extends Document {
         <Head/>
         <body>
         {this.props.url}
+        Test
         <Main/>
         <NextScript/>
         </body>
