@@ -6,7 +6,8 @@ export default class MyDocument extends Document {
     if(ctx.req && ctx.req.headers && ctx.req.headers["user-agent"]) {
       const detect = getMobileDetect(ctx.req.headers["user-agent"])
 
-      if (detect.isDesktop() && process.env.NODE_ENV === "production") {
+
+      if (detect.isDesktop()) {
         let desktopUrl = false
         const path = ctx.asPath.split("/")
 
@@ -25,7 +26,8 @@ export default class MyDocument extends Document {
         }
 
         if (desktopUrl) {
-          ctx.res.writeHead(301, {Location: desktopUrl}).end()
+          ctx.res.statusCode = 301
+          ctx.res.setHeader("Location", desktopUrl);
         }
       }
     }
