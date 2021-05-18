@@ -3,11 +3,12 @@ import getMobileDetect from "@utils/mobileDetect"
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
+    let desktopUrl = false
+
     if(ctx.req && ctx.req.headers && ctx.req.headers["user-agent"]) {
       const detect = getMobileDetect(ctx.req.headers["user-agent"])
 
       if (detect.isDesktop()) {
-        let desktopUrl = false
         const path = ctx.asPath.split("/")
 
         if (path[1] === "catalog" || path[1] === "vendors" || path[1] === "stati" || path[1] === "content") {
@@ -21,8 +22,8 @@ export default class MyDocument extends Document {
         }
 
         if (desktopUrl) {
-          ctx.res.statusCode = 301
-          ctx.res.setHeader("Location", desktopUrl);
+          // ctx.res.statusCode = 301
+          // ctx.res.setHeader("Location", desktopUrl);
         }
       }
     }
@@ -31,17 +32,16 @@ export default class MyDocument extends Document {
 
     return {
       ...initialProps,
-      url: ctx.asPath.split("/")
+      url: desktopUrl
     }
   }
 
   render() {
-    console.log(this.props.url)
-
     return (
       <Html lang="ru">
         <Head/>
         <body>
+        {this.props.url}
         <Main/>
         <NextScript/>
         </body>
