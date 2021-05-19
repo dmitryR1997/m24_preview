@@ -229,7 +229,7 @@ const mapStateToolProps = state => {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const categories = await fetchCategories()
 
   return {

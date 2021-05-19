@@ -70,7 +70,7 @@ const HomePage = ({ text, slides, categories }) => {
   )
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps(ctx) {
   const seo = await fetchSeoHome()
   const slides = await api.get("https://dev.massagery24.ru/api/slider/list.php")
   const categories = await fetchCategories()

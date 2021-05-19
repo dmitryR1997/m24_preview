@@ -37,7 +37,6 @@ import "@styles/pages/Static.scss"
 import "@styles/pages/VideoReviews.scss"
 import "@styles/pages/Promotions.scss"
 
-
 function MyApp({Component, pageProps}) {
   const store = useStore(pageProps.initialReduxState)
   const persistor = persistStore(store)
@@ -67,6 +66,5 @@ function MyApp({Component, pageProps}) {
     </Provider>
   )
 }
-
 
 export default MyApp

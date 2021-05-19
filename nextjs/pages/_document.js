@@ -1,17 +1,17 @@
 import Document, {Html, Head, Main, NextScript} from "next/document"
-import getMobileDetect from "@utils/mobileDetect"
+import getMobileDetect from "@utils/mobileDetect";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    let desktopUrl = false
-    let isDesktop = false
+    const initialProps = await Document.getInitialProps(ctx)
 
-    if(ctx.req.headers["user-agent"]) {
+    if(ctx.req && ctx.req.headers && ctx.req.headers["user-agent"]) {
       const detect = getMobileDetect(ctx.req.headers["user-agent"])
 
-      if (detect.isDesktop()) {
-        isDesktop = true
-        const path = ctx.asPath.split("/")
+      let desktopUrl = false
+
+      if (detect.isDesktop() && process.env.NODE_ENV === "production") {
+        const path = ctx.pathname.split("/")
 
         if (path[1] === "catalog" || path[1] === "vendors" || path[1] === "stati" || path[1] === "content") {
           desktopUrl = `https://massagery24.ru${ctx.asPath}`
@@ -24,18 +24,17 @@ export default class MyDocument extends Document {
         }
 
         if (desktopUrl) {
-          // ctx.res.statusCode = 301
-          // ctx.res.setHeader("Location", desktopUrl);
+          ctx.res.writeHead(301, {
+            Location: desktopUrl
+          })
+
+          ctx.res.end()
         }
       }
     }
 
-    const initialProps = await Document.getInitialProps(ctx)
-
     return {
-      ...initialProps,
-      url: desktopUrl,
-      isDesktop: isDesktop
+      ...initialProps
     }
   }
 
@@ -44,9 +43,6 @@ export default class MyDocument extends Document {
       <Html lang="ru">
         <Head/>
         <body>
-        {this.props.isDesktop &&
-          <p>Desktop</p>
-        }
         <Main/>
         <NextScript/>
         </body>

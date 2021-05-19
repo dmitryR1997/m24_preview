@@ -16,6 +16,7 @@ import Footer from "@screens/Footer"
 
 import "./Layout.scss"
 
+
 const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu, isOverflowInitial, hideAboutShop }) => {
   const isHome = pageType === "home"
   const isCatalog = pageType === "category"
@@ -35,6 +36,7 @@ const Layout = ({ children, pageType, categories, seoText, isOpenMainMenu, isOve
       document.querySelector("body").classList.remove("overflow-hidden")
     }
   }, [isOpenMainMenu])
+
 
   return (
     <>
@@ -79,7 +81,8 @@ Layout.propTypes = {
   isOverflowInitial: PropTypes.bool,
   hideAboutShop: PropTypes.bool,
   pageType: PropTypes.string,
-  seoText: PropTypes.string
+  seoText: PropTypes.string,
+  userAgent: PropTypes.string
 }
 
 const mapStateToolProps = state => {
