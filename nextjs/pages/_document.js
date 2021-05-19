@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
 
       let desktopUrl = false
 
-      if (detect.isDesktop() && process.env.NODE_ENV === "production") {
+      if (detect.isDesktop() && process.env.NODE_ENV === "development") {
         const path = ctx.pathname.split("/")
 
         if (path[1] === "catalog" || path[1] === "vendors" || path[1] === "stati" || path[1] === "content") {
@@ -22,13 +22,13 @@ export default class MyDocument extends Document {
         } else if (path[1] === "") {
           desktopUrl = `https://massagery24.ru/`
         }
+        // } else {
+        //   desktopUrl = `https://massagery24.ru/`
+        // }
 
         if (desktopUrl) {
-          ctx.res.writeHead(301, {
-            Location: desktopUrl
-          })
-
-          ctx.res.end()
+          ctx.res.statusCode = 301
+          ctx.res.setHeader("Location", desktopUrl);
         }
       }
     }
