@@ -180,6 +180,7 @@ const ProductPage = ({ categories, details }) => {
                 />
               </div>
 
+              {details.features &&
               <Accordion>
                 {Object.keys(details.features).map((feature, key) => (
                   <div
@@ -200,6 +201,7 @@ const ProductPage = ({ categories, details }) => {
                   </div>
                 ))}
               </Accordion>
+              }
             </Tab>
 
             <Tab id={3} label="Отзывы">
