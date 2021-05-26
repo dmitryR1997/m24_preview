@@ -8,6 +8,8 @@ import "./AccordionSection.scss"
 const sectionClass = "accordion-item"
 
 const AccordionSection = ({ children, isOpen, label, onClick, isLink, href }) => {
+  console.log(label)
+
   if (isLink) {
     return (
       <div
@@ -16,13 +18,13 @@ const AccordionSection = ({ children, isOpen, label, onClick, isLink, href }) =>
         <div
           className={`${sectionClass}__label`}
         >
-          <div
-            className={`${sectionClass}__label-text`}
-          >
-            <Link href={href}>
-              <div dangerouslySetInnerHTML={{ __html: label }} />
-            </Link>
-          </div>
+          <Link href={href}>
+            <div
+              className={`${sectionClass}__label-text`}
+            >
+              {label}
+            </div>
+          </Link>
         </div>
       </div>
     )
@@ -36,10 +38,9 @@ const AccordionSection = ({ children, isOpen, label, onClick, isLink, href }) =>
         className={`${sectionClass}__label`}
         onClick={onClick}
       >
-        <div
-          className={`${sectionClass}__label-text`}
-          dangerouslySetInnerHTML={{ __html: label }}
-        />
+        <div className={`${sectionClass}__label-text`}>
+          {label}
+        </div>
         <div
           className={`${sectionClass}__label-icon`}
         >
