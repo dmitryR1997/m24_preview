@@ -89,7 +89,16 @@ const PromotionsPage = ({categories}) => {
 
           {complects.length > 0 ?
             <Tabs>
-              <Tab id={1} label="Товары">
+              <Tab id={1} label="Комплекты" disabled={complects.length === 0}>
+                <div className="promotions-page__complect-list">
+                  {complects.map((complect, key) => (
+                    <div key={key} className="promotions-page__complect-item">
+                      <Complect product={complect}/>
+                    </div>
+                  ))}
+                </div>
+              </Tab>
+              <Tab id={2} label="Товары">
                 <div className="promotions-page__product-list">
                   {products.map((product, key) => (
                     <div key={key} className="promotions-page__product-item">
@@ -104,15 +113,6 @@ const PromotionsPage = ({categories}) => {
                     size="xs"
                     outline
                   />
-                </div>
-              </Tab>
-              <Tab id={2} label="Комплекты" disabled={complects.length === 0}>
-                <div className="promotions-page__complect-list">
-                  {complects.map((complect, key) => (
-                    <div key={key} className="promotions-page__complect-item">
-                      <Complect product={complect}/>
-                    </div>
-                  ))}
                 </div>
               </Tab>
             </Tabs>

@@ -36,9 +36,7 @@ const Complect = ({product}) => {
     <article
       className="complect-card"
     >
-      <h3 className="complect-card__title">
-        {product.name}
-      </h3>
+      <h3 className="complect-card__title" dangerouslySetInnerHTML={{ __html: product.name}}/>
 
       <div className="complect-card__discount">
         Выгода&nbsp;<span><Amount amount={product.price - product.minimal_price}/></span>
@@ -58,7 +56,7 @@ const Complect = ({product}) => {
       <div className="complect-card__old-price">
         {product.price &&
         <Amount
-          amount={80000}
+          amount={product.price}
           old={true}
         />
         }
