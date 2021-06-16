@@ -8,8 +8,6 @@ import "./AccordionSection.scss"
 const sectionClass = "accordion-item"
 
 const AccordionSection = ({ children, isOpen, label, onClick, isLink, href }) => {
-  console.log(label)
-
   if (isLink) {
     return (
       <div

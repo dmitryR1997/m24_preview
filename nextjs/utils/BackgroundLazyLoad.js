@@ -18,7 +18,10 @@ class BackgroundLazyLoad extends React.Component {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.intersectionRatio === 1) {
+        if (
+          entry.rootBounds.height < entry.boundingClientRect.height ||
+          entry.intersectionRatio === 1
+        ) {
           imageLoader.src = imageSrc
 
           imageLoader.onload = () => {
